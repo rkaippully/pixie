@@ -1,0 +1,11 @@
+#+Title: Pixie Virtual Machine
+#+Author: Raghu Kaippully
+
+#+OPTIONS: html-postamble:nil toc:nil
+#+HTML_DOCTYPE: html5
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="org-style.css"/>
+
+Pixie is a project to build a virtual machine in [[https://www.haskell.org][Haskell]].
+
+- [[file:spec.org][Pixie Virtual Machine Specification]]
+- [[https://github.com/rkaippully/pixie][Github Project Page]]
