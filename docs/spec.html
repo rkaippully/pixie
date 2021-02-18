@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-02-17 Wed 19:22 -->
+<!-- 2021-02-18 Thu 20:50 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pixie Specification - Version 1.0</title>
@@ -1071,8 +1071,8 @@ operand.
 </p>
 </div>
 
-<div id="outline-container-org9dc51bb" class="outline-4">
-<h4 id="org9dc51bb"><span class="section-number-4">3.1.1</span> Encodings</h4>
+<div id="outline-container-org8d2b189" class="outline-4">
+<h4 id="org8d2b189"><span class="section-number-4">3.1.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 7:</span> <code>ADD DO, SO1, SO2</code></caption>
@@ -1156,8 +1156,8 @@ operand.
 </div>
 </div>
 
-<div id="outline-container-org0118b97" class="outline-4">
-<h4 id="org0118b97"><span class="section-number-4">3.1.2</span> Operation</h4>
+<div id="outline-container-orgce4a6fa" class="outline-4">
+<h4 id="orgce4a6fa"><span class="section-number-4">3.1.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <pre class="example">
 if (instruction[16] == 0)
@@ -1170,8 +1170,8 @@ Set_Flags(DO);
 </div>
 </div>
 
-<div id="outline-container-org5af6955" class="outline-4">
-<h4 id="org5af6955"><span class="section-number-4">3.1.3</span> Flags Affected</h4>
+<div id="outline-container-orgf199ce7" class="outline-4">
+<h4 id="orgf199ce7"><span class="section-number-4">3.1.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -1189,8 +1189,8 @@ stores the result in the destination operand.
 </p>
 </div>
 
-<div id="outline-container-org0f25f62" class="outline-4">
-<h4 id="org0f25f62"><span class="section-number-4">3.2.1</span> Encodings</h4>
+<div id="outline-container-orga3a1942" class="outline-4">
+<h4 id="orga3a1942"><span class="section-number-4">3.2.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 9:</span> <code>SUB DO, SO1, SO2</code></caption>
@@ -1274,8 +1274,8 @@ stores the result in the destination operand.
 </div>
 </div>
 
-<div id="outline-container-org147730b" class="outline-4">
-<h4 id="org147730b"><span class="section-number-4">3.2.2</span> Operation</h4>
+<div id="outline-container-orga462f17" class="outline-4">
+<h4 id="orga462f17"><span class="section-number-4">3.2.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <pre class="example">
 if (instruction[16] == 0)
@@ -1288,8 +1288,8 @@ Set_Flags(DO);
 </div>
 </div>
 
-<div id="outline-container-orgc7809c7" class="outline-4">
-<h4 id="orgc7809c7"><span class="section-number-4">3.2.3</span> Flags Affected</h4>
+<div id="outline-container-orgfad4537" class="outline-4">
+<h4 id="orgfad4537"><span class="section-number-4">3.2.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -1340,8 +1340,8 @@ word in the register <code>(DR + 1) modulo 8</code>.
 </p>
 </div>
 
-<div id="outline-container-org2d2bc9c" class="outline-4">
-<h4 id="org2d2bc9c"><span class="section-number-4">3.3.1</span> Encodings</h4>
+<div id="outline-container-orga46223a" class="outline-4">
+<h4 id="orga46223a"><span class="section-number-4">3.3.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 11:</span> <code>IMULB DO, SO1, SO2</code></caption>
@@ -1621,8 +1621,8 @@ word in the register <code>(DR + 1) modulo 8</code>.
 </div>
 </div>
 
-<div id="outline-container-orga1c3857" class="outline-4">
-<h4 id="orga1c3857"><span class="section-number-4">3.3.2</span> Operation</h4>
+<div id="outline-container-org1edf4c9" class="outline-4">
+<h4 id="org1edf4c9"><span class="section-number-4">3.3.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <pre class="example">
 if (instruction[25:24] == 1) {
@@ -1658,8 +1658,8 @@ Set_Flags(result);
 </div>
 </div>
 
-<div id="outline-container-orge070cd6" class="outline-4">
-<h4 id="orge070cd6"><span class="section-number-4">3.3.3</span> Flags Affected</h4>
+<div id="outline-container-org97c71e1" class="outline-4">
+<h4 id="org97c71e1"><span class="section-number-4">3.3.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -1680,8 +1680,8 @@ Sets the destination operand to the two's complement of the source operand.
 </p>
 </div>
 
-<div id="outline-container-org91f7746" class="outline-4">
-<h4 id="org91f7746"><span class="section-number-4">3.4.1</span> Encodings</h4>
+<div id="outline-container-org51846a6" class="outline-4">
+<h4 id="org51846a6"><span class="section-number-4">3.4.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 17:</span> <code>NEG DO, addr20</code></caption>
@@ -1765,8 +1765,8 @@ Sets the destination operand to the two's complement of the source operand.
 </div>
 </div>
 
-<div id="outline-container-orge61c56d" class="outline-4">
-<h4 id="orge61c56d"><span class="section-number-4">3.4.2</span> Operation</h4>
+<div id="outline-container-orgbf0faec" class="outline-4">
+<h4 id="orgbf0faec"><span class="section-number-4">3.4.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-4-2">
 <pre class="example">
 if (instruction[20] == 0)
@@ -1781,8 +1781,8 @@ Set_Flags(DO);
 </div>
 </div>
 
-<div id="outline-container-org6ab7c36" class="outline-4">
-<h4 id="org6ab7c36"><span class="section-number-4">3.4.3</span> Flags Affected</h4>
+<div id="outline-container-org639b699" class="outline-4">
+<h4 id="org639b699"><span class="section-number-4">3.4.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-4-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -1805,8 +1805,8 @@ result. The result is discarded.
 </p>
 </div>
 
-<div id="outline-container-orge902122" class="outline-4">
-<h4 id="orge902122"><span class="section-number-4">3.5.1</span> Encodings</h4>
+<div id="outline-container-org9fdff7c" class="outline-4">
+<h4 id="org9fdff7c"><span class="section-number-4">3.5.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-5-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 19:</span> <code>CMP SO1, SO2</code></caption>
@@ -1886,8 +1886,8 @@ result. The result is discarded.
 </div>
 </div>
 
-<div id="outline-container-org025121c" class="outline-4">
-<h4 id="org025121c"><span class="section-number-4">3.5.2</span> Operation</h4>
+<div id="outline-container-org47c8005" class="outline-4">
+<h4 id="org47c8005"><span class="section-number-4">3.5.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-5-2">
 <pre class="example">
 if (instruction[16] == 0)
@@ -1900,8 +1900,8 @@ Set_Flags(result);
 </div>
 </div>
 
-<div id="outline-container-org9ef4bb6" class="outline-4">
-<h4 id="org9ef4bb6"><span class="section-number-4">3.5.3</span> Flags Affected</h4>
+<div id="outline-container-orgb8c4b84" class="outline-4">
+<h4 id="orgb8c4b84"><span class="section-number-4">3.5.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-5-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -1919,8 +1919,8 @@ result in the destination operand.
 </p>
 </div>
 
-<div id="outline-container-orgb50eeb6" class="outline-4">
-<h4 id="orgb50eeb6"><span class="section-number-4">3.6.1</span> Encodings</h4>
+<div id="outline-container-orgfa08df8" class="outline-4">
+<h4 id="orgfa08df8"><span class="section-number-4">3.6.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-6-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 21:</span> <code>AND DO, SO1, SO2</code></caption>
@@ -2004,8 +2004,8 @@ result in the destination operand.
 </div>
 </div>
 
-<div id="outline-container-org128f655" class="outline-4">
-<h4 id="org128f655"><span class="section-number-4">3.6.2</span> Operation</h4>
+<div id="outline-container-org03e45b3" class="outline-4">
+<h4 id="org03e45b3"><span class="section-number-4">3.6.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-6-2">
 <pre class="example">
 if (instruction[16] == 0)
@@ -2018,8 +2018,8 @@ Set_Flags(DO);
 </div>
 </div>
 
-<div id="outline-container-org014323f" class="outline-4">
-<h4 id="org014323f"><span class="section-number-4">3.6.3</span> Flags Affected</h4>
+<div id="outline-container-orgb96242d" class="outline-4">
+<h4 id="orgb96242d"><span class="section-number-4">3.6.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-6-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -2037,8 +2037,8 @@ result in the destination operand.
 </p>
 </div>
 
-<div id="outline-container-org0f898b8" class="outline-4">
-<h4 id="org0f898b8"><span class="section-number-4">3.7.1</span> Encodings</h4>
+<div id="outline-container-org880b7b7" class="outline-4">
+<h4 id="org880b7b7"><span class="section-number-4">3.7.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-7-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 23:</span> <code>OR DO, SO1, SO2</code></caption>
@@ -2122,8 +2122,8 @@ result in the destination operand.
 </div>
 </div>
 
-<div id="outline-container-org89920e7" class="outline-4">
-<h4 id="org89920e7"><span class="section-number-4">3.7.2</span> Operation</h4>
+<div id="outline-container-org81445ed" class="outline-4">
+<h4 id="org81445ed"><span class="section-number-4">3.7.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-7-2">
 <pre class="example">
 if (instruction[16] == 0)
@@ -2136,8 +2136,8 @@ Set_Flags(DO);
 </div>
 </div>
 
-<div id="outline-container-org435f59c" class="outline-4">
-<h4 id="org435f59c"><span class="section-number-4">3.7.3</span> Flags Affected</h4>
+<div id="outline-container-orga48f9cd" class="outline-4">
+<h4 id="orga48f9cd"><span class="section-number-4">3.7.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-7-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -2159,8 +2159,8 @@ result into the destination operand.
 </p>
 </div>
 
-<div id="outline-container-org93a0d39" class="outline-4">
-<h4 id="org93a0d39"><span class="section-number-4">3.8.1</span> Encodings</h4>
+<div id="outline-container-org8419207" class="outline-4">
+<h4 id="org8419207"><span class="section-number-4">3.8.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-8-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 25:</span> <code>NOT DO, addr20</code></caption>
@@ -2244,8 +2244,8 @@ result into the destination operand.
 </div>
 </div>
 
-<div id="outline-container-orgee5f4ff" class="outline-4">
-<h4 id="orgee5f4ff"><span class="section-number-4">3.8.2</span> Operation</h4>
+<div id="outline-container-org141e3b8" class="outline-4">
+<h4 id="org141e3b8"><span class="section-number-4">3.8.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-8-2">
 <pre class="example">
 if (instruction[20] == 0)
@@ -2260,8 +2260,8 @@ Set_Flags(DO);
 </div>
 </div>
 
-<div id="outline-container-org8761df8" class="outline-4">
-<h4 id="org8761df8"><span class="section-number-4">3.8.3</span> Flags Affected</h4>
+<div id="outline-container-org199bba4" class="outline-4">
+<h4 id="org199bba4"><span class="section-number-4">3.8.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-8-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -2278,8 +2278,8 @@ Bitwise exclusive-OR.
 </p>
 </div>
 
-<div id="outline-container-org29fa28f" class="outline-4">
-<h4 id="org29fa28f"><span class="section-number-4">3.9.1</span> Encodings</h4>
+<div id="outline-container-orga69ed16" class="outline-4">
+<h4 id="orga69ed16"><span class="section-number-4">3.9.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-9-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 27:</span> <code>XOR DO, SO1, SO2</code></caption>
@@ -2363,8 +2363,8 @@ Bitwise exclusive-OR.
 </div>
 </div>
 
-<div id="outline-container-orgf348816" class="outline-4">
-<h4 id="orgf348816"><span class="section-number-4">3.9.2</span> Operation</h4>
+<div id="outline-container-org0e5570a" class="outline-4">
+<h4 id="org0e5570a"><span class="section-number-4">3.9.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-9-2">
 <pre class="example">
 if (instruction[16] == 0)
@@ -2377,8 +2377,8 @@ Set_Flags(DO);
 </div>
 </div>
 
-<div id="outline-container-org9556096" class="outline-4">
-<h4 id="org9556096"><span class="section-number-4">3.9.3</span> Flags Affected</h4>
+<div id="outline-container-org4305611" class="outline-4">
+<h4 id="org4305611"><span class="section-number-4">3.9.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-9-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -2408,8 +2408,8 @@ positions with zeroes while the arithmetic right shift operation
 </p>
 </div>
 
-<div id="outline-container-org13b5a4d" class="outline-4">
-<h4 id="org13b5a4d"><span class="section-number-4">3.10.1</span> Encodings</h4>
+<div id="outline-container-org1bc7ef3" class="outline-4">
+<h4 id="org1bc7ef3"><span class="section-number-4">3.10.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-10-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 29:</span> <code>SHFL DO, SO, imm5</code></caption>
@@ -2539,8 +2539,8 @@ positions with zeroes while the arithmetic right shift operation
 </div>
 </div>
 
-<div id="outline-container-org38e584a" class="outline-4">
-<h4 id="org38e584a"><span class="section-number-4">3.10.2</span> Operation</h4>
+<div id="outline-container-org6f082da" class="outline-4">
+<h4 id="org6f082da"><span class="section-number-4">3.10.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-10-2">
 <pre class="example">
 if (instruction[26:25] == 0)
@@ -2555,8 +2555,8 @@ Set_Flags(DO);
 </div>
 </div>
 
-<div id="outline-container-orgd84f16c" class="outline-4">
-<h4 id="orgd84f16c"><span class="section-number-4">3.10.3</span> Flags Affected</h4>
+<div id="outline-container-org5b7b08d" class="outline-4">
+<h4 id="org5b7b08d"><span class="section-number-4">3.10.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-10-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -2584,8 +2584,8 @@ It is an error if the target address of the jump is not word aligned.
 </p>
 </div>
 
-<div id="outline-container-org2f8bf5c" class="outline-4">
-<h4 id="org2f8bf5c"><span class="section-number-4">3.11.1</span> Encodings</h4>
+<div id="outline-container-orge58c8af" class="outline-4">
+<h4 id="orge58c8af"><span class="section-number-4">3.11.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-11-1">
 <ul class="org-ul">
 <li><code>JCn   addr20</code></li>
@@ -2644,13 +2644,13 @@ It is an error if the target address of the jump is not word aligned.
 </table>
 
 <ul class="org-ul">
-<li><code>JCn   SR</code></li>
-<li><code>JCp   SR</code></li>
-<li><code>JCz   SR</code></li>
-<li><code>JCnp  SR</code></li>
-<li><code>JCnz  SR</code></li>
-<li><code>JCzp  SR</code></li>
-<li><code>JCnzp SR</code></li>
+<li><code>JCn   [SR]</code></li>
+<li><code>JCp   [SR]</code></li>
+<li><code>JCz   [SR]</code></li>
+<li><code>JCnp  [SR]</code></li>
+<li><code>JCnz  [SR]</code></li>
+<li><code>JCzp  [SR]</code></li>
+<li><code>JCnzp [SR]</code></li>
 </ul>
 
 <table>
@@ -2705,8 +2705,8 @@ It is an error if the target address of the jump is not word aligned.
 </div>
 </div>
 
-<div id="outline-container-org934a9c4" class="outline-4">
-<h4 id="org934a9c4"><span class="section-number-4">3.11.2</span> Operation</h4>
+<div id="outline-container-orgce266df" class="outline-4">
+<h4 id="orgce266df"><span class="section-number-4">3.11.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-11-2">
 <pre class="example">
 if ((n &amp;&amp; NF) || (p &amp;&amp; PF) || (z &amp;&amp; ZF)) {
@@ -2724,8 +2724,8 @@ if ((n &amp;&amp; NF) || (p &amp;&amp; PF) || (z &amp;&amp; ZF)) {
 </div>
 </div>
 
-<div id="outline-container-org9fe7d43" class="outline-4">
-<h4 id="org9fe7d43"><span class="section-number-4">3.11.3</span> Flags Affected</h4>
+<div id="outline-container-org373fa15" class="outline-4">
+<h4 id="org373fa15"><span class="section-number-4">3.11.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-11-3">
 <p>
 None.
@@ -2751,8 +2751,8 @@ It is an error if the target address of the jump is not word aligned.
 </p>
 </div>
 
-<div id="outline-container-org4e53be3" class="outline-4">
-<h4 id="org4e53be3"><span class="section-number-4">3.12.1</span> Encodings</h4>
+<div id="outline-container-org3b396bc" class="outline-4">
+<h4 id="org3b396bc"><span class="section-number-4">3.12.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-12-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 34:</span> <code>JMP addr20</code></caption>
@@ -2836,8 +2836,8 @@ It is an error if the target address of the jump is not word aligned.
 </div>
 </div>
 
-<div id="outline-container-org91fcd4c" class="outline-4">
-<h4 id="org91fcd4c"><span class="section-number-4">3.12.2</span> Operation</h4>
+<div id="outline-container-org1f59cc6" class="outline-4">
+<h4 id="org1f59cc6"><span class="section-number-4">3.12.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-12-2">
 <pre class="example">
 if (instruction[20] == 0)
@@ -2853,8 +2853,8 @@ else
 </div>
 </div>
 
-<div id="outline-container-orgaaca8d8" class="outline-4">
-<h4 id="orgaaca8d8"><span class="section-number-4">3.12.3</span> Flags Affected</h4>
+<div id="outline-container-org794bbdb" class="outline-4">
+<h4 id="org794bbdb"><span class="section-number-4">3.12.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-12-3">
 <p>
 None.
@@ -2880,8 +2880,8 @@ It is an error if the address of the subroutine is not word aligned.
 </p>
 </div>
 
-<div id="outline-container-org9b9f7ab" class="outline-4">
-<h4 id="org9b9f7ab"><span class="section-number-4">3.13.1</span> Encodings</h4>
+<div id="outline-container-orgc3748d8" class="outline-4">
+<h4 id="orgc3748d8"><span class="section-number-4">3.13.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-13-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 36:</span> <code>CALL addr20</code></caption>
@@ -2965,8 +2965,8 @@ It is an error if the address of the subroutine is not word aligned.
 </div>
 </div>
 
-<div id="outline-container-orge9ed4e9" class="outline-4">
-<h4 id="orge9ed4e9"><span class="section-number-4">3.13.2</span> Operation</h4>
+<div id="outline-container-orgda5fb66" class="outline-4">
+<h4 id="orgda5fb66"><span class="section-number-4">3.13.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-13-2">
 <pre class="example">
 R15 = R15 - 4;
@@ -2984,8 +2984,8 @@ else
 </div>
 </div>
 
-<div id="outline-container-org67d8bbc" class="outline-4">
-<h4 id="org67d8bbc"><span class="section-number-4">3.13.3</span> Flags Affected</h4>
+<div id="outline-container-orgce1cab8" class="outline-4">
+<h4 id="orgce1cab8"><span class="section-number-4">3.13.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-13-3">
 <p>
 None.
@@ -3012,8 +3012,8 @@ not word aligned.
 </p>
 </div>
 
-<div id="outline-container-orgf52e6d3" class="outline-4">
-<h4 id="orgf52e6d3"><span class="section-number-4">3.14.1</span> Encodings</h4>
+<div id="outline-container-org7b76338" class="outline-4">
+<h4 id="org7b76338"><span class="section-number-4">3.14.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-14-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 38:</span> <code>SCL imm5</code></caption>
@@ -3051,8 +3051,8 @@ not word aligned.
 </div>
 </div>
 
-<div id="outline-container-orgc2f4313" class="outline-4">
-<h4 id="orgc2f4313"><span class="section-number-4">3.14.2</span> Operation</h4>
+<div id="outline-container-org08f410a" class="outline-4">
+<h4 id="org08f410a"><span class="section-number-4">3.14.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-14-2">
 <pre class="example">
 if (SCT[imm5][31] == 0)
@@ -3078,8 +3078,8 @@ else {
 </div>
 </div>
 
-<div id="outline-container-org0530bf2" class="outline-4">
-<h4 id="org0530bf2"><span class="section-number-4">3.14.3</span> Flags Affected</h4>
+<div id="outline-container-org3a4eaa1" class="outline-4">
+<h4 id="org3a4eaa1"><span class="section-number-4">3.14.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-14-3">
 <p>
 <code>MI</code>
@@ -3106,8 +3106,8 @@ It is an error if the target address of the return is not word aligned.
 </p>
 </div>
 
-<div id="outline-container-org7a6c7c7" class="outline-4">
-<h4 id="org7a6c7c7"><span class="section-number-4">3.15.1</span> Encodings</h4>
+<div id="outline-container-org2ec71b4" class="outline-4">
+<h4 id="org2ec71b4"><span class="section-number-4">3.15.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-15-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 39:</span> <code>RET</code></caption>
@@ -3171,8 +3171,8 @@ It is an error if the target address of the return is not word aligned.
 </div>
 </div>
 
-<div id="outline-container-org8e0615f" class="outline-4">
-<h4 id="org8e0615f"><span class="section-number-4">3.15.2</span> Operation</h4>
+<div id="outline-container-org305eec0" class="outline-4">
+<h4 id="org305eec0"><span class="section-number-4">3.15.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-15-2">
 <pre class="example">
 if (instruction[26] == 1 &amp;&amp; MI == 0)
@@ -3198,8 +3198,8 @@ else {
 </div>
 </div>
 
-<div id="outline-container-org2448076" class="outline-4">
-<h4 id="org2448076"><span class="section-number-4">3.15.3</span> Flags Affected</h4>
+<div id="outline-container-org4003d9a" class="outline-4">
+<h4 id="org4003d9a"><span class="section-number-4">3.15.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-15-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>, <code>MI</code>
@@ -3222,8 +3222,8 @@ register.
 </p>
 </div>
 
-<div id="outline-container-orgee8cb84" class="outline-4">
-<h4 id="orgee8cb84"><span class="section-number-4">3.16.1</span> Encodings</h4>
+<div id="outline-container-org74708a6" class="outline-4">
+<h4 id="org74708a6"><span class="section-number-4">3.16.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-16-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 41:</span> <code>LDB DR, addr20</code></caption>
@@ -3467,8 +3467,8 @@ register.
 </div>
 </div>
 
-<div id="outline-container-org609a8fa" class="outline-4">
-<h4 id="org609a8fa"><span class="section-number-4">3.16.2</span> Operation</h4>
+<div id="outline-container-org48081e7" class="outline-4">
+<h4 id="org48081e7"><span class="section-number-4">3.16.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-16-2">
 <pre class="example">
 if (instruction[20] == 0)
@@ -3488,8 +3488,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-orgcb51ce3" class="outline-4">
-<h4 id="orgcb51ce3"><span class="section-number-4">3.16.3</span> Flags Affected</h4>
+<div id="outline-container-org985a5ad" class="outline-4">
+<h4 id="org985a5ad"><span class="section-number-4">3.16.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-16-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -3514,8 +3514,8 @@ destination address.
 </p>
 </div>
 
-<div id="outline-container-org194ea34" class="outline-4">
-<h4 id="org194ea34"><span class="section-number-4">3.17.1</span> Encodings</h4>
+<div id="outline-container-org1b6faa4" class="outline-4">
+<h4 id="org1b6faa4"><span class="section-number-4">3.17.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-17-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 47:</span> <code>STB addr20, SR</code></caption>
@@ -3759,8 +3759,8 @@ destination address.
 </div>
 </div>
 
-<div id="outline-container-org914aef5" class="outline-4">
-<h4 id="org914aef5"><span class="section-number-4">3.17.2</span> Operation</h4>
+<div id="outline-container-org7a198a4" class="outline-4">
+<h4 id="org7a198a4"><span class="section-number-4">3.17.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-17-2">
 <pre class="example">
 if (instruction[24] == 0)
@@ -3778,8 +3778,8 @@ else if (instruction[26:25] == 3)
 </div>
 </div>
 
-<div id="outline-container-org44a1f84" class="outline-4">
-<h4 id="org44a1f84"><span class="section-number-4">3.17.3</span> Flags Affected</h4>
+<div id="outline-container-org17a0cdf" class="outline-4">
+<h4 id="org17a0cdf"><span class="section-number-4">3.17.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-17-3">
 <p>
 None.
@@ -3802,8 +3802,8 @@ operand. The value is either sign extended to 32 bits and copied
 </p>
 </div>
 
-<div id="outline-container-org59c913b" class="outline-4">
-<h4 id="org59c913b"><span class="section-number-4">3.18.1</span> Encodings</h4>
+<div id="outline-container-orge81393d" class="outline-4">
+<h4 id="orge81393d"><span class="section-number-4">3.18.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-18-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 53:</span> <code>CPYI DR, imm16</code></caption>
@@ -3925,8 +3925,8 @@ operand. The value is either sign extended to 32 bits and copied
 </div>
 </div>
 
-<div id="outline-container-orgdfaa1d9" class="outline-4">
-<h4 id="orgdfaa1d9"><span class="section-number-4">3.18.2</span> Operation</h4>
+<div id="outline-container-org03a2d74" class="outline-4">
+<h4 id="org03a2d74"><span class="section-number-4">3.18.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-18-2">
 <pre class="example">
 if (instruction[17:16] == 0)
@@ -3939,8 +3939,8 @@ else if (instruction[17:16] == 2)
 </div>
 </div>
 
-<div id="outline-container-org7103822" class="outline-4">
-<h4 id="org7103822"><span class="section-number-4">3.18.3</span> Flags Affected</h4>
+<div id="outline-container-orga016aec" class="outline-4">
+<h4 id="orga016aec"><span class="section-number-4">3.18.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-18-3">
 <p>
 None.
@@ -3975,8 +3975,8 @@ operand is a byte or short.
 </p>
 </div>
 
-<div id="outline-container-orgb5a3470" class="outline-4">
-<h4 id="orgb5a3470"><span class="section-number-4">3.19.1</span> Encodings</h4>
+<div id="outline-container-org73264a5" class="outline-4">
+<h4 id="org73264a5"><span class="section-number-4">3.19.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-19-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 56:</span> <code>PUSHI imm16</code></caption>
@@ -4328,8 +4328,8 @@ operand is a byte or short.
 </div>
 </div>
 
-<div id="outline-container-org1141b12" class="outline-4">
-<h4 id="org1141b12"><span class="section-number-4">3.19.2</span> Operation</h4>
+<div id="outline-container-org2e6b990" class="outline-4">
+<h4 id="org2e6b990"><span class="section-number-4">3.19.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-19-2">
 <pre class="example">
 R15 = R15 - 4;
@@ -4359,8 +4359,8 @@ if (instruction[25:24] == 0) {
 </div>
 </div>
 
-<div id="outline-container-org86a4df0" class="outline-4">
-<h4 id="org86a4df0"><span class="section-number-4">3.19.3</span> Flags Affected</h4>
+<div id="outline-container-org8c0f073" class="outline-4">
+<h4 id="org8c0f073"><span class="section-number-4">3.19.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-19-3">
 <p>
 None.
@@ -4391,8 +4391,8 @@ word in the destination operand.
 </p>
 </div>
 
-<div id="outline-container-orgc5c51af" class="outline-4">
-<h4 id="orgc5c51af"><span class="section-number-4">3.20.1</span> Encodings</h4>
+<div id="outline-container-orge4b9c81" class="outline-4">
+<h4 id="orge4b9c81"><span class="section-number-4">3.20.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-20-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 64:</span> <code>POPB addr20</code></caption>
@@ -4660,8 +4660,8 @@ word in the destination operand.
 </div>
 </div>
 
-<div id="outline-container-org7e3d6ba" class="outline-4">
-<h4 id="org7e3d6ba"><span class="section-number-4">3.20.2</span> Operation</h4>
+<div id="outline-container-org67a895d" class="outline-4">
+<h4 id="org67a895d"><span class="section-number-4">3.20.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-20-2">
 <pre class="example">
 if (instruction[25:24] == 1) {
@@ -4686,8 +4686,8 @@ R15 = R15 + 4;
 </div>
 </div>
 
-<div id="outline-container-org25819c0" class="outline-4">
-<h4 id="org25819c0"><span class="section-number-4">3.20.3</span> Flags Affected</h4>
+<div id="outline-container-org3ff73a5" class="outline-4">
+<h4 id="org3ff73a5"><span class="section-number-4">3.20.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-20-3">
 <p>
 None.
@@ -4714,8 +4714,8 @@ supervisor mode.
 </p>
 </div>
 
-<div id="outline-container-org8b861e0" class="outline-4">
-<h4 id="org8b861e0"><span class="section-number-4">3.21.1</span> Encodings</h4>
+<div id="outline-container-orgddff293" class="outline-4">
+<h4 id="orgddff293"><span class="section-number-4">3.21.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-21-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 70:</span> <code>IN DO, imm5</code></caption>
@@ -4803,8 +4803,8 @@ supervisor mode.
 </div>
 </div>
 
-<div id="outline-container-org930e855" class="outline-4">
-<h4 id="org930e855"><span class="section-number-4">3.21.2</span> Operation</h4>
+<div id="outline-container-orgd82f9b0" class="outline-4">
+<h4 id="orgd82f9b0"><span class="section-number-4">3.21.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-21-2">
 <pre class="example">
 if (MI == 0)
@@ -4822,8 +4822,8 @@ Set_Flags(DO);
 </div>
 </div>
 
-<div id="outline-container-orge35208f" class="outline-4">
-<h4 id="orge35208f"><span class="section-number-4">3.21.3</span> Flags Affected</h4>
+<div id="outline-container-org1c30415" class="outline-4">
+<h4 id="org1c30415"><span class="section-number-4">3.21.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-21-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -4850,8 +4850,8 @@ supervisor mode.
 </p>
 </div>
 
-<div id="outline-container-org4d98a7c" class="outline-4">
-<h4 id="org4d98a7c"><span class="section-number-4">3.22.1</span> Encodings</h4>
+<div id="outline-container-org965a858" class="outline-4">
+<h4 id="org965a858"><span class="section-number-4">3.22.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-22-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 72:</span> <code>OUT imm5, SO</code></caption>
@@ -4939,8 +4939,8 @@ supervisor mode.
 </div>
 </div>
 
-<div id="outline-container-org55f779e" class="outline-4">
-<h4 id="org55f779e"><span class="section-number-4">3.22.2</span> Operation</h4>
+<div id="outline-container-orgd51985f" class="outline-4">
+<h4 id="orgd51985f"><span class="section-number-4">3.22.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-22-2">
 <pre class="example">
 if (MI == 0)
@@ -4956,8 +4956,8 @@ Port[p] = SO;
 </div>
 </div>
 
-<div id="outline-container-org207880e" class="outline-4">
-<h4 id="org207880e"><span class="section-number-4">3.22.3</span> Flags Affected</h4>
+<div id="outline-container-org0bd0dab" class="outline-4">
+<h4 id="org0bd0dab"><span class="section-number-4">3.22.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-22-3">
 <p>
 None.
@@ -4983,8 +4983,8 @@ The value loaded to SSP register must be aligned on a word boundary.
 </p>
 </div>
 
-<div id="outline-container-org85f1572" class="outline-4">
-<h4 id="org85f1572"><span class="section-number-4">3.23.1</span> Encodings</h4>
+<div id="outline-container-org6b53f16" class="outline-4">
+<h4 id="org6b53f16"><span class="section-number-4">3.23.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-23-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 74:</span> <code>SSSP addr20</code></caption>
@@ -5060,8 +5060,8 @@ The value loaded to SSP register must be aligned on a word boundary.
 </div>
 </div>
 
-<div id="outline-container-orgfeeb03c" class="outline-4">
-<h4 id="orgfeeb03c"><span class="section-number-4">3.23.2</span> Operation</h4>
+<div id="outline-container-org3507f7b" class="outline-4">
+<h4 id="org3507f7b"><span class="section-number-4">3.23.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-23-2">
 <pre class="example">
 if (MI == 0)
@@ -5080,8 +5080,8 @@ else
 </div>
 </div>
 
-<div id="outline-container-org7a52254" class="outline-4">
-<h4 id="org7a52254"><span class="section-number-4">3.23.3</span> Flags Affected</h4>
+<div id="outline-container-org3ec455a" class="outline-4">
+<h4 id="org3ec455a"><span class="section-number-4">3.23.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-23-3">
 <p>
 None.
@@ -5108,8 +5108,8 @@ supervisor mode.
 </p>
 </div>
 
-<div id="outline-container-org8d2b189" class="outline-4">
-<h4 id="org8d2b189"><span class="section-number-4">3.24.1</span> Encodings</h4>
+<div id="outline-container-org2580f4b" class="outline-4">
+<h4 id="org2580f4b"><span class="section-number-4">3.24.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-24-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 76:</span> <code>SSSP addr20</code></caption>
@@ -5147,8 +5147,8 @@ supervisor mode.
 </div>
 </div>
 
-<div id="outline-container-orgce4a6fa" class="outline-4">
-<h4 id="orgce4a6fa"><span class="section-number-4">3.24.2</span> Operation</h4>
+<div id="outline-container-org445ccde" class="outline-4">
+<h4 id="org445ccde"><span class="section-number-4">3.24.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-24-2">
 <pre class="example">
 if (MI == 0)
@@ -5159,8 +5159,8 @@ else
 </div>
 </div>
 
-<div id="outline-container-orgf199ce7" class="outline-4">
-<h4 id="orgf199ce7"><span class="section-number-4">3.24.3</span> Flags Affected</h4>
+<div id="outline-container-org21d4f65" class="outline-4">
+<h4 id="org21d4f65"><span class="section-number-4">3.24.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-24-3">
 <p>
 None.

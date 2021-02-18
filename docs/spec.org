@@ -768,13 +768,13 @@ It is an error if the target address of the jump is not word aligned.
 |--------------+-----------+-----+-----+-----+----------+-----+----------|
 |              | =0b10111= | =n= | =p= | =z= | Reserved | =0= | =addr20= |
 
-- =JCn   SR=
-- =JCp   SR=
-- =JCz   SR=
-- =JCnp  SR=
-- =JCnz  SR=
-- =JCzp  SR=
-- =JCnzp SR=
+- =JCn   [SR]=
+- =JCp   [SR]=
+- =JCz   [SR]=
+- =JCnp  [SR]=
+- =JCnz  [SR]=
+- =JCzp  [SR]=
+- =JCnzp [SR]=
 
 #+CAPTION: =JC [SR]=
 | Bit Position |     31-27 |  26 |  25 |  24 |    23-21 |  20 |     19-4 |    3-0 |
