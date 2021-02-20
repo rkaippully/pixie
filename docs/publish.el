@@ -9,5 +9,4 @@
 
   (org-publish-all))
 
-;; (publish-project)
-
+(publish-project)

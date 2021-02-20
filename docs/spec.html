@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-02-18 Thu 20:50 -->
+<!-- 2021-02-20 Sat 20:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pixie Specification - Version 1.0</title>
@@ -307,8 +307,7 @@ for the JavaScript code in this tag.
 <h2 id="orgdec80b9"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Pixie is an abstract computer. This document describes the features
-and architecture of Pixie.
+Pixie is an abstract computer. This document describes the features and architecture of Pixie.
 </p>
 </div>
 </div>
@@ -317,8 +316,7 @@ and architecture of Pixie.
 <h2 id="orge67698e"><span class="section-number-2">2</span> Instruction Set Architecture</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-The following sections define the instruction set architecture of
-Pixie.
+The following sections define the instruction set architecture of Pixie.
 </p>
 </div>
 
@@ -326,8 +324,7 @@ Pixie.
 <h3 id="org19ef9a4"><span class="section-number-3">2.1</span> Notation</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-The notation defined in this section will be used throughout this
-document.
+The notation defined in this section will be used throughout this document.
 </p>
 
 <table>
@@ -423,9 +420,8 @@ document.
 <h3 id="org04bc95f"><span class="section-number-3">2.2</span> Memory Address Space</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-Pixie can address 2<sup>20</sup> memory locations each containing a
-byte. Addresses are numbered from <code>0x00000</code> to <code>0xfffff</code>. Some regions
-of memory are reserved for special uses as mentioned in <a href="#orga244ae7">Memory Layout</a>.
+Pixie can address 2<sup>20</sup> memory locations each containing a byte. Addresses are numbered from <code>0x00000</code> to <code>0xfffff</code>. Some
+regions of memory are reserved for special uses as mentioned in <a href="#orga244ae7">Memory Layout</a>.
 </p>
 </div>
 </div>
@@ -434,19 +430,15 @@ of memory are reserved for special uses as mentioned in <a href="#orga244ae7">Me
 <h3 id="orgfb943fb"><span class="section-number-3">2.3</span> Data Types</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
-The basic data types of Pixie are bytes (8 bits), shorts (16 bits),
-words (32 bits), and doublewords (64 bits). A byte can be located at
-any memory location. Shorts, words, and doublewords must be aligned in
-memory at natural boundaries. That is, a short must be located at an
-even-numbered address, a word must be located at an address divisible
-by four, and a doubleword must be located at an address divisible by
-eight. Unaligned memory accesses will result in an error that will be
-handled in an implementation-defined manner.
+The basic data types of Pixie are bytes (8 bits), shorts (16 bits), words (32 bits), and doublewords (64 bits). A byte
+can be located at any memory location. Shorts, words, and doublewords must be aligned in memory at natural
+boundaries. That is, a short must be located at an even-numbered address, a word must be located at an address divisible
+by four, and a doubleword must be located at an address divisible by eight. Unaligned memory accesses will result in an
+error that will be handled in an implementation-defined manner.
 </p>
 
 <p>
-Some instructions interpret these basic data types as signed and
-unsigned integers or addresses.
+Some instructions interpret these basic data types as signed and unsigned integers or addresses.
 </p>
 </div>
 </div>
@@ -455,15 +447,13 @@ unsigned integers or addresses.
 <h3 id="org67f855a"><span class="section-number-3">2.4</span> Endianness and Addressing</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
-Bits of a memory location are arranged from right to left such that
-the least significant bit is in the rightmost position and most
-significant bit is in the leftmost position.
+Bits of a memory location are arranged from right to left such that the least significant bit is in the rightmost
+position and most significant bit is in the leftmost position.
 </p>
 
 <p>
-Shorts and words are stored in memory such that the least significant
-byte is stored at the smallest memory address. The address of a short
-or word is the address of its least significant byte.
+Shorts and words are stored in memory such that the least significant byte is stored at the smallest memory address. The
+address of a short or word is the address of its least significant byte.
 </p>
 </div>
 </div>
@@ -472,17 +462,14 @@ or word is the address of its least significant byte.
 <h3 id="orge6c22ce"><span class="section-number-3">2.5</span> Modes of Operation</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
-At any point of time, Pixie operates in one of the two modes - user
-mode or supervisor mode. The user mode is used to run normal programs
-while the supervisor mode is used by the operating system and
-interrupt handlers. Certain privileged instructions are only allowed
-in the supervisor mode.
+At any point of time, Pixie operates in one of the two modes - user mode or supervisor mode. The user mode is used to
+run normal programs while the supervisor mode is used by the operating system and interrupt handlers. Certain privileged
+instructions are only allowed in the supervisor mode.
 </p>
 
 <p>
-The current mode is indicated by the <a href="#org17e884b">Mode Indicator Bit</a> in the machine
-status register. This bit can only be changed using a <a href="#org6aa924a">mode switching
-operation</a>.
+The current mode is indicated by the <a href="#org17e884b">Mode Indicator Bit</a> in the machine status register. This bit can only be changed
+using a <a href="#org6aa924a">mode switching operation</a>.
 </p>
 </div>
 </div>
@@ -491,8 +478,7 @@ operation</a>.
 <h3 id="org6aa924a"><span class="section-number-3">2.6</span> Mode Switching</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
-The processor switches from user mode to supervisor mode on any of the
-following conditions:
+The processor switches from user mode to supervisor mode on any of the following conditions:
 </p>
 
 <ul class="org-ul">
@@ -501,14 +487,12 @@ following conditions:
 </ul>
 
 <p>
-The processor switches from supervisor mode to user mode on any of the
-following conditions:
+The processor switches from supervisor mode to user mode on any of the following conditions:
 </p>
 
 <ul class="org-ul">
-<li>When the processor executes the <a href="#org6e98e8f">RETI</a> instruction and the <a href="#org17e884b">Mode
-Indicator</a> bit in the machine status register image in the stack is
-clear.</li>
+<li>When the processor executes the <a href="#org6e98e8f">RETI</a> instruction and the <a href="#org17e884b">Mode Indicator</a> bit in the machine status register image in
+the stack is clear.</li>
 <li>When the processor executes the <a href="#org6e98e8f">RETS</a> instruction.</li>
 </ul>
 </div>
@@ -522,9 +506,8 @@ clear.</li>
 <h4 id="org31bca20"><span class="section-number-4">2.7.1</span> General Purpose Registers</h4>
 <div class="outline-text-4" id="text-2-7-1">
 <p>
-There are sixteen 32-bit general purpose registers numbered from 0
-to 15. The assembly instructions refer to these registers as <code>R0</code> to
-<code>R15</code> respectively.
+There are 32 general purpose registers numbered from 0 to 31 which are 32-bits wide. The assembly instructions refer to
+these registers as <code>R0</code> to <code>R31</code> respectively.
 </p>
 </div>
 </div>
@@ -533,8 +516,7 @@ to 15. The assembly instructions refer to these registers as <code>R0</code> to
 <h4 id="org606b1c1"><span class="section-number-4">2.7.2</span> Stack Pointer</h4>
 <div class="outline-text-4" id="text-2-7-2">
 <p>
-The general purpose register <code>R15</code> is used as a stack pointer by some
-instructions.
+The general purpose register <code>R15</code> is used as a stack pointer by some instructions.
 </p>
 </div>
 </div>
@@ -543,9 +525,8 @@ instructions.
 <h4 id="orgd1b4342"><span class="section-number-4">2.7.3</span> Program Counter Register</h4>
 <div class="outline-text-4" id="text-2-7-3">
 <p>
-There is a 20-bit program counter register - named <code>PC</code> - that
-contains the address of the next instruction to be processed. The
-address stored in this register must be word aligned.
+There is a 20-bit program counter register - named <code>PC</code> - that contains the address of the next instruction to be
+processed. The address stored in this register must be word aligned.
 </p>
 </div>
 </div>
@@ -554,9 +535,8 @@ address stored in this register must be word aligned.
 <h4 id="org17e884b"><span class="section-number-4">2.7.4</span> Machine Status Register</h4>
 <div class="outline-text-4" id="text-2-7-4">
 <p>
-There is an 32-bit machine status register - named <code>MS</code> - that
-contains various flags to indicate the status of the processor. The
-flags are:
+There is an 32-bit machine status register - named <code>MS</code> - that contains various flags to indicate the status of the
+processor. The flags are:
 </p>
 
 <table>
@@ -607,8 +587,7 @@ flags are:
 </table>
 
 <p>
-The machine status register cannot be loaded or stored directly by
-instructions but accessed only indirectly.
+The machine status register cannot be loaded or stored directly by instructions but accessed only indirectly.
 </p>
 </div>
 </div>
@@ -617,8 +596,8 @@ instructions but accessed only indirectly.
 <h4 id="orga02bd71"><span class="section-number-4">2.7.5</span> Supervisor Stack Pointer Register</h4>
 <div class="outline-text-4" id="text-2-7-5">
 <p>
-There is a 20-bit supervisor stack pointer register - named <code>SSP</code> - that
-contains the address of a stack to be used in supervisor mode.
+There is a 20-bit supervisor stack pointer register - named <code>SSP</code> - that contains the address of a stack to be used in
+supervisor mode.
 </p>
 </div>
 </div>
@@ -676,10 +655,8 @@ Memory address space of Pixie is classified as shown below.
 </table>
 
 <p>
-Memory addresses below <code>0x08000</code> are called protected address
-space. It is and error to access the protected address space while in
-user mode and such accesses will be handled in an
-implementation-defined manner.
+The address space below <code>0x08000</code> is called <i>protected address space</i>. It is and error to access the protected address
+space while in user mode and such accesses will be handled in an implementation-defined manner.
 </p>
 </div>
 </div>
@@ -688,18 +665,15 @@ implementation-defined manner.
 <h3 id="orgfc38cc6"><span class="section-number-3">2.9</span> CPU Operation</h3>
 <div class="outline-text-3" id="text-2-9">
 <p>
-Much like any conventional CPU, Pixie executes programs by executing
-instructions in an instruction cycle. Each cycle consists of the
-following steps in order:
+Much like any conventional CPU, Pixie executes programs by executing instructions in an instruction cycle. Each cycle
+consists of the following steps in order:
 </p>
 
 <ol class="org-ol">
-<li>Handle any pending interrupts as mentioned in <a href="#org3492027">Interrupt Handling</a>
-section.</li>
+<li>Handle any pending interrupts as mentioned in <a href="#org3492027">Interrupt Handling</a> section.</li>
 <li>Fetch the instruction addressed by the program counter register.</li>
 <li>Increment program counter register by 4.</li>
-<li>Decode the instruction. Any indirect memory contents required by
-the instruction are fetched during this step.</li>
+<li>Decode the instruction. Any indirect memory contents required by the instruction are fetched during this step.</li>
 <li>Execute the instruction.</li>
 </ol>
 </div>
@@ -713,10 +687,9 @@ the instruction are fetched during this step.</li>
 <h4 id="org68e10e3"><span class="section-number-4">2.10.1</span> I/O Address Space</h4>
 <div class="outline-text-4" id="text-2-10-1">
 <p>
-The I/O address space consists of 64 independently addressable 32-bit
-ports. These ports are numbered from <code>0</code> to <code>63</code>. The I/O address
-space is separate from the memory address space. It can only be
-accessed by privileged instructions executed in supervisor mode.
+The I/O address space consists of 256 independently addressable 32-bit ports. These ports are numbered from <code>0</code> to
+<code>255</code>. The I/O address space is separate from the memory address space. It can only be accessed by privileged
+instructions executed in supervisor mode.
 </p>
 </div>
 </div>
@@ -725,35 +698,29 @@ accessed by privileged instructions executed in supervisor mode.
 <h4 id="org3492027"><span class="section-number-4">2.10.2</span> Interrupt Handling</h4>
 <div class="outline-text-4" id="text-2-10-2">
 <p>
-An interrupt is an asynchronous event triggered by an I/O device. An
-interrupt is identified with a number, called an <i>interrupt
-vector</i>. Pixie supports 64 interrupt vectors numbered from <code>0</code> to
-<code>63</code>.
+An interrupt is an asynchronous event triggered by an I/O device. An interrupt is identified with a number, called an
+<i>interrupt vector</i>. Pixie supports 64 interrupt vectors numbered from <code>0</code> to <code>63</code>.
 </p>
 
 <p>
-The processor checks for pending interrupts before beginning execution
-of every instruction. If an interrupt is pending, the processor
-performs the following operations to service the interrupt:
+The processor checks for pending interrupts before beginning execution of every instruction. If an interrupt is pending,
+the processor performs the following operations to service the interrupt:
 </p>
 
 <ol class="org-ol">
-<li>Check <a href="#orge3cf95e">IVT</a> entry corresponding to the interrupt vector. If the entry
-indicates that the interrupt is disabled, no further processing is
-done. Otherwise, the following steps are performed.</li>
-<li>If the processor is in user mode, load <code>ZExtend(SSP, 32)</code> to <code>R15</code>
-and push the old value of <code>R15</code> to this new stack.</li>
+<li>Check <a href="#orge3cf95e">IVT</a> entry corresponding to the interrupt vector. If the entry indicates that the interrupt is disabled, no
+further processing is done. Otherwise, the following steps are performed.</li>
+<li>If the processor is in user mode, load <code>ZExtend(SSP, 32)</code> to <code>R15</code> and push the old value of <code>R15</code> to this new stack.</li>
 <li>Push <code>MS</code> and <code>PC</code> to the stack in that order.</li>
-<li>The <a href="#org17e884b">Mode Indicator</a> bit in the machine status register is set to
-indicate that the processor is now executing in supervisor mode.</li>
-<li>Load the address of the interrupt handler routine from the IVT
-entry to <code>PC</code>.</li>
+<li>The <a href="#org17e884b">Mode Indicator</a> bit in the machine status register is set to indicate that the processor is now executing in
+supervisor mode.</li>
+<li>Load the address of the interrupt handler routine from the IVT entry to <code>PC</code>.</li>
 <li>Processor begins execution of the interrupt handler routine.</li>
 </ol>
 
 <p>
-The interrupt handler routine can execute the <a href="#org6e98e8f">RETI</a> instruction to
-transfer the control back to the point where the interrupt occurred.
+The interrupt handler routine can execute the <a href="#org6e98e8f">RETI</a> instruction to transfer the control back to the point where the
+interrupt occurred.
 </p>
 </div>
 </div>
@@ -762,10 +729,8 @@ transfer the control back to the point where the interrupt occurred.
 <h4 id="orge3cf95e"><span class="section-number-4">2.10.3</span> Interrupt Vector Table</h4>
 <div class="outline-text-4" id="text-2-10-3">
 <p>
-The interrupt vector table (IVT) is a data structure located at memory
-address <code>0x00000</code>. It is an array of 64 elements corresponding to each
-of the interrupt vectors. Each element of IVT is word sized and has
-the following structure:
+The interrupt vector table (IVT) is a data structure located at memory address <code>0x00000</code>. It is an array of 64 elements
+corresponding to each of the interrupt vectors. Each element of IVT is word sized and has the following structure:
 </p>
 
 <table>
@@ -801,8 +766,7 @@ the following structure:
 </table>
 
 <p>
-The operating system is responsible for populating entries in this
-table during initialization.
+The operating system is responsible for populating entries in this table during initialization.
 </p>
 </div>
 </div>
@@ -812,46 +776,38 @@ table during initialization.
 <h3 id="org48f6ad1"><span class="section-number-3">2.11</span> System Calls</h3>
 <div class="outline-text-3" id="text-2-11">
 <p>
-User mode programs can invoke services provided by the operating
-system using the <a href="#org961ea00">SCL</a> instruction. This instruction provides a
-protected way of transferring control from user mode to supervisor
-mode.
+User mode programs can invoke services provided by the operating system using the <a href="#org961ea00">SCL</a> instruction. This instruction
+provides a protected way of transferring control from user mode to supervisor mode.
 </p>
 
 <p>
-A system call is identified by a number called the <i>system call
-vector</i>. A total of 64 system call vectors are supported numbered from
-<code>0</code> to <code>63</code>.
+A system call is identified by a number called the <i>system call vector</i>. A total of 64 system call vectors are supported
+numbered from <code>0</code> to <code>63</code>.
 </p>
 
 <p>
-Upon encountering the SCL instruction, the processor performs the
-following steps:
+Upon encountering the SCL instruction, the processor performs the following steps:
 </p>
 
 <ol class="org-ol">
-<li>Check the <a href="#orgfecb37a">SCT</a> entry corresponding to the system call
-vector. Disabled entries will result in an error which will be
+<li>Check the <a href="#orgfecb37a">SCT</a> entry corresponding to the system call vector. Disabled entries will result in an error which will be
 handled in an implementation-defined manner.</li>
-<li>Load <code>ZExtend(SSP, 32)</code> to <code>R15</code> and push the old value of <code>R15</code> in
-this new stack.</li>
+<li>Load <code>ZExtend(SSP, 32)</code> to <code>R15</code> and push the old value of <code>R15</code> in this new stack.</li>
 <li>Push <code>MS</code> and <code>PC</code> to the stack in that order.</li>
-<li>The <a href="#org17e884b">Mode Indicator</a> bit in the machine status register is set to
-indicate that the processor is now executing in supervisor mode.</li>
-<li>Load the address of the system call handler routine from the SCT
-entry to <code>PC</code>.</li>
+<li>The <a href="#org17e884b">Mode Indicator</a> bit in the machine status register is set to indicate that the processor is now executing in
+supervisor mode.</li>
+<li>Load the address of the system call handler routine from the SCT entry to <code>PC</code>.</li>
 <li>Processor begins execution of the system call handler routine.</li>
 </ol>
 
 <p>
-Additional parameters can be passed to the system call handler routine
-in the general purpose registers or user mode stack.
+Additional parameters can be passed to the system call handler routine in the general purpose registers or user mode
+stack.
 </p>
 
 <p>
-The system call handler routine can return to user mode by executing
-the <a href="#org6e98e8f">RETS</a> instruction. Results can be passed to user mode caller in the
-general purpose registers or user mode stack.
+The system call handler routine can return to user mode by executing the <a href="#org6e98e8f">RETS</a> instruction. Results can be passed to user
+mode caller in the general purpose registers or user mode stack.
 </p>
 </div>
 
@@ -859,10 +815,8 @@ general purpose registers or user mode stack.
 <h4 id="orgfecb37a"><span class="section-number-4">2.11.1</span> System Call Table</h4>
 <div class="outline-text-4" id="text-2-11-1">
 <p>
-The system call table (SCT) is a data structure located at memory
-address <code>0x00100</code>. It is an array of 64 elements corresponding to each
-of the system call vectors. Each element of SCT is word sized and has
-the following structure:
+The system call table (SCT) is a data structure located at memory address <code>0x00100</code>. It is an array of 64 elements
+corresponding to each of the system call vectors. Each element of SCT is word sized and has the following structure:
 </p>
 
 <table>
@@ -898,8 +852,7 @@ the following structure:
 </table>
 
 <p>
-The operating system is responsible for populating entries in this
-table during initialization.
+The operating system is responsible for populating entries in this table during initialization.
 </p>
 </div>
 </div>
@@ -965,9 +918,8 @@ During start up, Pixie is initialized to the following state:
 </table>
 
 <p>
-An implementation of Pixie may load an operating system and user
-program(s) into memory during startup in an implementation-defined
-manner.
+An implementation of Pixie may load an operating system and user program(s) into memory during startup in an
+implementation-defined manner.
 </p>
 </div>
 </div>
@@ -976,8 +928,8 @@ manner.
 <h3 id="org97236de"><span class="section-number-3">2.13</span> Instruction Format</h3>
 <div class="outline-text-3" id="text-2-13">
 <p>
-An instruction is comprises of an opcode, an optional destination
-operand, zero to two source operands written in that order.
+An instruction is comprises of an opcode, an optional destination operand, zero to two source operands arranged in that
+order.
 </p>
 
 <p>
@@ -991,7 +943,7 @@ The operands are classified into different categories mentioned below.
 <p>
 These operands are located in a general purpose register. They are
 denoted as <code>SR</code> and <code>DR</code> in the instructions. They are encoded by
-their 4 bit register numbers.
+their 5 bit register numbers.
 </p>
 </div>
 </div>
@@ -1000,9 +952,8 @@ their 4 bit register numbers.
 <h4 id="org7368e0c"><span class="section-number-4">2.13.2</span> Immediate Operands</h4>
 <div class="outline-text-4" id="text-2-13-2">
 <p>
-These operands are located in the instruction itself. They are denoted
-as <code>imm5</code> and <code>imm16</code> in the instructions and have lengths of 5 and 16
-bits respectively. They are encoded by 5 bit or 16 bit numbers
+These operands are located in the instruction itself. They are denoted as <code>imm5</code>, <code>imm8</code>, and <code>imm16</code> in the
+instructions and have lengths of 5, 8, and 16 bits respectively. They are encoded by 5 bit, 8 bit, or 16 bit numbers
 respectively.
 </p>
 </div>
@@ -1012,35 +963,29 @@ respectively.
 <h4 id="org8c375b1"><span class="section-number-4">2.13.3</span> Absolute Address Operands</h4>
 <div class="outline-text-4" id="text-2-13-3">
 <p>
-These operands are memory addressed located in the instruction
-itself. They are denoted as <code>addr20</code> in the instructions and have a
-length of 20 bits. They are encoded as a 20 bit number.
+These operands are memory addressed located in the instruction itself. They are denoted as <code>addr20</code> in the instructions
+and have a length of 20 bits. They are encoded as a 20 bit number.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgfc3605c" class="outline-4">
-<h4 id="orgfc3605c"><span class="section-number-4">2.13.4</span> Indirect</h4>
+<div id="outline-container-orgdd3876c" class="outline-4">
+<h4 id="orgdd3876c"><span class="section-number-4">2.13.4</span> Register Indirect</h4>
 <div class="outline-text-4" id="text-2-13-4">
 <p>
-These operands are located in a memory location whose address is
-located in a general purpose register. They are denoted as <code>[SR]</code> and
-<code>[DR]</code> in the instructions. They are encoded by their 4 bit register
-numbers.
+These operands are located in a memory location whose address is located in a general purpose register. They are denoted
+as <code>[SR]</code> and <code>[DR]</code> in the instructions. They are encoded by their 5 bit register numbers.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org712f5f5" class="outline-4">
-<h4 id="org712f5f5"><span class="section-number-4">2.13.5</span> Register or Indirect</h4>
+<div id="outline-container-org069209b" class="outline-4">
+<h4 id="org069209b"><span class="section-number-4">2.13.5</span> Register Indirect with Index Register</h4>
 <div class="outline-text-4" id="text-2-13-5">
 <p>
-These operands are either located in a general purpose register or in
-a memory location whose address is located in a general purpose
-register. They are denoted as <code>SO</code>, <code>SO1</code>, <code>SO2</code>, and <code>DO</code> in the
-instructions. They are encoded by a 5 bit number whose least
-significant 4 bits are the register number and the most significant
-bit is set if and only if the operand is located in memory.
+These operands are located in a memory location whose address is formed by adding the contents of two general purpose
+registers. They are denoted as <code>[SR1+SR2]</code> or <code>[DR1+DR2]</code> in the instructions. They are encoded by two 5 bit register
+numbers arranged consecutively.
 </p>
 </div>
 </div>
@@ -1051,13 +996,11 @@ bit is set if and only if the operand is located in memory.
 <h2 id="org3c7c6aa"><span class="section-number-2">3</span> Instructions</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-This section contains a comprehencive list of all instructions and
-their encodings.
+This section contains a comprehencive list of all instructions and their encodings.
 </p>
 
 <p>
-Many instruction encodings contain bit fields marked as
-<i>Reserved</i>. These must be filled with zeroes for compatibility
+Many instruction encodings contain bit fields marked as <i>Reserved</i>. These must be filled with zeroes for compatibility
 reasons.
 </p>
 </div>
@@ -1066,16 +1009,15 @@ reasons.
 <h3 id="org5d8d54b"><span class="section-number-3">3.1</span> ADD</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-Adds two source operands and stores the result in the destination
-operand.
+Adds two source operands and stores the result in the destination operand.
 </p>
 </div>
 
-<div id="outline-container-org8d2b189" class="outline-4">
-<h4 id="org8d2b189"><span class="section-number-4">3.1.1</span> Encodings</h4>
+<div id="outline-container-org25bd815" class="outline-4">
+<h4 id="org25bd815"><span class="section-number-4">3.1.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 7:</span> <code>ADD DO, SO1, SO2</code></caption>
+<caption class="t-above"><span class="table-number">Table 7:</span> <code>ADD DR, SR1, SR2</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -1107,17 +1049,17 @@ operand.
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-right"><code>0b00100</code></td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO1</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
 <td class="org-right"><code>0</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>SO2</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 8:</span> <code>ADD DO, SO1, imm16</code></caption>
+<caption class="t-above"><span class="table-number">Table 8:</span> <code>ADD DR, SR1, imm16</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -1146,8 +1088,8 @@ operand.
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-right"><code>0b00100</code></td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO1</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
 <td class="org-right"><code>1</code></td>
 <td class="org-right"><code>imm16</code></td>
 </tr>
@@ -1156,22 +1098,22 @@ operand.
 </div>
 </div>
 
-<div id="outline-container-orgce4a6fa" class="outline-4">
-<h4 id="orgce4a6fa"><span class="section-number-4">3.1.2</span> Operation</h4>
+<div id="outline-container-org61bdae4" class="outline-4">
+<h4 id="org61bdae4"><span class="section-number-4">3.1.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <pre class="example">
 if (instruction[16] == 0)
-  DO = SO1 + SO2;
+  DR = SR1 + SR2;
 else
-  DO = SO1 + SExtend(imm16, 32);
+  DR = SR1 + SExtend(imm16, 32);
 
-Set_Flags(DO);
+Set_Flags(DR);
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgf199ce7" class="outline-4">
-<h4 id="orgf199ce7"><span class="section-number-4">3.1.3</span> Flags Affected</h4>
+<div id="outline-container-org42d9789" class="outline-4">
+<h4 id="org42d9789"><span class="section-number-4">3.1.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -1184,16 +1126,15 @@ Set_Flags(DO);
 <h3 id="orgbe45737"><span class="section-number-3">3.2</span> SUB</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
-Subtracts the second source operand from the first source operand and
-stores the result in the destination operand.
+Subtracts the second source operand from the first source operand and stores the result in the destination operand.
 </p>
 </div>
 
-<div id="outline-container-orga3a1942" class="outline-4">
-<h4 id="orga3a1942"><span class="section-number-4">3.2.1</span> Encodings</h4>
+<div id="outline-container-orgd671571" class="outline-4">
+<h4 id="orgd671571"><span class="section-number-4">3.2.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 9:</span> <code>SUB DO, SO1, SO2</code></caption>
+<caption class="t-above"><span class="table-number">Table 9:</span> <code>SUB DR, SR1, SR2</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -1225,17 +1166,17 @@ stores the result in the destination operand.
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-right"><code>0b00000</code></td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO1</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
 <td class="org-right"><code>0</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>SO2</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 10:</span> <code>SUB DO, SO1, imm16</code></caption>
+<caption class="t-above"><span class="table-number">Table 10:</span> <code>SUB DR, SR1, imm16</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -1264,8 +1205,8 @@ stores the result in the destination operand.
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-right"><code>0b00000</code></td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO1</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
 <td class="org-right"><code>1</code></td>
 <td class="org-right"><code>imm16</code></td>
 </tr>
@@ -1274,22 +1215,22 @@ stores the result in the destination operand.
 </div>
 </div>
 
-<div id="outline-container-orga462f17" class="outline-4">
-<h4 id="orga462f17"><span class="section-number-4">3.2.2</span> Operation</h4>
+<div id="outline-container-orgf52e387" class="outline-4">
+<h4 id="orgf52e387"><span class="section-number-4">3.2.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <pre class="example">
 if (instruction[16] == 0)
-  DO = SO1 - SO2;
+  DR = SR1 - SR2;
 else
-  DO = SO1 - SExtend(imm16, 32);
+  DR = SR1 - SExtend(imm16, 32);
 
-Set_Flags(DO);
+Set_Flags(DR);
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgfad4537" class="outline-4">
-<h4 id="orgfad4537"><span class="section-number-4">3.2.3</span> Flags Affected</h4>
+<div id="outline-container-orge0e8e25" class="outline-4">
+<h4 id="orge0e8e25"><span class="section-number-4">3.2.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -1302,49 +1243,42 @@ Set_Flags(DO);
 <h3 id="org08c1226"><span class="section-number-3">3.3</span> MUL</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
-Multiples two source operands and stores the result in the destination
-operand. The size of the destination operand is always double that of
-the source operands.
+Multiples two source operands and stores the result in the destination operand. The size of the destination operand is
+always double that of the source operands.
 </p>
 
 <p>
-The <code>IMUL</code> instruction variant multiplies two signed numbers and
-stores the result into the destination operand. The <code>UMUL</code> instruction
-variant multiplies two unsigned numbers and stores the result into the
-destination operand.
+The signed instruction variant (<code>MULBI</code>, <code>MULSI</code>, and <code>MULWI</code>) multiplies two signed numbers and stores the result into
+the destination operand. The unsigned instruction variant (<code>MULBU</code>, <code>MULSU</code>, and <code>MULWU</code>) multiplies two unsigned
+numbers and stores the result into the destination operand.
 </p>
 
 <p>
-Both these instruction variants are further classified into byte,
-short, and word variants.
+Both these instruction variants are further classified into byte, short, and word variants.
 </p>
 
 <p>
-The byte instruction variant multiplies the least significant 8 bits of
-the source operands and stores the result into the least significant
-16 bits of the destination operand.
+The byte instruction variant multiplies the least significant 8 bits of the source operands and stores the result into
+the least significant 16 bits of the destination operand.
 </p>
 
 <p>
-The short instruction variant multiplies the least significant 16 bits
-of the source operands and stores the result into the destination
-operand word.
+The short instruction variant multiplies the least significant 16 bits of the source operands and stores the result into
+the destination operand word.
 </p>
 
 <p>
-The word instruction variant multiplies the source operand words and
-stores the result into the destination operand doubleword. If the
-destination operand is a register <code>DR</code>, the least significant word of
-the result is stored in the register <code>DR</code> and the most significant
-word in the register <code>(DR + 1) modulo 8</code>.
+The word instruction variant multiplies the source operand words and stores the result into the destination operand
+doubleword. The least significant word of the result is stored in the register <code>DR</code> and the most significant word in the
+register <code>(DR + 1) modulo 8</code>.
 </p>
 </div>
 
-<div id="outline-container-orga46223a" class="outline-4">
-<h4 id="orga46223a"><span class="section-number-4">3.3.1</span> Encodings</h4>
+<div id="outline-container-org281a16e" class="outline-4">
+<h4 id="org281a16e"><span class="section-number-4">3.3.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 11:</span> <code>IMULB DO, SO1, SO2</code></caption>
+<caption class="t-above"><span class="table-number">Table 11:</span> <code>MULBI DR, SR1, SR2</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -1382,15 +1316,15 @@ word in the register <code>(DR + 1) modulo 8</code>.
 <td class="org-right"><code>0</code></td>
 <td class="org-right"><code>0b01</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO1</code></td>
-<td class="org-right"><code>SO2</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 12:</span> <code>IMULS DO, SO1, SO2</code></caption>
+<caption class="t-above"><span class="table-number">Table 12:</span> <code>MULSI DR, SR1, SR2</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -1428,15 +1362,15 @@ word in the register <code>(DR + 1) modulo 8</code>.
 <td class="org-right"><code>0</code></td>
 <td class="org-right"><code>0b10</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO1</code></td>
-<td class="org-right"><code>SO2</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 13:</span> <code>IMULW DO, SO1, SO2</code></caption>
+<caption class="t-above"><span class="table-number">Table 13:</span> <code>MULWI DR, SR1, SR2</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -1474,15 +1408,15 @@ word in the register <code>(DR + 1) modulo 8</code>.
 <td class="org-right"><code>0</code></td>
 <td class="org-right"><code>0b11</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO1</code></td>
-<td class="org-right"><code>SO2</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 14:</span> <code>UMULB DO, SO1, SO2</code></caption>
+<caption class="t-above"><span class="table-number">Table 14:</span> <code>MULBU DR, SR1, SR2</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -1520,15 +1454,15 @@ word in the register <code>(DR + 1) modulo 8</code>.
 <td class="org-right"><code>1</code></td>
 <td class="org-right"><code>0b01</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO1</code></td>
-<td class="org-right"><code>SO2</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 15:</span> <code>UMULS DO, SO1, SO2</code></caption>
+<caption class="t-above"><span class="table-number">Table 15:</span> <code>MULSU DR, SR1, SR2</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -1566,15 +1500,15 @@ word in the register <code>(DR + 1) modulo 8</code>.
 <td class="org-right"><code>1</code></td>
 <td class="org-right"><code>0b10</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO1</code></td>
-<td class="org-right"><code>SO2</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 16:</span> <code>UMULW DO, SO1, SO2</code></caption>
+<caption class="t-above"><span class="table-number">Table 16:</span> <code>MULWU DR, SR1, SR2</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -1612,28 +1546,28 @@ word in the register <code>(DR + 1) modulo 8</code>.
 <td class="org-right"><code>1</code></td>
 <td class="org-right"><code>0b11</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO1</code></td>
-<td class="org-right"><code>SO2</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-org1edf4c9" class="outline-4">
-<h4 id="org1edf4c9"><span class="section-number-4">3.3.2</span> Operation</h4>
+<div id="outline-container-org88019e2" class="outline-4">
+<h4 id="org88019e2"><span class="section-number-4">3.3.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <pre class="example">
 if (instruction[25:24] == 1) {
-  op1 = SO1[7:0];
-  op2 = SO2[7:0];
+  op1 = SR1[7:0];
+  op2 = SR2[7:0];
 } else if (instruction[25:24] == 2) {
-  op1 = SO1[15:0];
-  op2 = SO2[15:0];
+  op1 = SR1[15:0];
+  op2 = SR2[15:0];
 } else if (instruction[25:24] == 3) {
-  op1 = SO1;
-  op2 = SO2;
+  op1 = SR1;
+  op2 = SR2;
 }
 
 if (instruction[26] == 0)
@@ -1642,15 +1576,12 @@ else
   result = Unsigned_Multiply(op1, op2);
 
 if (instruction[25:24] == 1)
-  DO[15:0] = result;
+  DR[15:0] = result;
 else if (instruction[25:24] == 2)
-  DO = result;
+  DR = result;
 else if (instruction[25:24] == 3) {
-  if (instruction[4] == 0) {
-    DO = result[31:0];
-    Next_Reg(DO) = result[63:32];
-  } else
-    DO = result;
+  DR = result[31:0];
+  Next_Reg(DR) = result[63:32];
 }
 
 Set_Flags(result);
@@ -1658,8 +1589,8 @@ Set_Flags(result);
 </div>
 </div>
 
-<div id="outline-container-org97c71e1" class="outline-4">
-<h4 id="org97c71e1"><span class="section-number-4">3.3.3</span> Flags Affected</h4>
+<div id="outline-container-orgb37ce3d" class="outline-4">
+<h4 id="orgb37ce3d"><span class="section-number-4">3.3.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -1680,16 +1611,14 @@ Sets the destination operand to the two's complement of the source operand.
 </p>
 </div>
 
-<div id="outline-container-org51846a6" class="outline-4">
-<h4 id="org51846a6"><span class="section-number-4">3.4.1</span> Encodings</h4>
+<div id="outline-container-orgf9ed179" class="outline-4">
+<h4 id="orgf9ed179"><span class="section-number-4">3.4.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 17:</span> <code>NEG DO, addr20</code></caption>
+<caption class="t-above"><span class="table-number">Table 17:</span> <code>NEG DR, SR</code></caption>
 
 <colgroup>
 <col  class="org-left">
-
-<col  class="org-right">
 
 <col  class="org-right">
 
@@ -1703,50 +1632,8 @@ Sets the destination operand to the two's complement of the source operand.
 <tr>
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26</th>
-<th scope="col" class="org-right">25-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-0</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b11000</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right"><code>addr20</code></td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<caption class="t-above"><span class="table-number">Table 18:</span> <code>NEG DO, SO</code></caption>
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Bit Position</th>
-<th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26</th>
-<th scope="col" class="org-right">25-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-5</th>
+<th scope="col" class="org-right">26-10</th>
+<th scope="col" class="org-right">9-5</th>
 <th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
@@ -1755,34 +1642,27 @@ Sets the destination operand to the two's complement of the source operand.
 <td class="org-left">&#xa0;</td>
 <td class="org-right"><code>0b11000</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>1</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>SO</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR</code></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-orgbf0faec" class="outline-4">
-<h4 id="orgbf0faec"><span class="section-number-4">3.4.2</span> Operation</h4>
+<div id="outline-container-orgb4b65d6" class="outline-4">
+<h4 id="orgb4b65d6"><span class="section-number-4">3.4.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-4-2">
 <pre class="example">
-if (instruction[20] == 0)
-  value = MemW[addr20];
-else
-  value = SO;
+DR = -SR;
 
-DO = -value;
-
-Set_Flags(DO);
+Set_Flags(DR);
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org639b699" class="outline-4">
-<h4 id="org639b699"><span class="section-number-4">3.4.3</span> Flags Affected</h4>
+<div id="outline-container-org239f154" class="outline-4">
+<h4 id="org239f154"><span class="section-number-4">3.4.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-4-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -1799,17 +1679,16 @@ Compares two operands.
 </p>
 
 <p>
-The comparison is perdformed by subtracting the second source operand
-from the first source operand and setting the flags according to the
-result. The result is discarded.
+The comparison is perdformed by subtracting the second source operand from the first source operand and setting the
+flags according to the result. The result is discarded.
 </p>
 </div>
 
-<div id="outline-container-org9fdff7c" class="outline-4">
-<h4 id="org9fdff7c"><span class="section-number-4">3.5.1</span> Encodings</h4>
+<div id="outline-container-org2705cb8" class="outline-4">
+<h4 id="org2705cb8"><span class="section-number-4">3.5.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-5-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 19:</span> <code>CMP SO1, SO2</code></caption>
+<caption class="t-above"><span class="table-number">Table 18:</span> <code>CMP SR1, SR2</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -1837,17 +1716,17 @@ result. The result is discarded.
 <tbody>
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b11100</code></td>
+<td class="org-right"><code>0b11011</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>SO1</code></td>
+<td class="org-right"><code>SR1</code></td>
 <td class="org-right"><code>0</code></td>
-<td class="org-right"><code>SO2</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 20:</span> <code>CMP SO1, imm16</code></caption>
+<caption class="t-above"><span class="table-number">Table 19:</span> <code>CMP SR1, imm16</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -1875,9 +1754,9 @@ result. The result is discarded.
 <tbody>
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b11100</code></td>
+<td class="org-right"><code>0b11011</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>SO1</code></td>
+<td class="org-right"><code>SR1</code></td>
 <td class="org-right"><code>1</code></td>
 <td class="org-right"><code>imm16</code></td>
 </tr>
@@ -1886,22 +1765,22 @@ result. The result is discarded.
 </div>
 </div>
 
-<div id="outline-container-org47c8005" class="outline-4">
-<h4 id="org47c8005"><span class="section-number-4">3.5.2</span> Operation</h4>
+<div id="outline-container-org2758592" class="outline-4">
+<h4 id="org2758592"><span class="section-number-4">3.5.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-5-2">
 <pre class="example">
 if (instruction[16] == 0)
-  result = SO1 - SO2;
+  result = SR1 - SR2;
 else
-  result = SO1 - SExtend(imm16, 32);
+  result = SR1 - SExtend(imm16, 32);
 
 Set_Flags(result);
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgb8c4b84" class="outline-4">
-<h4 id="orgb8c4b84"><span class="section-number-4">3.5.3</span> Flags Affected</h4>
+<div id="outline-container-orgec2b1e3" class="outline-4">
+<h4 id="orgec2b1e3"><span class="section-number-4">3.5.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-5-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -1914,16 +1793,15 @@ Set_Flags(result);
 <h3 id="orgd1f456e"><span class="section-number-3">3.6</span> AND</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
-Performs bitwise logical AND of two source operands and stores the
-result in the destination operand.
+Performs bitwise logical AND of two source operands and stores the result in the destination operand.
 </p>
 </div>
 
-<div id="outline-container-orgfa08df8" class="outline-4">
-<h4 id="orgfa08df8"><span class="section-number-4">3.6.1</span> Encodings</h4>
+<div id="outline-container-org843fee2" class="outline-4">
+<h4 id="org843fee2"><span class="section-number-4">3.6.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-6-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 21:</span> <code>AND DO, SO1, SO2</code></caption>
+<caption class="t-above"><span class="table-number">Table 20:</span> <code>AND DR, SR1, SR2</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -1955,17 +1833,17 @@ result in the destination operand.
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-right"><code>0b00101</code></td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO1</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
 <td class="org-right"><code>0</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>SO2</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 22:</span> <code>AND DO, SO1, imm16</code></caption>
+<caption class="t-above"><span class="table-number">Table 21:</span> <code>AND DR, SR1, imm16</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -1994,8 +1872,8 @@ result in the destination operand.
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-right"><code>0b00101</code></td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO1</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
 <td class="org-right"><code>1</code></td>
 <td class="org-right"><code>imm16</code></td>
 </tr>
@@ -2004,22 +1882,22 @@ result in the destination operand.
 </div>
 </div>
 
-<div id="outline-container-org03e45b3" class="outline-4">
-<h4 id="org03e45b3"><span class="section-number-4">3.6.2</span> Operation</h4>
+<div id="outline-container-org355da12" class="outline-4">
+<h4 id="org355da12"><span class="section-number-4">3.6.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-6-2">
 <pre class="example">
 if (instruction[16] == 0)
-  DO = SO1 &amp;&amp; SO2
+  DR = SR1 &amp;&amp; SR2
 else
-  DO = SO1 &amp;&amp; SExtend(imm16, 32)
+  DR = SR1 &amp;&amp; SExtend(imm16, 32)
 
-Set_Flags(DO);
+Set_Flags(DR);
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgb96242d" class="outline-4">
-<h4 id="orgb96242d"><span class="section-number-4">3.6.3</span> Flags Affected</h4>
+<div id="outline-container-orgfffd0f5" class="outline-4">
+<h4 id="orgfffd0f5"><span class="section-number-4">3.6.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-6-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -2032,16 +1910,15 @@ Set_Flags(DO);
 <h3 id="org72c3231"><span class="section-number-3">3.7</span> OR</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
-Performs bitwise logical OR of two source operands and stores the
-result in the destination operand.
+Performs bitwise logical OR of two source operands and stores the result in the destination operand.
 </p>
 </div>
 
-<div id="outline-container-org880b7b7" class="outline-4">
-<h4 id="org880b7b7"><span class="section-number-4">3.7.1</span> Encodings</h4>
+<div id="outline-container-org4746eab" class="outline-4">
+<h4 id="org4746eab"><span class="section-number-4">3.7.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-7-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 23:</span> <code>OR DO, SO1, SO2</code></caption>
+<caption class="t-above"><span class="table-number">Table 22:</span> <code>OR DR, SR1, SR2</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -2073,17 +1950,17 @@ result in the destination operand.
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-right"><code>0b01101</code></td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO1</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
 <td class="org-right"><code>0</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>SO2</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 24:</span> <code>OR DO, SO1, imm16</code></caption>
+<caption class="t-above"><span class="table-number">Table 23:</span> <code>OR DR, SR1, imm16</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -2112,8 +1989,8 @@ result in the destination operand.
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-right"><code>0b01101</code></td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO1</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
 <td class="org-right"><code>1</code></td>
 <td class="org-right"><code>imm16</code></td>
 </tr>
@@ -2122,22 +1999,22 @@ result in the destination operand.
 </div>
 </div>
 
-<div id="outline-container-org81445ed" class="outline-4">
-<h4 id="org81445ed"><span class="section-number-4">3.7.2</span> Operation</h4>
+<div id="outline-container-org2c6231a" class="outline-4">
+<h4 id="org2c6231a"><span class="section-number-4">3.7.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-7-2">
 <pre class="example">
 if (instruction[16] == 0)
-  DO = SO1 || SO2
+  DR = SR1 || SR2
 else
-  DO = SO1 || SExtend(imm16, 32)
+  DR = SR1 || SExtend(imm16, 32)
 
-Set_Flags(DO);
+Set_Flags(DR);
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orga48f9cd" class="outline-4">
-<h4 id="orga48f9cd"><span class="section-number-4">3.7.3</span> Flags Affected</h4>
+<div id="outline-container-orgac41882" class="outline-4">
+<h4 id="orgac41882"><span class="section-number-4">3.7.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-7-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -2154,21 +2031,18 @@ Bitwise complement.
 </p>
 
 <p>
-Perform a bitwise complement of the source operand and store the
-result into the destination operand.
+Perform a bitwise complement of the source operand and store the result into the destination operand.
 </p>
 </div>
 
-<div id="outline-container-org8419207" class="outline-4">
-<h4 id="org8419207"><span class="section-number-4">3.8.1</span> Encodings</h4>
+<div id="outline-container-org64f059b" class="outline-4">
+<h4 id="org64f059b"><span class="section-number-4">3.8.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-8-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 25:</span> <code>NOT DO, addr20</code></caption>
+<caption class="t-above"><span class="table-number">Table 24:</span> <code>NOT DR, SR</code></caption>
 
 <colgroup>
 <col  class="org-left">
-
-<col  class="org-right">
 
 <col  class="org-right">
 
@@ -2182,50 +2056,8 @@ result into the destination operand.
 <tr>
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26</th>
-<th scope="col" class="org-right">25-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-0</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b10110</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right"><code>addr20</code></td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<caption class="t-above"><span class="table-number">Table 26:</span> <code>NOT DO, SO</code></caption>
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Bit Position</th>
-<th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26</th>
-<th scope="col" class="org-right">25-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-5</th>
+<th scope="col" class="org-right">26-10</th>
+<th scope="col" class="org-right">9-5</th>
 <th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
@@ -2234,34 +2066,27 @@ result into the destination operand.
 <td class="org-left">&#xa0;</td>
 <td class="org-right"><code>0b10110</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>1</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>SO</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR</code></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-org141e3b8" class="outline-4">
-<h4 id="org141e3b8"><span class="section-number-4">3.8.2</span> Operation</h4>
+<div id="outline-container-org0d63681" class="outline-4">
+<h4 id="org0d63681"><span class="section-number-4">3.8.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-8-2">
 <pre class="example">
-if (instruction[20] == 0)
-  value = MemW[addr20];
-else
-  value = SO;
+DR = ~SR;
 
-DO = ~value;
-
-Set_Flags(DO);
+Set_Flags(DR);
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org199bba4" class="outline-4">
-<h4 id="org199bba4"><span class="section-number-4">3.8.3</span> Flags Affected</h4>
+<div id="outline-container-org928b401" class="outline-4">
+<h4 id="org928b401"><span class="section-number-4">3.8.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-8-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -2278,11 +2103,11 @@ Bitwise exclusive-OR.
 </p>
 </div>
 
-<div id="outline-container-orga69ed16" class="outline-4">
-<h4 id="orga69ed16"><span class="section-number-4">3.9.1</span> Encodings</h4>
+<div id="outline-container-org5f0364a" class="outline-4">
+<h4 id="org5f0364a"><span class="section-number-4">3.9.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-9-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 27:</span> <code>XOR DO, SO1, SO2</code></caption>
+<caption class="t-above"><span class="table-number">Table 25:</span> <code>XOR DR, SR1, SR2</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -2314,17 +2139,17 @@ Bitwise exclusive-OR.
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-right"><code>0b10101</code></td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO1</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
 <td class="org-right"><code>0</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>SO2</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 28:</span> <code>XOR DO, SO1, imm16</code></caption>
+<caption class="t-above"><span class="table-number">Table 26:</span> <code>XOR DR, SR1, imm16</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -2353,8 +2178,8 @@ Bitwise exclusive-OR.
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-right"><code>0b10101</code></td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO1</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
 <td class="org-right"><code>1</code></td>
 <td class="org-right"><code>imm16</code></td>
 </tr>
@@ -2363,22 +2188,22 @@ Bitwise exclusive-OR.
 </div>
 </div>
 
-<div id="outline-container-org0e5570a" class="outline-4">
-<h4 id="org0e5570a"><span class="section-number-4">3.9.2</span> Operation</h4>
+<div id="outline-container-org39fab52" class="outline-4">
+<h4 id="org39fab52"><span class="section-number-4">3.9.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-9-2">
 <pre class="example">
 if (instruction[16] == 0)
-  DO = SO1 ^ SO2
+  DR = SR1 ^ SR2
 else
-  DO = SO1 ^ SExtend(imm16, 32)
+  DR = SR1 ^ SExtend(imm16, 32)
 
-Set_Flags(DO);
+Set_Flags(DR);
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org4305611" class="outline-4">
-<h4 id="org4305611"><span class="section-number-4">3.9.3</span> Flags Affected</h4>
+<div id="outline-container-orgbbcc709" class="outline-4">
+<h4 id="orgbbcc709"><span class="section-number-4">3.9.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-9-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -2395,27 +2220,27 @@ Bit shift.
 </p>
 
 <p>
-Shift the source operand by a specified number of bits to the left or
-right and store the result in the destination operand.
+Shift the source operand by a specified number of bits to the left or right and store the result in the destination
+operand.
 </p>
 
 <p>
-The left shift operation (<code>SHFL</code>) fills the vacated bit positions with
-zeroes. The right shift operation can be logical or arithmetic. The
-logical right shift operation (<code>SHFRL</code>) fills the vacated bit
-positions with zeroes while the arithmetic right shift operation
-(<code>SHFRA</code>) fills the vacated bit positions by the most significant bit.
+The left shift operation (<code>SHFL</code>) fills the vacated bit positions with zeroes. The right shift operation can be logical
+or arithmetic. The logical right shift operation (<code>SHFRZ</code>) fills the vacated bit positions with zeroes while the
+arithmetic right shift operation (<code>SHFRA</code>) fills the vacated bit positions by the most significant bit.
 </p>
 </div>
 
-<div id="outline-container-org1bc7ef3" class="outline-4">
-<h4 id="org1bc7ef3"><span class="section-number-4">3.10.1</span> Encodings</h4>
+<div id="outline-container-org88eac15" class="outline-4">
+<h4 id="org88eac15"><span class="section-number-4">3.10.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-10-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 29:</span> <code>SHFL DO, SO, imm5</code></caption>
+<caption class="t-above"><span class="table-number">Table 27:</span> <code>SHFL DR, SR1, SR2</code></caption>
 
 <colgroup>
 <col  class="org-left">
+
+<col  class="org-right">
 
 <col  class="org-right">
 
@@ -2434,9 +2259,10 @@ positions with zeroes while the arithmetic right shift operation
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26-25</th>
-<th scope="col" class="org-right">24-15</th>
-<th scope="col" class="org-right">14-10</th>
-<th scope="col" class="org-right">9-5</th>
+<th scope="col" class="org-right">24-16</th>
+<th scope="col" class="org-right">15-11</th>
+<th scope="col" class="org-right">10-6</th>
+<th scope="col" class="org-right">5</th>
 <th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
@@ -2446,18 +2272,21 @@ positions with zeroes while the arithmetic right shift operation
 <td class="org-right"><code>0b10000</code></td>
 <td class="org-right"><code>0b00</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO</code></td>
-<td class="org-right"><code>imm5</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
+<td class="org-right"><code>0</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 30:</span> <code>SHFRL DO, SO, imm5</code></caption>
+<caption class="t-above"><span class="table-number">Table 28:</span> <code>SHFL DR, SR, imm5</code></caption>
 
 <colgroup>
 <col  class="org-left">
+
+<col  class="org-right">
 
 <col  class="org-right">
 
@@ -2476,9 +2305,56 @@ positions with zeroes while the arithmetic right shift operation
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26-25</th>
-<th scope="col" class="org-right">24-15</th>
-<th scope="col" class="org-right">14-10</th>
-<th scope="col" class="org-right">9-5</th>
+<th scope="col" class="org-right">24-16</th>
+<th scope="col" class="org-right">15-11</th>
+<th scope="col" class="org-right">10-6</th>
+<th scope="col" class="org-right">5</th>
+<th scope="col" class="org-right">4-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><code>0b10000</code></td>
+<td class="org-right"><code>0b00</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR</code></td>
+<td class="org-right"><code>1</code></td>
+<td class="org-right"><code>imm5</code></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption class="t-above"><span class="table-number">Table 29:</span> <code>SHFRZ DR, SR1, SR2</code></caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bit Position</th>
+<th scope="col" class="org-right">31-27</th>
+<th scope="col" class="org-right">26-25</th>
+<th scope="col" class="org-right">24-16</th>
+<th scope="col" class="org-right">15-11</th>
+<th scope="col" class="org-right">10-6</th>
+<th scope="col" class="org-right">5</th>
 <th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
@@ -2488,18 +2364,21 @@ positions with zeroes while the arithmetic right shift operation
 <td class="org-right"><code>0b10000</code></td>
 <td class="org-right"><code>0b10</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO</code></td>
-<td class="org-right"><code>imm5</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
+<td class="org-right"><code>0</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 31:</span> <code>SHFRA DO, SO, imm5</code></caption>
+<caption class="t-above"><span class="table-number">Table 30:</span> <code>SHFRZ DR, SR, imm5</code></caption>
 
 <colgroup>
 <col  class="org-left">
+
+<col  class="org-right">
 
 <col  class="org-right">
 
@@ -2518,9 +2397,56 @@ positions with zeroes while the arithmetic right shift operation
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26-25</th>
-<th scope="col" class="org-right">24-15</th>
-<th scope="col" class="org-right">14-10</th>
-<th scope="col" class="org-right">9-5</th>
+<th scope="col" class="org-right">24-16</th>
+<th scope="col" class="org-right">15-11</th>
+<th scope="col" class="org-right">10-6</th>
+<th scope="col" class="org-right">5</th>
+<th scope="col" class="org-right">4-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><code>0b10000</code></td>
+<td class="org-right"><code>0b10</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR</code></td>
+<td class="org-right"><code>1</code></td>
+<td class="org-right"><code>imm5</code></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption class="t-above"><span class="table-number">Table 31:</span> <code>SHFRA DR, SR1, SR2</code></caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bit Position</th>
+<th scope="col" class="org-right">31-27</th>
+<th scope="col" class="org-right">26-25</th>
+<th scope="col" class="org-right">24-16</th>
+<th scope="col" class="org-right">15-11</th>
+<th scope="col" class="org-right">10-6</th>
+<th scope="col" class="org-right">5</th>
 <th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
@@ -2530,8 +2456,55 @@ positions with zeroes while the arithmetic right shift operation
 <td class="org-right"><code>0b10000</code></td>
 <td class="org-right"><code>0b11</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR1</code></td>
+<td class="org-right"><code>0</code></td>
+<td class="org-right"><code>SR2</code></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption class="t-above"><span class="table-number">Table 32:</span> <code>SHFRA DR, SR, imm5</code></caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bit Position</th>
+<th scope="col" class="org-right">31-27</th>
+<th scope="col" class="org-right">26-25</th>
+<th scope="col" class="org-right">24-16</th>
+<th scope="col" class="org-right">15-11</th>
+<th scope="col" class="org-right">10-6</th>
+<th scope="col" class="org-right">5</th>
+<th scope="col" class="org-right">4-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><code>0b10000</code></td>
+<td class="org-right"><code>0b11</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR</code></td>
+<td class="org-right"><code>1</code></td>
 <td class="org-right"><code>imm5</code></td>
 </tr>
 </tbody>
@@ -2539,24 +2512,32 @@ positions with zeroes while the arithmetic right shift operation
 </div>
 </div>
 
-<div id="outline-container-org6f082da" class="outline-4">
-<h4 id="org6f082da"><span class="section-number-4">3.10.2</span> Operation</h4>
+<div id="outline-container-orga429c59" class="outline-4">
+<h4 id="orga429c59"><span class="section-number-4">3.10.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-10-2">
 <pre class="example">
-if (instruction[26:25] == 0)
-  DO = LShift(SO, imm5);
-else if (instruction[26:25] == 2)
-  DO = RShift(SO, imm5);
-else if (instruction[26:25] == 3)
-  DO = RAShift(SO, imm5);
+if (instruction[5] == 0) {
+  op = SR1;
+  count = SR2;
+} else {
+  op = SR;
+  count = imm5;
+}
 
-Set_Flags(DO);
+if (instruction[26:25] == 0)
+  DR = LShift(op, count);
+else if (instruction[26:25] == 2)
+  DR = RShift(op, count);
+else if (instruction[26:25] == 3)
+  DR = RAShift(op, count);
+
+Set_Flags(DR);
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org5b7b08d" class="outline-4">
-<h4 id="org5b7b08d"><span class="section-number-4">3.10.3</span> Flags Affected</h4>
+<div id="outline-container-orga72f608" class="outline-4">
+<h4 id="orga72f608"><span class="section-number-4">3.10.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-10-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -2569,14 +2550,12 @@ Set_Flags(DO);
 <h3 id="org080f87e"><span class="section-number-3">3.11</span> JC</h3>
 <div class="outline-text-3" id="text-3-11">
 <p>
-Jump conditionally. Tests zero or more flags and performs a jump if
-any of them are set.
+Jump conditionally. Tests zero or more flags and performs a jump if any of them are set.
 </p>
 
 <p>
-Note that <code>JCnzp</code> will always perform a jump regardless of the state of
-the flags and <code>JC</code> will never perform the jump. For this reason, it is
-not necessary for assemblers to support these instruction variants.
+Note that <code>JCnzp</code> will always perform a jump regardless of the state of the flags and <code>JC</code> will never perform the
+jump. For this reason, it is not necessary for assemblers to support these instruction variants.
 </p>
 
 <p>
@@ -2584,10 +2563,11 @@ It is an error if the target address of the jump is not word aligned.
 </p>
 </div>
 
-<div id="outline-container-orge58c8af" class="outline-4">
-<h4 id="orge58c8af"><span class="section-number-4">3.11.1</span> Encodings</h4>
+<div id="outline-container-orgde24156" class="outline-4">
+<h4 id="orgde24156"><span class="section-number-4">3.11.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-11-1">
 <ul class="org-ul">
+<li><code>JC    addr20</code></li>
 <li><code>JCn   addr20</code></li>
 <li><code>JCp   addr20</code></li>
 <li><code>JCz   addr20</code></li>
@@ -2598,7 +2578,7 @@ It is an error if the target address of the jump is not word aligned.
 </ul>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 32:</span> <code>JC addr20</code></caption>
+<caption class="t-above"><span class="table-number">Table 33:</span> <code>JC addr20</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -2624,8 +2604,8 @@ It is an error if the target address of the jump is not word aligned.
 <th scope="col" class="org-right">26</th>
 <th scope="col" class="org-right">25</th>
 <th scope="col" class="org-right">24</th>
-<th scope="col" class="org-right">23-21</th>
-<th scope="col" class="org-right">20</th>
+<th scope="col" class="org-right">23-22</th>
+<th scope="col" class="org-right">21-20</th>
 <th scope="col" class="org-right">19-0</th>
 </tr>
 </thead>
@@ -2637,13 +2617,14 @@ It is an error if the target address of the jump is not word aligned.
 <td class="org-right"><code>p</code></td>
 <td class="org-right"><code>z</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>0</code></td>
+<td class="org-right"><code>0b00</code></td>
 <td class="org-right"><code>addr20</code></td>
 </tr>
 </tbody>
 </table>
 
 <ul class="org-ul">
+<li><code>JC    [SR]</code></li>
 <li><code>JCn   [SR]</code></li>
 <li><code>JCp   [SR]</code></li>
 <li><code>JCz   [SR]</code></li>
@@ -2654,7 +2635,7 @@ It is an error if the target address of the jump is not word aligned.
 </ul>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 33:</span> <code>JC [SR]</code></caption>
+<caption class="t-above"><span class="table-number">Table 34:</span> <code>JC [SR]</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -2682,10 +2663,10 @@ It is an error if the target address of the jump is not word aligned.
 <th scope="col" class="org-right">26</th>
 <th scope="col" class="org-right">25</th>
 <th scope="col" class="org-right">24</th>
-<th scope="col" class="org-right">23-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-4</th>
-<th scope="col" class="org-right">3-0</th>
+<th scope="col" class="org-right">23-22</th>
+<th scope="col" class="org-right">21-20</th>
+<th scope="col" class="org-right">19-5</th>
+<th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
 <tbody>
@@ -2696,24 +2677,91 @@ It is an error if the target address of the jump is not word aligned.
 <td class="org-right"><code>p</code></td>
 <td class="org-right"><code>z</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>1</code></td>
+<td class="org-right"><code>0b01</code></td>
 <td class="org-right">Reserved</td>
 <td class="org-right"><code>[SR]</code></td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li><code>JC    [SR1+SR2]</code></li>
+<li><code>JCn   [SR1+SR2]</code></li>
+<li><code>JCp   [SR1+SR2]</code></li>
+<li><code>JCz   [SR1+SR2]</code></li>
+<li><code>JCnp  [SR1+SR2]</code></li>
+<li><code>JCnz  [SR1+SR2]</code></li>
+<li><code>JCzp  [SR1+SR2]</code></li>
+<li><code>JCnzp [SR1+SR2]</code></li>
+</ul>
+
+<table>
+<caption class="t-above"><span class="table-number">Table 35:</span> <code>JC [SR1+SR2]</code></caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bit Position</th>
+<th scope="col" class="org-right">31-27</th>
+<th scope="col" class="org-right">26</th>
+<th scope="col" class="org-right">25</th>
+<th scope="col" class="org-right">24</th>
+<th scope="col" class="org-right">23-22</th>
+<th scope="col" class="org-right">21-20</th>
+<th scope="col" class="org-right">19-10</th>
+<th scope="col" class="org-right">9-5</th>
+<th scope="col" class="org-right">4-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><code>0b10111</code></td>
+<td class="org-right"><code>n</code></td>
+<td class="org-right"><code>p</code></td>
+<td class="org-right"><code>z</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>0b10</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>SR1</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-orgce266df" class="outline-4">
-<h4 id="orgce266df"><span class="section-number-4">3.11.2</span> Operation</h4>
+<div id="outline-container-org1789893" class="outline-4">
+<h4 id="org1789893"><span class="section-number-4">3.11.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-11-2">
 <pre class="example">
 if ((n &amp;&amp; NF) || (p &amp;&amp; PF) || (z &amp;&amp; ZF)) {
-  if (instruction[20] == 0)
+  if (instruction[21:20] == 0)
     addr = addr20;
-  else
+  else if (instruction[21:20] == 1)
     addr = SR[19:0];
+  else if (instruction[21:20] == 2)
+    addr = (SR1 + SR2)[19:0];
 
   if ((addr % 4) != 0)
     Handle alignment error;
@@ -2724,8 +2772,8 @@ if ((n &amp;&amp; NF) || (p &amp;&amp; PF) || (z &amp;&amp; ZF)) {
 </div>
 </div>
 
-<div id="outline-container-org373fa15" class="outline-4">
-<h4 id="org373fa15"><span class="section-number-4">3.11.3</span> Flags Affected</h4>
+<div id="outline-container-org62bfe6c" class="outline-4">
+<h4 id="org62bfe6c"><span class="section-number-4">3.11.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-11-3">
 <p>
 None.
@@ -2742,8 +2790,7 @@ Jump unconditionally.
 </p>
 
 <p>
-Note that this instruction uses the same opcode as <a href="#org080f87e">JC</a> and the encoding
-is the same as <code>JCnzp</code>.
+Note that this instruction uses the same opcode as <a href="#org080f87e">JC</a> and the encoding is the same as <code>JCnzp</code>.
 </p>
 
 <p>
@@ -2751,11 +2798,11 @@ It is an error if the target address of the jump is not word aligned.
 </p>
 </div>
 
-<div id="outline-container-org3b396bc" class="outline-4">
-<h4 id="org3b396bc"><span class="section-number-4">3.12.1</span> Encodings</h4>
+<div id="outline-container-org2df9b79" class="outline-4">
+<h4 id="org2df9b79"><span class="section-number-4">3.12.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-12-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 34:</span> <code>JMP addr20</code></caption>
+<caption class="t-above"><span class="table-number">Table 36:</span> <code>JMP addr20</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -2775,8 +2822,8 @@ It is an error if the target address of the jump is not word aligned.
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26-24</th>
-<th scope="col" class="org-right">23-21</th>
-<th scope="col" class="org-right">20</th>
+<th scope="col" class="org-right">23-22</th>
+<th scope="col" class="org-right">21-20</th>
 <th scope="col" class="org-right">19-0</th>
 </tr>
 </thead>
@@ -2786,14 +2833,14 @@ It is an error if the target address of the jump is not word aligned.
 <td class="org-right"><code>0b10111</code></td>
 <td class="org-right"><code>0b111</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>0</code></td>
+<td class="org-right"><code>0b00</code></td>
 <td class="org-right"><code>addr20</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 35:</span> <code>JMP [SR]</code></caption>
+<caption class="t-above"><span class="table-number">Table 37:</span> <code>JMP [SR]</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -2815,10 +2862,10 @@ It is an error if the target address of the jump is not word aligned.
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26-24</th>
-<th scope="col" class="org-right">23-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-4</th>
-<th scope="col" class="org-right">3-0</th>
+<th scope="col" class="org-right">23-22</th>
+<th scope="col" class="org-right">21-20</th>
+<th scope="col" class="org-right">19-5</th>
+<th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
 <tbody>
@@ -2827,23 +2874,71 @@ It is an error if the target address of the jump is not word aligned.
 <td class="org-right"><code>0b10111</code></td>
 <td class="org-right"><code>0b111</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>1</code></td>
+<td class="org-right"><code>0b01</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>[SR]</code></td>
+<td class="org-right"><code>SR</code></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption class="t-above"><span class="table-number">Table 38:</span> <code>JMP [SR1+SR2]</code></caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bit Position</th>
+<th scope="col" class="org-right">31-27</th>
+<th scope="col" class="org-right">26-24</th>
+<th scope="col" class="org-right">23-22</th>
+<th scope="col" class="org-right">21-20</th>
+<th scope="col" class="org-right">19-10</th>
+<th scope="col" class="org-right">9-5</th>
+<th scope="col" class="org-right">4-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><code>0b10111</code></td>
+<td class="org-right"><code>0b111</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>0b10</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>SR1</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-org1f59cc6" class="outline-4">
-<h4 id="org1f59cc6"><span class="section-number-4">3.12.2</span> Operation</h4>
+<div id="outline-container-org3f22bea" class="outline-4">
+<h4 id="org3f22bea"><span class="section-number-4">3.12.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-12-2">
 <pre class="example">
-if (instruction[20] == 0)
+if (instruction[21:20] == 0)
   addr = addr20;
-else
+else if (instruction[21:20] == 1)
   addr = SR[19:0];
+else if (instruction[21:20] == 2)
+  addr = (SR1 + SR2)[19:0];
 
 if ((addr % 4) != 0)
   Handle alignment error;
@@ -2853,8 +2948,8 @@ else
 </div>
 </div>
 
-<div id="outline-container-org794bbdb" class="outline-4">
-<h4 id="org794bbdb"><span class="section-number-4">3.12.3</span> Flags Affected</h4>
+<div id="outline-container-org7758130" class="outline-4">
+<h4 id="org7758130"><span class="section-number-4">3.12.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-12-3">
 <p>
 None.
@@ -2871,8 +2966,7 @@ Call subroutine.
 </p>
 
 <p>
-Saves return information on the stack and branches to the called
-subroutine.
+Saves return information on the stack and branches to the called subroutine.
 </p>
 
 <p>
@@ -2880,11 +2974,11 @@ It is an error if the address of the subroutine is not word aligned.
 </p>
 </div>
 
-<div id="outline-container-orgc3748d8" class="outline-4">
-<h4 id="orgc3748d8"><span class="section-number-4">3.13.1</span> Encodings</h4>
+<div id="outline-container-org158fffa" class="outline-4">
+<h4 id="org158fffa"><span class="section-number-4">3.13.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-13-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 36:</span> <code>CALL addr20</code></caption>
+<caption class="t-above"><span class="table-number">Table 39:</span> <code>CALL addr20</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -2904,8 +2998,8 @@ It is an error if the address of the subroutine is not word aligned.
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26</th>
-<th scope="col" class="org-right">25-21</th>
-<th scope="col" class="org-right">20</th>
+<th scope="col" class="org-right">25-22</th>
+<th scope="col" class="org-right">21-20</th>
 <th scope="col" class="org-right">19-0</th>
 </tr>
 </thead>
@@ -2915,14 +3009,14 @@ It is an error if the address of the subroutine is not word aligned.
 <td class="org-right"><code>0b01000</code></td>
 <td class="org-right"><code>0</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>0</code></td>
+<td class="org-right"><code>0b00</code></td>
 <td class="org-right"><code>addr20</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 37:</span> <code>CALL [SR]</code></caption>
+<caption class="t-above"><span class="table-number">Table 40:</span> <code>CALL [SR]</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -2944,10 +3038,10 @@ It is an error if the address of the subroutine is not word aligned.
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26</th>
-<th scope="col" class="org-right">25-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-4</th>
-<th scope="col" class="org-right">3-0</th>
+<th scope="col" class="org-right">25-22</th>
+<th scope="col" class="org-right">21-20</th>
+<th scope="col" class="org-right">19-5</th>
+<th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
 <tbody>
@@ -2956,25 +3050,73 @@ It is an error if the address of the subroutine is not word aligned.
 <td class="org-right"><code>0b01000</code></td>
 <td class="org-right"><code>0</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>1</code></td>
+<td class="org-right"><code>0b01</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>[SR]</code></td>
+<td class="org-right"><code>SR</code></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption class="t-above"><span class="table-number">Table 41:</span> <code>CALL [SR1+SR2]</code></caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bit Position</th>
+<th scope="col" class="org-right">31-27</th>
+<th scope="col" class="org-right">26</th>
+<th scope="col" class="org-right">25-22</th>
+<th scope="col" class="org-right">21-20</th>
+<th scope="col" class="org-right">19-10</th>
+<th scope="col" class="org-right">9-5</th>
+<th scope="col" class="org-right">4-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><code>0b01000</code></td>
+<td class="org-right"><code>0</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>0b10</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>SR1</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-orgda5fb66" class="outline-4">
-<h4 id="orgda5fb66"><span class="section-number-4">3.13.2</span> Operation</h4>
+<div id="outline-container-orgfcd5407" class="outline-4">
+<h4 id="orgfcd5407"><span class="section-number-4">3.13.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-13-2">
 <pre class="example">
 R15 = R15 - 4;
 MemW[R15] = ZExtend(PC, 32);
-if (instruction[20] == 0)
+if (instruction[21:20] == 0)
   addr = addr20;
-else
+else if (instruction[21:20] == 1)
   addr = SR[19:0];
+else if (instruction[21:20] == 2)
+  addr = (SR1 + SR2)[19:0];
 
 if ((addr % 4) != 0)
   Handle alignment error;
@@ -2984,8 +3126,8 @@ else
 </div>
 </div>
 
-<div id="outline-container-orgce1cab8" class="outline-4">
-<h4 id="orgce1cab8"><span class="section-number-4">3.13.3</span> Flags Affected</h4>
+<div id="outline-container-org1e6b085" class="outline-4">
+<h4 id="org1e6b085"><span class="section-number-4">3.13.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-13-3">
 <p>
 None.
@@ -3002,21 +3144,19 @@ Call operating system service.
 </p>
 
 <p>
-Saves return information on the stack and branches to a system call
-handler routine.
+Saves return information on the stack and branches to a system call handler routine.
 </p>
 
 <p>
-It is an error if the address of the system call handler routine is
-not word aligned.
+It is an error if the address of the system call handler routine is not word aligned.
 </p>
 </div>
 
-<div id="outline-container-org7b76338" class="outline-4">
-<h4 id="org7b76338"><span class="section-number-4">3.14.1</span> Encodings</h4>
+<div id="outline-container-orgb6e38c3" class="outline-4">
+<h4 id="orgb6e38c3"><span class="section-number-4">3.14.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-14-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 38:</span> <code>SCL imm5</code></caption>
+<caption class="t-above"><span class="table-number">Table 42:</span> <code>SCL imm5</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -3051,8 +3191,8 @@ not word aligned.
 </div>
 </div>
 
-<div id="outline-container-org08f410a" class="outline-4">
-<h4 id="org08f410a"><span class="section-number-4">3.14.2</span> Operation</h4>
+<div id="outline-container-orgd9cdd1c" class="outline-4">
+<h4 id="orgd9cdd1c"><span class="section-number-4">3.14.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-14-2">
 <pre class="example">
 if (SCT[imm5][31] == 0)
@@ -3078,8 +3218,8 @@ else {
 </div>
 </div>
 
-<div id="outline-container-org3a4eaa1" class="outline-4">
-<h4 id="org3a4eaa1"><span class="section-number-4">3.14.3</span> Flags Affected</h4>
+<div id="outline-container-org17ba94d" class="outline-4">
+<h4 id="org17ba94d"><span class="section-number-4">3.14.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-14-3">
 <p>
 <code>MI</code>
@@ -3092,13 +3232,11 @@ else {
 <h3 id="org6e98e8f"><span class="section-number-3">3.15</span> RET</h3>
 <div class="outline-text-3" id="text-3-15">
 <p>
-Return from a subroutine, interrupt handler routine, or a system call
-handler routine.
+Return from a subroutine, interrupt handler routine, or a system call handler routine.
 </p>
 
 <p>
-Restores the return information from the stack and branches to the
-caller or savepoint.
+Restores the return information from the stack and branches to the caller or savepoint.
 </p>
 
 <p>
@@ -3106,11 +3244,11 @@ It is an error if the target address of the return is not word aligned.
 </p>
 </div>
 
-<div id="outline-container-org2ec71b4" class="outline-4">
-<h4 id="org2ec71b4"><span class="section-number-4">3.15.1</span> Encodings</h4>
+<div id="outline-container-orgaf45317" class="outline-4">
+<h4 id="orgaf45317"><span class="section-number-4">3.15.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-15-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 39:</span> <code>RET</code></caption>
+<caption class="t-above"><span class="table-number">Table 43:</span> <code>RET</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -3140,7 +3278,7 @@ It is an error if the target address of the return is not word aligned.
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 40:</span> <code>RETI</code> or <code>RETS</code></caption>
+<caption class="t-above"><span class="table-number">Table 44:</span> <code>RETI</code> or <code>RETS</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -3171,8 +3309,8 @@ It is an error if the target address of the return is not word aligned.
 </div>
 </div>
 
-<div id="outline-container-org305eec0" class="outline-4">
-<h4 id="org305eec0"><span class="section-number-4">3.15.2</span> Operation</h4>
+<div id="outline-container-orgdec738a" class="outline-4">
+<h4 id="orgdec738a"><span class="section-number-4">3.15.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-15-2">
 <pre class="example">
 if (instruction[26] == 1 &amp;&amp; MI == 0)
@@ -3198,8 +3336,8 @@ else {
 </div>
 </div>
 
-<div id="outline-container-org4003d9a" class="outline-4">
-<h4 id="org4003d9a"><span class="section-number-4">3.15.3</span> Flags Affected</h4>
+<div id="outline-container-orge6ac231" class="outline-4">
+<h4 id="orge6ac231"><span class="section-number-4">3.15.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-15-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>, <code>MI</code>
@@ -3216,17 +3354,50 @@ Load a byte, short, or word from memory to a register.
 </p>
 
 <p>
-The source operand specifies a memory address. The contents of this
-address is optionally sign extended and stored into the destination
-register.
+The source operand specifies a memory address. The contents of this address is optionally sign extended and stored into
+the destination register.
 </p>
 </div>
 
-<div id="outline-container-org74708a6" class="outline-4">
-<h4 id="org74708a6"><span class="section-number-4">3.16.1</span> Encodings</h4>
+<div id="outline-container-org82ddf8f" class="outline-4">
+<h4 id="org82ddf8f"><span class="section-number-4">3.16.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-16-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 41:</span> <code>LDB DR, addr20</code></caption>
+<caption class="t-above"><span class="table-number">Table 45:</span> <code>LDB DR, addr20</code></caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bit Position</th>
+<th scope="col" class="org-right">31-27</th>
+<th scope="col" class="org-right">26-22</th>
+<th scope="col" class="org-right">21-20</th>
+<th scope="col" class="org-right">19-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><code>0b01001</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>0b00</code></td>
+<td class="org-right"><code>addr20</code></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption class="t-above"><span class="table-number">Table 46:</span> <code>LDB DR, [SR]</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -3245,26 +3416,26 @@ register.
 <tr>
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26-25</th>
-<th scope="col" class="org-right">24-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-0</th>
+<th scope="col" class="org-right">26-22</th>
+<th scope="col" class="org-right">21-20</th>
+<th scope="col" class="org-right">19-5</th>
+<th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-right"><code>0b01001</code></td>
+<td class="org-right"><code>DR</code></td>
 <td class="org-right"><code>0b01</code></td>
-<td class="org-right"><code>DR</code></td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right"><code>addr20</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>SR</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 42:</span> <code>LDB DR, [SR]</code></caption>
+<caption class="t-above"><span class="table-number">Table 47:</span> <code>LDB DR, [SR1+SR2]</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -3285,20 +3456,92 @@ register.
 <tr>
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26-25</th>
-<th scope="col" class="org-right">24-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-4</th>
-<th scope="col" class="org-right">3-0</th>
+<th scope="col" class="org-right">26-22</th>
+<th scope="col" class="org-right">21-20</th>
+<th scope="col" class="org-right">19-10</th>
+<th scope="col" class="org-right">9-5</th>
+<th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-right"><code>0b01001</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>0b10</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>SR1</code></td>
+<td class="org-right"><code>SR2</code></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption class="t-above"><span class="table-number">Table 48:</span> <code>LDS DR, addr20</code></caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bit Position</th>
+<th scope="col" class="org-right">31-27</th>
+<th scope="col" class="org-right">26-22</th>
+<th scope="col" class="org-right">21-20</th>
+<th scope="col" class="org-right">19-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><code>0b01010</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>0b00</code></td>
+<td class="org-right"><code>addr20</code></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption class="t-above"><span class="table-number">Table 49:</span> <code>LDS DR, [SR]</code></caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bit Position</th>
+<th scope="col" class="org-right">31-27</th>
+<th scope="col" class="org-right">26-22</th>
+<th scope="col" class="org-right">21-20</th>
+<th scope="col" class="org-right">19-5</th>
+<th scope="col" class="org-right">4-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><code>0b01010</code></td>
+<td class="org-right"><code>DR</code></td>
 <td class="org-right"><code>0b01</code></td>
-<td class="org-right"><code>DR</code></td>
-<td class="org-right"><code>1</code></td>
 <td class="org-right">Reserved</td>
 <td class="org-right"><code>SR</code></td>
 </tr>
@@ -3306,10 +3549,12 @@ register.
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 43:</span> <code>LDS DR, addr20</code></caption>
+<caption class="t-above"><span class="table-number">Table 50:</span> <code>LDS DR, [SR1+SR2]</code></caption>
 
 <colgroup>
 <col  class="org-left">
+
+<col  class="org-right">
 
 <col  class="org-right">
 
@@ -3325,31 +3570,65 @@ register.
 <tr>
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26-25</th>
-<th scope="col" class="org-right">24-21</th>
-<th scope="col" class="org-right">20</th>
+<th scope="col" class="org-right">26-22</th>
+<th scope="col" class="org-right">21-20</th>
+<th scope="col" class="org-right">19-10</th>
+<th scope="col" class="org-right">9-5</th>
+<th scope="col" class="org-right">4-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><code>0b01010</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>0b10</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>SR1</code></td>
+<td class="org-right"><code>SR2</code></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption class="t-above"><span class="table-number">Table 51:</span> <code>LDW DR, addr20</code></caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bit Position</th>
+<th scope="col" class="org-right">31-27</th>
+<th scope="col" class="org-right">26-22</th>
+<th scope="col" class="org-right">21-20</th>
 <th scope="col" class="org-right">19-0</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b01001</code></td>
-<td class="org-right"><code>0b10</code></td>
+<td class="org-right"><code>0b01011</code></td>
 <td class="org-right"><code>DR</code></td>
-<td class="org-right"><code>0</code></td>
+<td class="org-right"><code>0b00</code></td>
 <td class="org-right"><code>addr20</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 44:</span> <code>LDS DR, [SR]</code></caption>
+<caption class="t-above"><span class="table-number">Table 52:</span> <code>LDW DR, [SR]</code></caption>
 
 <colgroup>
 <col  class="org-left">
-
-<col  class="org-right">
 
 <col  class="org-right">
 
@@ -3365,20 +3644,18 @@ register.
 <tr>
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26-25</th>
-<th scope="col" class="org-right">24-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-4</th>
-<th scope="col" class="org-right">3-0</th>
+<th scope="col" class="org-right">26-22</th>
+<th scope="col" class="org-right">21-20</th>
+<th scope="col" class="org-right">19-5</th>
+<th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b01001</code></td>
-<td class="org-right"><code>0b10</code></td>
+<td class="org-right"><code>0b01011</code></td>
 <td class="org-right"><code>DR</code></td>
-<td class="org-right"><code>1</code></td>
+<td class="org-right"><code>0b01</code></td>
 <td class="org-right">Reserved</td>
 <td class="org-right"><code>SR</code></td>
 </tr>
@@ -3386,45 +3663,7 @@ register.
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 45:</span> <code>LDW DR, addr20</code></caption>
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Bit Position</th>
-<th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26-25</th>
-<th scope="col" class="org-right">24-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-0</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b01001</code></td>
-<td class="org-right"><code>0b11</code></td>
-<td class="org-right"><code>DR</code></td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right"><code>addr20</code></td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<caption class="t-above"><span class="table-number">Table 46:</span> <code>LDW DR, [SR]</code></caption>
+<caption class="t-above"><span class="table-number">Table 53:</span> <code>LDW DR, [SR1+SR2]</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -3445,42 +3684,44 @@ register.
 <tr>
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26-25</th>
-<th scope="col" class="org-right">24-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-4</th>
-<th scope="col" class="org-right">3-0</th>
+<th scope="col" class="org-right">26-22</th>
+<th scope="col" class="org-right">21-20</th>
+<th scope="col" class="org-right">19-10</th>
+<th scope="col" class="org-right">9-5</th>
+<th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b01001</code></td>
-<td class="org-right"><code>0b11</code></td>
+<td class="org-right"><code>0b01011</code></td>
 <td class="org-right"><code>DR</code></td>
-<td class="org-right"><code>1</code></td>
+<td class="org-right"><code>0b10</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>SR</code></td>
+<td class="org-right"><code>SR1</code></td>
+<td class="org-right"><code>SR2</code></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-org48081e7" class="outline-4">
-<h4 id="org48081e7"><span class="section-number-4">3.16.2</span> Operation</h4>
+<div id="outline-container-org0009729" class="outline-4">
+<h4 id="org0009729"><span class="section-number-4">3.16.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-16-2">
 <pre class="example">
-if (instruction[20] == 0)
+if (instruction[21:20] == 0)
   addr = addr20;
-else
+else if (instruction[21:20] == 1)
   addr = SR[19:0];
+else if (instruction[21:20] == 2)
+  addr = (SR1 + SR2)[19:0];
 
-if (instruction[26:25] == 1)
+if (instruction[28:27] == 0)
   DR = SExtend(MemB[addr], 32);
-else if (instruction[26:25] == 2)
+else if (instruction[28:27] == 1)
   DR = SExtend(MemS[addr], 32);
-else if (instruction[26:25] == 3)
+else if (instruction[28:27] == 2)
   DR = MemW[addr];
 
 Set_Flags(DR);
@@ -3488,8 +3729,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-org985a5ad" class="outline-4">
-<h4 id="org985a5ad"><span class="section-number-4">3.16.3</span> Flags Affected</h4>
+<div id="outline-container-org9221389" class="outline-4">
+<h4 id="org9221389"><span class="section-number-4">3.16.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-16-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -3506,19 +3747,51 @@ Store a byte, short, or word from a register to memory.
 </p>
 
 <p>
-The destination operand specifies a memory address. The least
-significant 8, 16, or 32 bits of the source register are selected
-depending on whether the variant of the instruction is <code>STB</code>, <code>STS</code>,
-or <code>STW</code> respectively. This selected bits are stored into the
-destination address.
+The destination operand specifies a memory address. The least significant 8, 16, or 32 bits of the source register are
+selected depending on whether the variant of the instruction is <code>STB</code>, <code>STS</code>, or <code>STW</code> respectively. This selected bits
+are stored at the destination address.
 </p>
 </div>
 
-<div id="outline-container-org1b6faa4" class="outline-4">
-<h4 id="org1b6faa4"><span class="section-number-4">3.17.1</span> Encodings</h4>
+<div id="outline-container-orgfd32a58" class="outline-4">
+<h4 id="orgfd32a58"><span class="section-number-4">3.17.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-17-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 47:</span> <code>STB addr20, SR</code></caption>
+<caption class="t-above"><span class="table-number">Table 54:</span> <code>STB addr20, SR</code></caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bit Position</th>
+<th scope="col" class="org-right">31-27</th>
+<th scope="col" class="org-right">26-25</th>
+<th scope="col" class="org-right">24-5</th>
+<th scope="col" class="org-right">4-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><code>0b11100</code></td>
+<td class="org-right"><code>0b00</code></td>
+<td class="org-right"><code>addr20</code></td>
+<td class="org-right"><code>SR</code></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption class="t-above"><span class="table-number">Table 55:</span> <code>STB [DR], SR</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -3538,25 +3811,25 @@ destination address.
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26-25</th>
-<th scope="col" class="org-right">24</th>
-<th scope="col" class="org-right">23-4</th>
-<th scope="col" class="org-right">3-0</th>
+<th scope="col" class="org-right">24-10</th>
+<th scope="col" class="org-right">9-5</th>
+<th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b00001</code></td>
+<td class="org-right"><code>0b11100</code></td>
 <td class="org-right"><code>0b01</code></td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right"><code>addr20</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>DR</code></td>
 <td class="org-right"><code>SR</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 48:</span> <code>STB [DR], SR</code></caption>
+<caption class="t-above"><span class="table-number">Table 56:</span> <code>STB [DR1+DR2], SR</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -3578,18 +3851,90 @@ destination address.
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26-25</th>
-<th scope="col" class="org-right">24</th>
-<th scope="col" class="org-right">23-8</th>
-<th scope="col" class="org-right">7-4</th>
-<th scope="col" class="org-right">3-0</th>
+<th scope="col" class="org-right">24-15</th>
+<th scope="col" class="org-right">14-10</th>
+<th scope="col" class="org-right">9-5</th>
+<th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b00001</code></td>
+<td class="org-right"><code>0b11100</code></td>
+<td class="org-right"><code>0b10</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>DR1</code></td>
+<td class="org-right"><code>DR2</code></td>
+<td class="org-right"><code>SR</code></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption class="t-above"><span class="table-number">Table 57:</span> <code>STS addr20, SR</code></caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bit Position</th>
+<th scope="col" class="org-right">31-27</th>
+<th scope="col" class="org-right">26-25</th>
+<th scope="col" class="org-right">24-5</th>
+<th scope="col" class="org-right">4-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><code>0b11101</code></td>
+<td class="org-right"><code>0b00</code></td>
+<td class="org-right"><code>addr20</code></td>
+<td class="org-right"><code>SR</code></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption class="t-above"><span class="table-number">Table 58:</span> <code>STS [DR], SR</code></caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bit Position</th>
+<th scope="col" class="org-right">31-27</th>
+<th scope="col" class="org-right">26-25</th>
+<th scope="col" class="org-right">24-10</th>
+<th scope="col" class="org-right">9-5</th>
+<th scope="col" class="org-right">4-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><code>0b11101</code></td>
 <td class="org-right"><code>0b01</code></td>
-<td class="org-right"><code>1</code></td>
 <td class="org-right">Reserved</td>
 <td class="org-right"><code>DR</code></td>
 <td class="org-right"><code>SR</code></td>
@@ -3598,10 +3943,12 @@ destination address.
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 49:</span> <code>STS addr20, SR</code></caption>
+<caption class="t-above"><span class="table-number">Table 59:</span> <code>STS [DR1+DR2], SR</code></caption>
 
 <colgroup>
 <col  class="org-left">
+
+<col  class="org-right">
 
 <col  class="org-right">
 
@@ -3618,17 +3965,53 @@ destination address.
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26-25</th>
-<th scope="col" class="org-right">24</th>
-<th scope="col" class="org-right">23-4</th>
-<th scope="col" class="org-right">3-0</th>
+<th scope="col" class="org-right">24-15</th>
+<th scope="col" class="org-right">14-10</th>
+<th scope="col" class="org-right">9-5</th>
+<th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b00001</code></td>
+<td class="org-right"><code>0b11101</code></td>
 <td class="org-right"><code>0b10</code></td>
-<td class="org-right"><code>0</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>DR1</code></td>
+<td class="org-right"><code>DR2</code></td>
+<td class="org-right"><code>SR</code></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption class="t-above"><span class="table-number">Table 60:</span> <code>STW addr20, SR</code></caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bit Position</th>
+<th scope="col" class="org-right">31-27</th>
+<th scope="col" class="org-right">26-25</th>
+<th scope="col" class="org-right">24-5</th>
+<th scope="col" class="org-right">4-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><code>0b11110</code></td>
+<td class="org-right"><code>0b00</code></td>
 <td class="org-right"><code>addr20</code></td>
 <td class="org-right"><code>SR</code></td>
 </tr>
@@ -3636,7 +4019,45 @@ destination address.
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 50:</span> <code>STS [DR], SR</code></caption>
+<caption class="t-above"><span class="table-number">Table 61:</span> <code>STW [DR], SR</code></caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bit Position</th>
+<th scope="col" class="org-right">31-27</th>
+<th scope="col" class="org-right">26-25</th>
+<th scope="col" class="org-right">24-10</th>
+<th scope="col" class="org-right">9-5</th>
+<th scope="col" class="org-right">4-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><code>0b11110</code></td>
+<td class="org-right"><code>0b01</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR</code></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption class="t-above"><span class="table-number">Table 62:</span> <code>STW [DR1+DR2], SR</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -3658,100 +4079,20 @@ destination address.
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26-25</th>
-<th scope="col" class="org-right">24</th>
-<th scope="col" class="org-right">23-8</th>
-<th scope="col" class="org-right">7-4</th>
-<th scope="col" class="org-right">3-0</th>
+<th scope="col" class="org-right">24-15</th>
+<th scope="col" class="org-right">14-10</th>
+<th scope="col" class="org-right">9-5</th>
+<th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b00001</code></td>
+<td class="org-right"><code>0b11110</code></td>
 <td class="org-right"><code>0b10</code></td>
-<td class="org-right"><code>1</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>DR</code></td>
-<td class="org-right"><code>SR</code></td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<caption class="t-above"><span class="table-number">Table 51:</span> <code>STW addr20, SR</code></caption>
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Bit Position</th>
-<th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26-25</th>
-<th scope="col" class="org-right">24</th>
-<th scope="col" class="org-right">23-4</th>
-<th scope="col" class="org-right">3-0</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b00001</code></td>
-<td class="org-right"><code>0b11</code></td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right"><code>addr20</code></td>
-<td class="org-right"><code>SR</code></td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<caption class="t-above"><span class="table-number">Table 52:</span> <code>STW [DR], SR</code></caption>
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Bit Position</th>
-<th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26-25</th>
-<th scope="col" class="org-right">24</th>
-<th scope="col" class="org-right">23-8</th>
-<th scope="col" class="org-right">7-4</th>
-<th scope="col" class="org-right">3-0</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b00001</code></td>
-<td class="org-right"><code>0b11</code></td>
-<td class="org-right"><code>1</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>DR1</code></td>
+<td class="org-right"><code>DR2</code></td>
 <td class="org-right"><code>SR</code></td>
 </tr>
 </tbody>
@@ -3759,27 +4100,29 @@ destination address.
 </div>
 </div>
 
-<div id="outline-container-org7a198a4" class="outline-4">
-<h4 id="org7a198a4"><span class="section-number-4">3.17.2</span> Operation</h4>
+<div id="outline-container-org0d8c948" class="outline-4">
+<h4 id="org0d8c948"><span class="section-number-4">3.17.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-17-2">
 <pre class="example">
-if (instruction[24] == 0)
+if (instruction[26:25] == 0)
   addr = addr20;
-else
+else if (instruction[26:25] == 1)
   addr = DR[19:0];
-
-if (instruction[26:25] == 1)
-  MemB[addr] = SR[7:0];
 else if (instruction[26:25] == 2)
+  addr = (DR1 + DR2)[19:0];
+
+if (instruction[28:27] == 1)
+  MemB[addr] = SR[7:0];
+else if (instruction[28:27] == 2)
   MemS[addr] = SR[15:0];
-else if (instruction[26:25] == 3)
+else if (instruction[28:27] == 3)
   MemW[addr] = SR;
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org17a0cdf" class="outline-4">
-<h4 id="org17a0cdf"><span class="section-number-4">3.17.3</span> Flags Affected</h4>
+<div id="outline-container-org27379ee" class="outline-4">
+<h4 id="org27379ee"><span class="section-number-4">3.17.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-17-3">
 <p>
 None.
@@ -3796,20 +4139,21 @@ Copy a source register or immediate value to the destination register.
 </p>
 
 <p>
-The copy instruction has two variants in case of an immediate
-operand. The value is either sign extended to 32 bits and copied
-(CPYI) or zero extended to 32 bits and copied (CPYU).
+The copy instruction has two variants in case of an immediate operand. The value is either sign extended to 32 bits and
+copied (CPYI) or zero extended to 32 bits and copied (CPYU).
 </p>
 </div>
 
-<div id="outline-container-orge81393d" class="outline-4">
-<h4 id="orge81393d"><span class="section-number-4">3.18.1</span> Encodings</h4>
+<div id="outline-container-org2196f07" class="outline-4">
+<h4 id="org2196f07"><span class="section-number-4">3.18.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-18-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 53:</span> <code>CPYI DR, imm16</code></caption>
+<caption class="t-above"><span class="table-number">Table 63:</span> <code>CPY DR, SR</code></caption>
 
 <colgroup>
 <col  class="org-left">
+
+<col  class="org-right">
 
 <col  class="org-right">
 
@@ -3828,7 +4172,8 @@ operand. The value is either sign extended to 32 bits and copied
 <th scope="col" class="org-right">26-22</th>
 <th scope="col" class="org-right">21-17</th>
 <th scope="col" class="org-right">17-16</th>
-<th scope="col" class="org-right">15-0</th>
+<th scope="col" class="org-right">15-5</th>
+<th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
 <tbody>
@@ -3838,13 +4183,14 @@ operand. The value is either sign extended to 32 bits and copied
 <td class="org-right">Reserved</td>
 <td class="org-right"><code>DR</code></td>
 <td class="org-right"><code>0b00</code></td>
-<td class="org-right"><code>imm16</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>SR</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 54:</span> <code>CPYU DR, imm16</code></caption>
+<caption class="t-above"><span class="table-number">Table 64:</span> <code>CPYI DR, imm16</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -3875,19 +4221,17 @@ operand. The value is either sign extended to 32 bits and copied
 <td class="org-right"><code>0b00010</code></td>
 <td class="org-right">Reserved</td>
 <td class="org-right"><code>DR</code></td>
-<td class="org-right"><code>0b01</code></td>
+<td class="org-right"><code>0b10</code></td>
 <td class="org-right"><code>imm16</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 55:</span> <code>CPY DR, SR</code></caption>
+<caption class="t-above"><span class="table-number">Table 65:</span> <code>CPYU DR, imm16</code></caption>
 
 <colgroup>
 <col  class="org-left">
-
-<col  class="org-right">
 
 <col  class="org-right">
 
@@ -3906,8 +4250,7 @@ operand. The value is either sign extended to 32 bits and copied
 <th scope="col" class="org-right">26-22</th>
 <th scope="col" class="org-right">21-17</th>
 <th scope="col" class="org-right">17-16</th>
-<th scope="col" class="org-right">15-4</th>
-<th scope="col" class="org-right">3-0</th>
+<th scope="col" class="org-right">15-0</th>
 </tr>
 </thead>
 <tbody>
@@ -3916,17 +4259,16 @@ operand. The value is either sign extended to 32 bits and copied
 <td class="org-right"><code>0b00010</code></td>
 <td class="org-right">Reserved</td>
 <td class="org-right"><code>DR</code></td>
-<td class="org-right"><code>0b10</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>SR</code></td>
+<td class="org-right"><code>0b11</code></td>
+<td class="org-right"><code>imm16</code></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-org03a2d74" class="outline-4">
-<h4 id="org03a2d74"><span class="section-number-4">3.18.2</span> Operation</h4>
+<div id="outline-container-org4584211" class="outline-4">
+<h4 id="org4584211"><span class="section-number-4">3.18.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-18-2">
 <pre class="example">
 if (instruction[17:16] == 0)
@@ -3939,8 +4281,8 @@ else if (instruction[17:16] == 2)
 </div>
 </div>
 
-<div id="outline-container-orga016aec" class="outline-4">
-<h4 id="orga016aec"><span class="section-number-4">3.18.3</span> Flags Affected</h4>
+<div id="outline-container-orgf1bb4d8" class="outline-4">
+<h4 id="orgf1bb4d8"><span class="section-number-4">3.18.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-18-3">
 <p>
 None.
@@ -3957,29 +4299,25 @@ Push the source operand on top of the stack.
 </p>
 
 <p>
-The stack pointer (R15) is decremented by 4 and the source operand is
-stored at that memory location.
+The stack pointer (R15) is decremented by 4 and the source operand is stored at that memory location.
 </p>
 
 <p>
-There are two variants of the instruction when the source operand is a
-16 bit immediate value. The value is either sign extended to 32 bits
-and copied (PUSHI) or zero extended to 32 bits and copied (PUSHU).
+There are two variants of the instruction when the source operand is a 16 bit immediate value. The value is either sign
+extended to 32 bits and copied (<code>PUSHI</code>) or zero extended to 32 bits and copied (<code>PUSHU</code>).
 </p>
 
 <p>
-There are three variants of the instruction when the source operand is
-either in <code>addr20</code> or <code>SO</code> form. The value stored in the stack always
-have a 32 bit size. The value is sign extended to 32 bits if the
-operand is a byte or short.
+There are three variants of the instruction when the source operand is a register. The value stored in the stack always
+have a 32 bit size. The value is sign extended to 32 bits if the operand is a byte or short.
 </p>
 </div>
 
-<div id="outline-container-org73264a5" class="outline-4">
-<h4 id="org73264a5"><span class="section-number-4">3.19.1</span> Encodings</h4>
+<div id="outline-container-org36f6700" class="outline-4">
+<h4 id="org36f6700"><span class="section-number-4">3.19.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-19-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 56:</span> <code>PUSHI imm16</code></caption>
+<caption class="t-above"><span class="table-number">Table 66:</span> <code>PUSHI imm16</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -4021,7 +4359,7 @@ operand is a byte or short.
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 57:</span> <code>PUSHU imm16</code></caption>
+<caption class="t-above"><span class="table-number">Table 67:</span> <code>PUSHU imm16</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -4063,12 +4401,10 @@ operand is a byte or short.
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 58:</span> <code>PUSHB addr20</code></caption>
+<caption class="t-above"><span class="table-number">Table 68:</span> <code>PUSHB SR</code></caption>
 
 <colgroup>
 <col  class="org-left">
-
-<col  class="org-right">
 
 <col  class="org-right">
 
@@ -4086,53 +4422,7 @@ operand is a byte or short.
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26</th>
 <th scope="col" class="org-right">25-24</th>
-<th scope="col" class="org-right">23-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-0</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b11111</code></td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right"><code>0b01</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right"><code>addr20</code></td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<caption class="t-above"><span class="table-number">Table 59:</span> <code>PUSHB SO</code></caption>
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Bit Position</th>
-<th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26</th>
-<th scope="col" class="org-right">25-24</th>
-<th scope="col" class="org-right">23-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-5</th>
+<th scope="col" class="org-right">23-5</th>
 <th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
@@ -4143,20 +4433,16 @@ operand is a byte or short.
 <td class="org-right"><code>0</code></td>
 <td class="org-right"><code>0b01</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>1</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>SO</code></td>
+<td class="org-right"><code>SR</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 60:</span> <code>PUSHS addr20</code></caption>
+<caption class="t-above"><span class="table-number">Table 69:</span> <code>PUSHS SR</code></caption>
 
 <colgroup>
 <col  class="org-left">
-
-<col  class="org-right">
 
 <col  class="org-right">
 
@@ -4174,53 +4460,7 @@ operand is a byte or short.
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26</th>
 <th scope="col" class="org-right">25-24</th>
-<th scope="col" class="org-right">23-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-0</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b11111</code></td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right"><code>0b10</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right"><code>addr20</code></td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<caption class="t-above"><span class="table-number">Table 61:</span> <code>PUSHS SO</code></caption>
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Bit Position</th>
-<th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26</th>
-<th scope="col" class="org-right">25-24</th>
-<th scope="col" class="org-right">23-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-5</th>
+<th scope="col" class="org-right">23-5</th>
 <th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
@@ -4231,20 +4471,16 @@ operand is a byte or short.
 <td class="org-right"><code>0</code></td>
 <td class="org-right"><code>0b10</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>1</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>SO</code></td>
+<td class="org-right"><code>SR</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 62:</span> <code>PUSHW addr20</code></caption>
+<caption class="t-above"><span class="table-number">Table 70:</span> <code>PUSHW SR</code></caption>
 
 <colgroup>
 <col  class="org-left">
-
-<col  class="org-right">
 
 <col  class="org-right">
 
@@ -4262,53 +4498,7 @@ operand is a byte or short.
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26</th>
 <th scope="col" class="org-right">25-24</th>
-<th scope="col" class="org-right">23-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-0</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b11111</code></td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right"><code>0b11</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right"><code>addr20</code></td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<caption class="t-above"><span class="table-number">Table 63:</span> <code>PUSHW SO</code></caption>
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Bit Position</th>
-<th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26</th>
-<th scope="col" class="org-right">25-24</th>
-<th scope="col" class="org-right">23-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-5</th>
+<th scope="col" class="org-right">23-5</th>
 <th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
@@ -4319,17 +4509,15 @@ operand is a byte or short.
 <td class="org-right"><code>0</code></td>
 <td class="org-right"><code>0b11</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>1</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>SO</code></td>
+<td class="org-right"><code>SR</code></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-org2e6b990" class="outline-4">
-<h4 id="org2e6b990"><span class="section-number-4">3.19.2</span> Operation</h4>
+<div id="outline-container-orgd3ffed1" class="outline-4">
+<h4 id="orgd3ffed1"><span class="section-number-4">3.19.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-19-2">
 <pre class="example">
 R15 = R15 - 4;
@@ -4340,27 +4528,18 @@ if (instruction[25:24] == 0) {
   else
     MemW[R15] = ZExtend(imm16, 32);
 } else if (instruction[25:24] == 1) {
-  if (instruction[20] == 0)
-    MemW[R15] = SExtend(MemB[addr20], 32);
-  else
-    MemW[R15] = SExtend(SO[7:0], 32); 
+  MemW[R15] = SExtend(SR[7:0], 32); 
 } else if (instruction[25:24] == 2) {
-  if (instruction[20] == 0)
-    MemW[R15] = SExtend(MemS[addr20], 32);
-  else
-    MemW[R15] = SExtend(SO[15:0], 32); 
+  MemW[R15] = SExtend(SR[15:0], 32); 
 } else if (instruction[25:24] == 3) {
-  if (instruction[20] == 0)
-    MemW[R15] = MemW[addr20];
-  else
-    MemW[R15] = SO;
+  MemW[R15] = SR;
 }
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org8c0f073" class="outline-4">
-<h4 id="org8c0f073"><span class="section-number-4">3.19.3</span> Flags Affected</h4>
+<div id="outline-container-orgcd841f4" class="outline-4">
+<h4 id="orgcd841f4"><span class="section-number-4">3.19.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-19-3">
 <p>
 None.
@@ -4377,30 +4556,25 @@ Pop the value on the top of the stack to the destination operand.
 </p>
 
 <p>
-The 32 bit value stored at the address specified by the stack pointer
-(R15) is extracted and stored in the destination operand. The stack
-pointer is incremented by 4 after that.
+The 32 bit value stored at the address specified by the stack pointer (R15) is extracted and stored in the destination
+operand. The stack pointer is incremented by 4 after that.
 </p>
 
 <p>
-There are three variants of the instruction - POPB, POPS, and
-POPW. The POPB variant stores the least significant 8 bits in the
-destination operand. The POPW variant stores the least significant 16
-bits in the destination operand. The POPW variant stores the entire
-word in the destination operand.
+There are three variants of the instruction - POPB, POPS, and POPW. The POPB variant stores the least significant 8 bits
+in the destination operand. The POPW variant stores the least significant 16 bits in the destination operand. The POPW
+variant stores the entire word in the destination operand.
 </p>
 </div>
 
-<div id="outline-container-orge4b9c81" class="outline-4">
-<h4 id="orge4b9c81"><span class="section-number-4">3.20.1</span> Encodings</h4>
+<div id="outline-container-orgaf44a67" class="outline-4">
+<h4 id="orgaf44a67"><span class="section-number-4">3.20.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-20-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 64:</span> <code>POPB addr20</code></caption>
+<caption class="t-above"><span class="table-number">Table 71:</span> <code>POPB DR</code></caption>
 
 <colgroup>
 <col  class="org-left">
-
-<col  class="org-right">
 
 <col  class="org-right">
 
@@ -4418,53 +4592,7 @@ word in the destination operand.
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26</th>
 <th scope="col" class="org-right">25-24</th>
-<th scope="col" class="org-right">23-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-0</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b11111</code></td>
-<td class="org-right"><code>1</code></td>
-<td class="org-right"><code>0b01</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right"><code>addr20</code></td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<caption class="t-above"><span class="table-number">Table 65:</span> <code>POPB DO</code></caption>
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Bit Position</th>
-<th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26</th>
-<th scope="col" class="org-right">25-24</th>
-<th scope="col" class="org-right">23-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-5</th>
+<th scope="col" class="org-right">23-5</th>
 <th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
@@ -4475,20 +4603,16 @@ word in the destination operand.
 <td class="org-right"><code>1</code></td>
 <td class="org-right"><code>0b01</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>1</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
+<td class="org-right"><code>DR</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 66:</span> <code>POPS addr20</code></caption>
+<caption class="t-above"><span class="table-number">Table 72:</span> <code>POPS DR</code></caption>
 
 <colgroup>
 <col  class="org-left">
-
-<col  class="org-right">
 
 <col  class="org-right">
 
@@ -4506,53 +4630,7 @@ word in the destination operand.
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26</th>
 <th scope="col" class="org-right">25-24</th>
-<th scope="col" class="org-right">23-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-0</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b11111</code></td>
-<td class="org-right"><code>1</code></td>
-<td class="org-right"><code>0b10</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right"><code>addr20</code></td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<caption class="t-above"><span class="table-number">Table 67:</span> <code>POPS DO</code></caption>
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Bit Position</th>
-<th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26</th>
-<th scope="col" class="org-right">25-24</th>
-<th scope="col" class="org-right">23-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-5</th>
+<th scope="col" class="org-right">23-5</th>
 <th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
@@ -4563,20 +4641,16 @@ word in the destination operand.
 <td class="org-right"><code>1</code></td>
 <td class="org-right"><code>0b10</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>1</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
+<td class="org-right"><code>DR</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 68:</span> <code>POPW addr20</code></caption>
+<caption class="t-above"><span class="table-number">Table 73:</span> <code>POPW DR</code></caption>
 
 <colgroup>
 <col  class="org-left">
-
-<col  class="org-right">
 
 <col  class="org-right">
 
@@ -4594,53 +4668,7 @@ word in the destination operand.
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26</th>
 <th scope="col" class="org-right">25-24</th>
-<th scope="col" class="org-right">23-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-0</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b11111</code></td>
-<td class="org-right"><code>1</code></td>
-<td class="org-right"><code>0b11</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right"><code>addr20</code></td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<caption class="t-above"><span class="table-number">Table 69:</span> <code>POPW DO</code></caption>
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Bit Position</th>
-<th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26</th>
-<th scope="col" class="org-right">25-24</th>
-<th scope="col" class="org-right">23-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-5</th>
+<th scope="col" class="org-right">23-5</th>
 <th scope="col" class="org-right">4-0</th>
 </tr>
 </thead>
@@ -4651,43 +4679,32 @@ word in the destination operand.
 <td class="org-right"><code>1</code></td>
 <td class="org-right"><code>0b11</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>1</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
+<td class="org-right"><code>DR</code></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-org67a895d" class="outline-4">
-<h4 id="org67a895d"><span class="section-number-4">3.20.2</span> Operation</h4>
+<div id="outline-container-orge060ddf" class="outline-4">
+<h4 id="orge060ddf"><span class="section-number-4">3.20.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-20-2">
 <pre class="example">
-if (instruction[25:24] == 1) {
-  if (instruction[20] == 0)
-    MemB[addr20] = MemB[R15];
-  else
-    DO[7:0] = MemB[R15];
-} else if (instruction[25:24] == 2) {
-  if (instruction[20] == 0)
-    MemS[addr20] = MemS[R15];
-  else
-    DO[15:0] = MemS[R15];
-} else if (instruction[25:24] == 3) {
-  if (instruction[20] == 0)
-    MemW[addr20] = MemW[R15];
-  else
-    DO = MemW[R15];
-}
+if (instruction[25:24] == 1)
+  DR[7:0] = MemB[R15];
+else if (instruction[25:24] == 2)
+  DR[15:0] = MemS[R15];
+else if (instruction[25:24] == 3)
+  DR = MemW[R15];
+
 
 R15 = R15 + 4;
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org3ff73a5" class="outline-4">
-<h4 id="org3ff73a5"><span class="section-number-4">3.20.3</span> Flags Affected</h4>
+<div id="outline-container-org6719e3e" class="outline-4">
+<h4 id="org6719e3e"><span class="section-number-4">3.20.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-20-3">
 <p>
 None.
@@ -4704,21 +4721,20 @@ Get input from an I/O port.
 </p>
 
 <p>
-Extract a word from the I/O port whose number is specified as a source
-or immediate operand and store it into the destination operand.
+Extract a word from the I/O port whose number is specified as a source or immediate operand and store it into the
+destination operand.
 </p>
 
 <p>
-This is a privileged instruction and can only be executed in
-supervisor mode.
+This is a privileged instruction and can only be executed in supervisor mode.
 </p>
 </div>
 
-<div id="outline-container-orgddff293" class="outline-4">
-<h4 id="orgddff293"><span class="section-number-4">3.21.1</span> Encodings</h4>
+<div id="outline-container-org4450129" class="outline-4">
+<h4 id="org4450129"><span class="section-number-4">3.21.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-21-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 70:</span> <code>IN DO, imm5</code></caption>
+<caption class="t-above"><span class="table-number">Table 74:</span> <code>IN DR, SR</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -4752,78 +4768,78 @@ supervisor mode.
 <td class="org-right"><code>0b01110</code></td>
 <td class="org-right"><code>0</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
+<td class="org-right"><code>DR</code></td>
 <td class="org-right"><code>0</code></td>
+<td class="org-right"><code>SR</code></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption class="t-above"><span class="table-number">Table 75:</span> <code>IN DR, imm5</code></caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bit Position</th>
+<th scope="col" class="org-right">31-27</th>
+<th scope="col" class="org-right">26</th>
+<th scope="col" class="org-right">25-11</th>
+<th scope="col" class="org-right">10-6</th>
+<th scope="col" class="org-right">5</th>
+<th scope="col" class="org-right">4-0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><code>0b01110</code></td>
+<td class="org-right"><code>0</code></td>
+<td class="org-right">Reserved</td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>1</code></td>
 <td class="org-right"><code>imm5</code></td>
 </tr>
 </tbody>
 </table>
-
-<table>
-<caption class="t-above"><span class="table-number">Table 71:</span> <code>IN DO, SO</code></caption>
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-
-<col  class="org-right">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">Bit Position</th>
-<th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26</th>
-<th scope="col" class="org-right">25-11</th>
-<th scope="col" class="org-right">10-6</th>
-<th scope="col" class="org-right">5</th>
-<th scope="col" class="org-right">4-0</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-right"><code>0b01110</code></td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right">Reserved</td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>1</code></td>
-<td class="org-right"><code>SO</code></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 
-<div id="outline-container-orgd82f9b0" class="outline-4">
-<h4 id="orgd82f9b0"><span class="section-number-4">3.21.2</span> Operation</h4>
+<div id="outline-container-org2ae4a14" class="outline-4">
+<h4 id="org2ae4a14"><span class="section-number-4">3.21.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-21-2">
 <pre class="example">
 if (MI == 0)
   Handle privilege violation error;
 
 if (instruction[5] == 0)
-  p = imm5;
+  p = SR[4:0];
 else
-  p = SO[4:0];
+  p = imm5;
 
-DO = Port[p];
+DR = Port[p];
 
-Set_Flags(DO);
+Set_Flags(DR);
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org1c30415" class="outline-4">
-<h4 id="org1c30415"><span class="section-number-4">3.21.3</span> Flags Affected</h4>
+<div id="outline-container-org315beb3" class="outline-4">
+<h4 id="org315beb3"><span class="section-number-4">3.21.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-21-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -4836,25 +4852,24 @@ Set_Flags(DO);
 <h3 id="orgba169d5"><span class="section-number-3">3.22</span> OUT</h3>
 <div class="outline-text-3" id="text-3-22">
 <p>
-Otput to an I/O port.
+Output to an I/O port.
 </p>
 
 <p>
-Copy a word from the source operand to an I/O port. The number of the
-port is mentioned as a destination or immediate operand.
+Copy a word from the source operand to an I/O port. The number of the port is mentioned as a destination or immediate
+operand.
 </p>
 
 <p>
-This is a privileged instruction and can only be executed in
-supervisor mode.
+This is a privileged instruction and can only be executed in supervisor mode.
 </p>
 </div>
 
-<div id="outline-container-org965a858" class="outline-4">
-<h4 id="org965a858"><span class="section-number-4">3.22.1</span> Encodings</h4>
+<div id="outline-container-orgaba8516" class="outline-4">
+<h4 id="orgaba8516"><span class="section-number-4">3.22.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-22-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 72:</span> <code>OUT imm5, SO</code></caption>
+<caption class="t-above"><span class="table-number">Table 76:</span> <code>OUT DR, SR</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -4889,14 +4904,14 @@ supervisor mode.
 <td class="org-right"><code>1</code></td>
 <td class="org-right">Reserved</td>
 <td class="org-right"><code>0</code></td>
-<td class="org-right"><code>imm5</code></td>
-<td class="org-right"><code>SO</code></td>
+<td class="org-right"><code>DR</code></td>
+<td class="org-right"><code>SR</code></td>
 </tr>
 </tbody>
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 73:</span> <code>OUT DO, SO</code></caption>
+<caption class="t-above"><span class="table-number">Table 77:</span> <code>OUT imm5, SR</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -4931,33 +4946,33 @@ supervisor mode.
 <td class="org-right"><code>1</code></td>
 <td class="org-right">Reserved</td>
 <td class="org-right"><code>1</code></td>
-<td class="org-right"><code>DO</code></td>
-<td class="org-right"><code>SO</code></td>
+<td class="org-right"><code>imm5</code></td>
+<td class="org-right"><code>SR</code></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-orgd51985f" class="outline-4">
-<h4 id="orgd51985f"><span class="section-number-4">3.22.2</span> Operation</h4>
+<div id="outline-container-org6a154ff" class="outline-4">
+<h4 id="org6a154ff"><span class="section-number-4">3.22.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-22-2">
 <pre class="example">
 if (MI == 0)
   Handle privilege violation error;
 
 if (instruction[10] == 0)
-  p = imm5;
+  p = DR[4:0];
 else
-  p = DO[4:0];
+  p = imm5;
 
-Port[p] = SO;
+Port[p] = SR;
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org0bd0dab" class="outline-4">
-<h4 id="org0bd0dab"><span class="section-number-4">3.22.3</span> Flags Affected</h4>
+<div id="outline-container-org74be78a" class="outline-4">
+<h4 id="org74be78a"><span class="section-number-4">3.22.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-22-3">
 <p>
 None.
@@ -4974,8 +4989,7 @@ Set supervisor stack pointer register.
 </p>
 
 <p>
-This is a privileged instruction and can only be executed in
-supervisor mode.
+This is a privileged instruction and can only be executed in supervisor mode.
 </p>
 
 <p>
@@ -4983,11 +4997,11 @@ The value loaded to SSP register must be aligned on a word boundary.
 </p>
 </div>
 
-<div id="outline-container-org6b53f16" class="outline-4">
-<h4 id="org6b53f16"><span class="section-number-4">3.23.1</span> Encodings</h4>
+<div id="outline-container-orgc06bbae" class="outline-4">
+<h4 id="orgc06bbae"><span class="section-number-4">3.23.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-23-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 74:</span> <code>SSSP addr20</code></caption>
+<caption class="t-above"><span class="table-number">Table 78:</span> <code>SSSP addr20</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -5021,7 +5035,7 @@ The value loaded to SSP register must be aligned on a word boundary.
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 75:</span> <code>SSSP SO</code></caption>
+<caption class="t-above"><span class="table-number">Table 79:</span> <code>SSSP SR</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -5053,24 +5067,24 @@ The value loaded to SSP register must be aligned on a word boundary.
 <td class="org-right">Reserved</td>
 <td class="org-right"><code>1</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>SO</code></td>
+<td class="org-right"><code>SR</code></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-org3507f7b" class="outline-4">
-<h4 id="org3507f7b"><span class="section-number-4">3.23.2</span> Operation</h4>
+<div id="outline-container-org64d50c6" class="outline-4">
+<h4 id="org64d50c6"><span class="section-number-4">3.23.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-23-2">
 <pre class="example">
 if (MI == 0)
   Handle privilege violation error;
 
 if (instruction[20] == 0)
-  addr = MemW[addr20][19:0];
+  addr = addr20;
 else
-  addr = SO[19:0];
+  addr = SR[19:0];
 
 if ((addr % 4) != 0)
   Handle alignment error;
@@ -5080,8 +5094,8 @@ else
 </div>
 </div>
 
-<div id="outline-container-org3ec455a" class="outline-4">
-<h4 id="org3ec455a"><span class="section-number-4">3.23.3</span> Flags Affected</h4>
+<div id="outline-container-orge15dbb2" class="outline-4">
+<h4 id="orge15dbb2"><span class="section-number-4">3.23.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-23-3">
 <p>
 None.
@@ -5098,28 +5112,22 @@ Stop execution and halt the computer.
 </p>
 
 <p>
-It is implementation-defined if/how the computer can transition out of
-the halted state.
+It is implementation-defined if/how the computer can transition out of the halted state.
 </p>
 
 <p>
-This is a privileged instruction and can only be executed in
-supervisor mode.
+This is a privileged instruction and can only be executed in supervisor mode.
 </p>
 </div>
 
-<div id="outline-container-org2580f4b" class="outline-4">
-<h4 id="org2580f4b"><span class="section-number-4">3.24.1</span> Encodings</h4>
+<div id="outline-container-orge938157" class="outline-4">
+<h4 id="orge938157"><span class="section-number-4">3.24.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-24-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 76:</span> <code>SSSP addr20</code></caption>
+<caption class="t-above"><span class="table-number">Table 80:</span> <code>HALT</code></caption>
 
 <colgroup>
 <col  class="org-left">
-
-<col  class="org-right">
-
-<col  class="org-right">
 
 <col  class="org-right">
 
@@ -5129,9 +5137,7 @@ supervisor mode.
 <tr>
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
-<th scope="col" class="org-right">26-21</th>
-<th scope="col" class="org-right">20</th>
-<th scope="col" class="org-right">19-0</th>
+<th scope="col" class="org-right">26-0</th>
 </tr>
 </thead>
 <tbody>
@@ -5139,16 +5145,14 @@ supervisor mode.
 <td class="org-left">&#xa0;</td>
 <td class="org-right"><code>0b10001</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>0</code></td>
-<td class="org-right"><code>addr20</code></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-org445ccde" class="outline-4">
-<h4 id="org445ccde"><span class="section-number-4">3.24.2</span> Operation</h4>
+<div id="outline-container-org3e401be" class="outline-4">
+<h4 id="org3e401be"><span class="section-number-4">3.24.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-24-2">
 <pre class="example">
 if (MI == 0)
@@ -5159,8 +5163,8 @@ else
 </div>
 </div>
 
-<div id="outline-container-org21d4f65" class="outline-4">
-<h4 id="org21d4f65"><span class="section-number-4">3.24.3</span> Flags Affected</h4>
+<div id="outline-container-org06be1e2" class="outline-4">
+<h4 id="org06be1e2"><span class="section-number-4">3.24.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-24-3">
 <p>
 None.
@@ -5201,7 +5205,7 @@ words read from these ports have the following format:
 </p>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 77:</span> Date Word (Port 4)</caption>
+<caption class="t-above"><span class="table-number">Table 81:</span> Date Word (Port 4)</caption>
 
 <colgroup>
 <col  class="org-left">
@@ -5242,7 +5246,7 @@ words read from these ports have the following format:
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 78:</span> Time Word (Port 5)</caption>
+<caption class="t-above"><span class="table-number">Table 82:</span> Time Word (Port 5)</caption>
 
 <colgroup>
 <col  class="org-left">
@@ -5295,7 +5299,7 @@ number 8. The word read from this port has the following format.
 </p>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 79:</span> ASCII Input Word Format (Port 8)</caption>
+<caption class="t-above"><span class="table-number">Table 83:</span> ASCII Input Word Format (Port 8)</caption>
 
 <colgroup>
 <col  class="org-left">
@@ -5348,7 +5352,7 @@ have the following format:
 </p>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 80:</span> ASCII Output Word Format (Port 12)</caption>
+<caption class="t-above"><span class="table-number">Table 84:</span> ASCII Output Word Format (Port 12)</caption>
 
 <colgroup>
 <col  class="org-left">

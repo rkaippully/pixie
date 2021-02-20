@@ -7,18 +7,15 @@
 
 * Introduction
 
-Pixie is an abstract computer. This document describes the features
-and architecture of Pixie.
+Pixie is an abstract computer. This document describes the features and architecture of Pixie.
 
 * Instruction Set Architecture
 
-The following sections define the instruction set architecture of
-Pixie.
+The following sections define the instruction set architecture of Pixie.
 
 ** Notation
 
-The notation defined in this section will be used throughout this
-document.
+The notation defined in this section will be used throughout this document.
 
 #+CAPTION: Notation
 | Notation        | Description                                                                                          |
@@ -40,86 +37,69 @@ document.
 
 ** Memory Address Space
 
-Pixie can address 2^20 memory locations each containing a
-byte. Addresses are numbered from =0x00000= to =0xfffff=. Some regions
-of memory are reserved for special uses as mentioned in [[*Memory Layout][Memory Layout]].
+Pixie can address 2^20 memory locations each containing a byte. Addresses are numbered from =0x00000= to =0xfffff=. Some
+regions of memory are reserved for special uses as mentioned in [[*Memory Layout][Memory Layout]].
 
 ** Data Types
 
-The basic data types of Pixie are bytes (8 bits), shorts (16 bits),
-words (32 bits), and doublewords (64 bits). A byte can be located at
-any memory location. Shorts, words, and doublewords must be aligned in
-memory at natural boundaries. That is, a short must be located at an
-even-numbered address, a word must be located at an address divisible
-by four, and a doubleword must be located at an address divisible by
-eight. Unaligned memory accesses will result in an error that will be
-handled in an implementation-defined manner.
+The basic data types of Pixie are bytes (8 bits), shorts (16 bits), words (32 bits), and doublewords (64 bits). A byte
+can be located at any memory location. Shorts, words, and doublewords must be aligned in memory at natural
+boundaries. That is, a short must be located at an even-numbered address, a word must be located at an address divisible
+by four, and a doubleword must be located at an address divisible by eight. Unaligned memory accesses will result in an
+error that will be handled in an implementation-defined manner.
 
-Some instructions interpret these basic data types as signed and
-unsigned integers or addresses.
+Some instructions interpret these basic data types as signed and unsigned integers or addresses.
 
 ** Endianness and Addressing
 
-Bits of a memory location are arranged from right to left such that
-the least significant bit is in the rightmost position and most
-significant bit is in the leftmost position.
+Bits of a memory location are arranged from right to left such that the least significant bit is in the rightmost
+position and most significant bit is in the leftmost position.
 
-Shorts and words are stored in memory such that the least significant
-byte is stored at the smallest memory address. The address of a short
-or word is the address of its least significant byte.
+Shorts and words are stored in memory such that the least significant byte is stored at the smallest memory address. The
+address of a short or word is the address of its least significant byte.
 
 ** Modes of Operation
 
-At any point of time, Pixie operates in one of the two modes - user
-mode or supervisor mode. The user mode is used to run normal programs
-while the supervisor mode is used by the operating system and
-interrupt handlers. Certain privileged instructions are only allowed
-in the supervisor mode.
+At any point of time, Pixie operates in one of the two modes - user mode or supervisor mode. The user mode is used to
+run normal programs while the supervisor mode is used by the operating system and interrupt handlers. Certain privileged
+instructions are only allowed in the supervisor mode.
 
-The current mode is indicated by the [[*Machine Status Register][Mode Indicator Bit]] in the machine
-status register. This bit can only be changed using a [[*Mode Switching][mode switching
-operation]].
+The current mode is indicated by the [[*Machine Status Register][Mode Indicator Bit]] in the machine status register. This bit can only be changed
+using a [[*Mode Switching][mode switching operation]].
 
 ** Mode Switching
 
-The processor switches from user mode to supervisor mode on any of the
-following conditions:
+The processor switches from user mode to supervisor mode on any of the following conditions:
 
 - When an interrupt is serviced as described in [[*Interrupt Handling][Interrupt Handling]] section.
 - When the processor executes the [[*SCL][SCL]] instruction.
 
-The processor switches from supervisor mode to user mode on any of the
-following conditions:
+The processor switches from supervisor mode to user mode on any of the following conditions:
 
-- When the processor executes the [[*RET][RETI]] instruction and the [[*Machine Status Register][Mode
-  Indicator]] bit in the machine status register image in the stack is
-  clear.
+- When the processor executes the [[*RET][RETI]] instruction and the [[*Machine Status Register][Mode Indicator]] bit in the machine status register image in
+  the stack is clear.
 - When the processor executes the [[*RET][RETS]] instruction.
 
 ** Registers
 
 *** General Purpose Registers
 
-There are sixteen 32-bit general purpose registers numbered from 0
-to 15. The assembly instructions refer to these registers as =R0= to
-=R15= respectively.
+There are 32 general purpose registers numbered from 0 to 31 which are 32-bits wide. The assembly instructions refer to
+these registers as =R0= to =R31= respectively.
 
 *** Stack Pointer
 
-The general purpose register =R15= is used as a stack pointer by some
-instructions.
+The general purpose register =R15= is used as a stack pointer by some instructions.
 
 *** Program Counter Register
 
-There is a 20-bit program counter register - named =PC= - that
-contains the address of the next instruction to be processed. The
-address stored in this register must be word aligned.
+There is a 20-bit program counter register - named =PC= - that contains the address of the next instruction to be
+processed. The address stored in this register must be word aligned.
 
 *** Machine Status Register
 
-There is an 32-bit machine status register - named =MS= - that
-contains various flags to indicate the status of the processor. The
-flags are:
+There is an 32-bit machine status register - named =MS= - that contains various flags to indicate the status of the
+processor. The flags are:
 
 #+CAPTION: Machine Status Register
 | Bit Position | Description                                                                      |
@@ -131,13 +111,12 @@ flags are:
 |           16 | Mode Indicator (=MI=). This bit is set when the processor is in supervisor mode. |
 |        17-31 | Reserved.                                                                        |
 
-The machine status register cannot be loaded or stored directly by
-instructions but accessed only indirectly.
+The machine status register cannot be loaded or stored directly by instructions but accessed only indirectly.
 
 *** Supervisor Stack Pointer Register
 
-There is a 20-bit supervisor stack pointer register - named =SSP= - that
-contains the address of a stack to be used in supervisor mode.
+There is a 20-bit supervisor stack pointer register - named =SSP= - that contains the address of a stack to be used in
+supervisor mode.
 
 ** Memory Layout
 
@@ -151,66 +130,52 @@ Memory address space of Pixie is classified as shown below.
 | =0x00200=     | =0x07fff=   | Operating System             |
 | =0x08000=     | =0xfffff=   | Available for user programs  |
 
-Memory addresses below =0x08000= are called protected address
-space. It is and error to access the protected address space while in
-user mode and such accesses will be handled in an
-implementation-defined manner.
+The address space below =0x08000= is called /protected address space/. It is and error to access the protected address
+space while in user mode and such accesses will be handled in an implementation-defined manner.
 
 ** CPU Operation
 
-Much like any conventional CPU, Pixie executes programs by executing
-instructions in an instruction cycle. Each cycle consists of the
-following steps in order:
+Much like any conventional CPU, Pixie executes programs by executing instructions in an instruction cycle. Each cycle
+consists of the following steps in order:
 
-1. Handle any pending interrupts as mentioned in [[*Interrupt   Handling][Interrupt Handling]]
-   section.
+1. Handle any pending interrupts as mentioned in [[*Interrupt Handling][Interrupt Handling]] section.
 2. Fetch the instruction addressed by the program counter register.
 3. Increment program counter register by 4.
-4. Decode the instruction. Any indirect memory contents required by
-   the instruction are fetched during this step.
+4. Decode the instruction. Any indirect memory contents required by the instruction are fetched during this step.
 5. Execute the instruction.
 
 ** Input and Output
 
 *** I/O Address Space
 
-The I/O address space consists of 64 independently addressable 32-bit
-ports. These ports are numbered from =0= to =63=. The I/O address
-space is separate from the memory address space. It can only be
-accessed by privileged instructions executed in supervisor mode.
+The I/O address space consists of 256 independently addressable 32-bit ports. These ports are numbered from =0= to
+=255=. The I/O address space is separate from the memory address space. It can only be accessed by privileged
+instructions executed in supervisor mode.
 
 *** Interrupt Handling
 
-An interrupt is an asynchronous event triggered by an I/O device. An
-interrupt is identified with a number, called an /interrupt
-vector/. Pixie supports 64 interrupt vectors numbered from =0= to
-=63=.
+An interrupt is an asynchronous event triggered by an I/O device. An interrupt is identified with a number, called an
+/interrupt vector/. Pixie supports 64 interrupt vectors numbered from =0= to =63=.
 
-The processor checks for pending interrupts before beginning execution
-of every instruction. If an interrupt is pending, the processor
-performs the following operations to service the interrupt:
+The processor checks for pending interrupts before beginning execution of every instruction. If an interrupt is pending,
+the processor performs the following operations to service the interrupt:
 
-1. Check [[*Interrupt Vector Table][IVT]] entry corresponding to the interrupt vector. If the entry
-   indicates that the interrupt is disabled, no further processing is
-   done. Otherwise, the following steps are performed.
-2. If the processor is in user mode, load =ZExtend(SSP, 32)= to =R15=
-   and push the old value of =R15= to this new stack.
+1. Check [[*Interrupt Vector Table][IVT]] entry corresponding to the interrupt vector. If the entry indicates that the interrupt is disabled, no
+   further processing is done. Otherwise, the following steps are performed.
+2. If the processor is in user mode, load =ZExtend(SSP, 32)= to =R15= and push the old value of =R15= to this new stack.
 3. Push =MS= and =PC= to the stack in that order.
-4. The [[*Machine Status Register][Mode Indicator]] bit in the machine status register is set to
-   indicate that the processor is now executing in supervisor mode.
-5. Load the address of the interrupt handler routine from the IVT
-   entry to =PC=.
+4. The [[*Machine Status Register][Mode Indicator]] bit in the machine status register is set to indicate that the processor is now executing in
+   supervisor mode.
+5. Load the address of the interrupt handler routine from the IVT entry to =PC=.
 6. Processor begins execution of the interrupt handler routine.
 
-The interrupt handler routine can execute the [[*RET][RETI]] instruction to
-transfer the control back to the point where the interrupt occurred.
+The interrupt handler routine can execute the [[*RET][RETI]] instruction to transfer the control back to the point where the
+interrupt occurred.
 
 *** Interrupt Vector Table
 
-The interrupt vector table (IVT) is a data structure located at memory
-address =0x00000=. It is an array of 64 elements corresponding to each
-of the interrupt vectors. Each element of IVT is word sized and has
-the following structure:
+The interrupt vector table (IVT) is a data structure located at memory address =0x00000=. It is an array of 64 elements
+corresponding to each of the interrupt vectors. Each element of IVT is word sized and has the following structure:
 
 #+CAPTION: IVT Entry Format
 | Bit Position | Description                                                       |
@@ -219,48 +184,37 @@ the following structure:
 |        20-30 | Reserved. Must be set to zero by the operating system.            |
 |           31 | Interrupt Enable Bit. The interrupt is ignored if this bit clear. |
 
-The operating system is responsible for populating entries in this
-table during initialization.
+The operating system is responsible for populating entries in this table during initialization.
 
 ** System Calls
 
-User mode programs can invoke services provided by the operating
-system using the [[*SCL][SCL]] instruction. This instruction provides a
-protected way of transferring control from user mode to supervisor
-mode.
+User mode programs can invoke services provided by the operating system using the [[*SCL][SCL]] instruction. This instruction
+provides a protected way of transferring control from user mode to supervisor mode.
 
-A system call is identified by a number called the /system call
-vector/. A total of 64 system call vectors are supported numbered from
-=0= to =63=.
+A system call is identified by a number called the /system call vector/. A total of 64 system call vectors are supported
+numbered from =0= to =63=.
 
-Upon encountering the SCL instruction, the processor performs the
-following steps:
+Upon encountering the SCL instruction, the processor performs the following steps:
 
-1. Check the [[*System Call Table][SCT]] entry corresponding to the system call
-   vector. Disabled entries will result in an error which will be
+1. Check the [[*System Call Table][SCT]] entry corresponding to the system call vector. Disabled entries will result in an error which will be
    handled in an implementation-defined manner.
-2. Load =ZExtend(SSP, 32)= to =R15= and push the old value of =R15= in
-   this new stack.
+2. Load =ZExtend(SSP, 32)= to =R15= and push the old value of =R15= in this new stack.
 3. Push =MS= and =PC= to the stack in that order.
-4. The [[*Machine Status Register][Mode Indicator]] bit in the machine status register is set to
-   indicate that the processor is now executing in supervisor mode.
-5. Load the address of the system call handler routine from the SCT
-   entry to =PC=.
+4. The [[*Machine Status Register][Mode Indicator]] bit in the machine status register is set to indicate that the processor is now executing in
+   supervisor mode.
+5. Load the address of the system call handler routine from the SCT entry to =PC=.
 6. Processor begins execution of the system call handler routine.
 
-Additional parameters can be passed to the system call handler routine
-in the general purpose registers or user mode stack.
+Additional parameters can be passed to the system call handler routine in the general purpose registers or user mode
+stack.
 
-The system call handler routine can return to user mode by executing
-the [[*RET][RETS]] instruction. Results can be passed to user mode caller in the
-general purpose registers or user mode stack.
+The system call handler routine can return to user mode by executing the [[*RET][RETS]] instruction. Results can be passed to user
+mode caller in the general purpose registers or user mode stack.
 
 *** System Call Table
 
-The system call table (SCT) is a data structure located at memory
-address =0x00100=. It is an array of 64 elements corresponding to each
-of the system call vectors. Each element of SCT is word sized and has
-the following structure:
+The system call table (SCT) is a data structure located at memory address =0x00100=. It is an array of 64 elements
+corresponding to each of the system call vectors. Each element of SCT is word sized and has the following structure:
 
 #+CAPTION: SCT Entry Format
 | Bit Position | Description                                                         |
@@ -269,8 +223,7 @@ the following structure:
 |        20-30 | Reserved. Must be set to zero by the operating system.              |
 |           31 | System Call Enable Bit. The system call fails if this bit is clear. |
 
-The operating system is responsible for populating entries in this
-table during initialization.
+The operating system is responsible for populating entries in this table during initialization.
 
 ** Initialization
 
@@ -287,14 +240,13 @@ During start up, Pixie is initialized to the following state:
 | SCT                               | All entries are set to =0x00000000=.                               |
 | Memory                            | Contents of memory locations other than IVT and SCT are undefined. |
 
-An implementation of Pixie may load an operating system and user
-program(s) into memory during startup in an implementation-defined
-manner.
+An implementation of Pixie may load an operating system and user program(s) into memory during startup in an
+implementation-defined manner.
 
 ** Instruction Format
 
-An instruction is comprises of an opcode, an optional destination
-operand, zero to two source operands written in that order.
+An instruction is comprises of an opcode, an optional destination operand, zero to two source operands arranged in that
+order.
 
 The operands are classified into different categories mentioned below.
 
@@ -302,72 +254,62 @@ The operands are classified into different categories mentioned below.
 
 These operands are located in a general purpose register. They are
 denoted as =SR= and =DR= in the instructions. They are encoded by
-their 4 bit register numbers.
+their 5 bit register numbers.
 
 *** Immediate Operands
 
-These operands are located in the instruction itself. They are denoted
-as =imm5= and =imm16= in the instructions and have lengths of 5 and 16
-bits respectively. They are encoded by 5 bit or 16 bit numbers
+These operands are located in the instruction itself. They are denoted as =imm5=, =imm8=, and =imm16= in the
+instructions and have lengths of 5, 8, and 16 bits respectively. They are encoded by 5 bit, 8 bit, or 16 bit numbers
 respectively.
 
 *** Absolute Address Operands
 
-These operands are memory addressed located in the instruction
-itself. They are denoted as =addr20= in the instructions and have a
-length of 20 bits. They are encoded as a 20 bit number.
+These operands are memory addressed located in the instruction itself. They are denoted as =addr20= in the instructions
+and have a length of 20 bits. They are encoded as a 20 bit number.
 
-*** Indirect
+*** Register Indirect
 
-These operands are located in a memory location whose address is
-located in a general purpose register. They are denoted as =[SR]= and
-=[DR]= in the instructions. They are encoded by their 4 bit register
-numbers.
+These operands are located in a memory location whose address is located in a general purpose register. They are denoted
+as =[SR]= and =[DR]= in the instructions. They are encoded by their 5 bit register numbers.
 
-*** Register or Indirect
+*** Register Indirect with Index Register
 
-These operands are either located in a general purpose register or in
-a memory location whose address is located in a general purpose
-register. They are denoted as =SO=, =SO1=, =SO2=, and =DO= in the
-instructions. They are encoded by a 5 bit number whose least
-significant 4 bits are the register number and the most significant
-bit is set if and only if the operand is located in memory.
+These operands are located in a memory location whose address is formed by adding the contents of two general purpose
+registers. They are denoted as =[SR1+SR2]= or =[DR1+DR2]= in the instructions. They are encoded by two 5 bit register
+numbers arranged consecutively.
 
 * Instructions
 
-This section contains a comprehencive list of all instructions and
-their encodings.
+This section contains a comprehencive list of all instructions and their encodings.
 
-Many instruction encodings contain bit fields marked as
-/Reserved/. These must be filled with zeroes for compatibility
+Many instruction encodings contain bit fields marked as /Reserved/. These must be filled with zeroes for compatibility
 reasons.
 
 ** ADD
 
-Adds two source operands and stores the result in the destination
-operand.
+Adds two source operands and stores the result in the destination operand.
 
 *** Encodings
 
-#+CAPTION: =ADD DO, SO1, SO2=
+#+CAPTION: =ADD DR, SR1, SR2=
 | Bit Position |     31-27 | 26-22 | 21-17 |  16 |     15-5 |   4-0 |
 |--------------+-----------+-------+-------+-----+----------+-------|
-|              | =0b00100= |  =DO= | =SO1= | =0= | Reserved | =SO2= |
+|              | =0b00100= |  =DR= | =SR1= | =0= | Reserved | =SR2= |
 
-#+CAPTION: =ADD DO, SO1, imm16=
+#+CAPTION: =ADD DR, SR1, imm16=
 | Bit Position |     31-27 | 26-22 | 21-17 |  16 |    15-0 |
 |--------------+-----------+-------+-------+-----+---------|
-|              | =0b00100= |  =DO= | =SO1= | =1= | =imm16= |
+|              | =0b00100= |  =DR= | =SR1= | =1= | =imm16= |
 
 *** Operation
 
 #+BEGIN_SRC
 if (instruction[16] == 0)
-  DO = SO1 + SO2;
+  DR = SR1 + SR2;
 else
-  DO = SO1 + SExtend(imm16, 32);
+  DR = SR1 + SExtend(imm16, 32);
 
-Set_Flags(DO);
+Set_Flags(DR);
 #+END_SRC
 
 *** Flags Affected
@@ -375,30 +317,29 @@ Set_Flags(DO);
 
 ** SUB
 
-Subtracts the second source operand from the first source operand and
-stores the result in the destination operand.
+Subtracts the second source operand from the first source operand and stores the result in the destination operand.
 
 *** Encodings
 
-#+CAPTION: =SUB DO, SO1, SO2=
+#+CAPTION: =SUB DR, SR1, SR2=
 | Bit Position |     31-27 | 26-22 | 21-17 |  16 |     15-5 |   4-0 |
 |--------------+-----------+-------+-------+-----+----------+-------|
-|              | =0b00000= |  =DO= | =SO1= | =0= | Reserved | =SO2= |
+|              | =0b00000= |  =DR= | =SR1= | =0= | Reserved | =SR2= |
 
-#+CAPTION: =SUB DO, SO1, imm16=
+#+CAPTION: =SUB DR, SR1, imm16=
 | Bit Position |     31-27 | 26-22 | 21-17 |  16 |    15-0 |
 |--------------+-----------+-------+-------+-----+---------|
-|              | =0b00000= |  =DO= | =SO1= | =1= | =imm16= |
+|              | =0b00000= |  =DR= | =SR1= | =1= | =imm16= |
 
 *** Operation
 
 #+BEGIN_SRC
 if (instruction[16] == 0)
-  DO = SO1 - SO2;
+  DR = SR1 - SR2;
 else
-  DO = SO1 - SExtend(imm16, 32);
+  DR = SR1 - SExtend(imm16, 32);
 
-Set_Flags(DO);
+Set_Flags(DR);
 #+END_SRC
 
 *** Flags Affected
@@ -406,76 +347,69 @@ Set_Flags(DO);
 
 ** MUL
 
-Multiples two source operands and stores the result in the destination
-operand. The size of the destination operand is always double that of
-the source operands.
+Multiples two source operands and stores the result in the destination operand. The size of the destination operand is
+always double that of the source operands.
 
-The =IMUL= instruction variant multiplies two signed numbers and
-stores the result into the destination operand. The =UMUL= instruction
-variant multiplies two unsigned numbers and stores the result into the
-destination operand.
+The signed instruction variant (=MULBI=, =MULSI=, and =MULWI=) multiplies two signed numbers and stores the result into
+the destination operand. The unsigned instruction variant (=MULBU=, =MULSU=, and =MULWU=) multiplies two unsigned
+numbers and stores the result into the destination operand.
 
-Both these instruction variants are further classified into byte,
-short, and word variants.
+Both these instruction variants are further classified into byte, short, and word variants.
 
-The byte instruction variant multiplies the least significant 8 bits of
-the source operands and stores the result into the least significant
-16 bits of the destination operand.
+The byte instruction variant multiplies the least significant 8 bits of the source operands and stores the result into
+the least significant 16 bits of the destination operand.
 
-The short instruction variant multiplies the least significant 16 bits
-of the source operands and stores the result into the destination
-operand word.
+The short instruction variant multiplies the least significant 16 bits of the source operands and stores the result into
+the destination operand word.
 
-The word instruction variant multiplies the source operand words and
-stores the result into the destination operand doubleword. If the
-destination operand is a register =DR=, the least significant word of
-the result is stored in the register =DR= and the most significant
-word in the register =(DR + 1) modulo 8=.
+The word instruction variant multiplies the source operand words and stores the result into the destination operand
+doubleword. The least significant word of the result is stored in the register =DR= and the most significant word in the
+register =(DR + 1) modulo 8=.
 
 *** Encodings
 
-#+CAPTION: =IMULB DO, SO1, SO2=
+#+CAPTION: =MULBI DR, SR1, SR2=
 | Bit Position |     31-27 |  26 |  25-24 |    23-15 | 14-10 |   9-5 |   4-0 |
 |--------------+-----------+-----+--------+----------+-------+-------+-------|
-|              | =0b01111= | =0= | =0b01= | Reserved |  =DO= | =SO1= | =SO2= |
+|              | =0b01111= | =0= | =0b01= | Reserved |  =DR= | =SR1= | =SR2= |
 
-#+CAPTION: =IMULS DO, SO1, SO2=
+#+CAPTION: =MULSI DR, SR1, SR2=
 | Bit Position |     31-27 |  26 |  25-24 |    23-15 | 14-10 |   9-5 |   4-0 |
 |--------------+-----------+-----+--------+----------+-------+-------+-------|
-|              | =0b01111= | =0= | =0b10= | Reserved |  =DO= | =SO1= | =SO2= |
+|              | =0b01111= | =0= | =0b10= | Reserved |  =DR= | =SR1= | =SR2= |
 
-#+CAPTION: =IMULW DO, SO1, SO2=
+#+CAPTION: =MULWI DR, SR1, SR2=
 | Bit Position |     31-27 |  26 |  25-24 |    23-15 | 14-10 |   9-5 |   4-0 |
 |--------------+-----------+-----+--------+----------+-------+-------+-------|
-|              | =0b01111= | =0= | =0b11= | Reserved |  =DO= | =SO1= | =SO2= |
+|              | =0b01111= | =0= | =0b11= | Reserved |  =DR= | =SR1= | =SR2= |
 
-#+CAPTION: =UMULB DO, SO1, SO2=
+#+CAPTION: =MULBU DR, SR1, SR2=
 | Bit Position |     31-27 |  26 |  25-24 |    23-15 | 14-10 |   9-5 |   4-0 |
 |--------------+-----------+-----+--------+----------+-------+-------+-------|
-|              | =0b01111= | =1= | =0b01= | Reserved |  =DO= | =SO1= | =SO2= |
+|              | =0b01111= | =1= | =0b01= | Reserved |  =DR= | =SR1= | =SR2= |
 
-#+CAPTION: =UMULS DO, SO1, SO2=
+#+CAPTION: =MULSU DR, SR1, SR2=
 | Bit Position |     31-27 |  26 |  25-24 |    23-15 | 14-10 |   9-5 |   4-0 |
 |--------------+-----------+-----+--------+----------+-------+-------+-------|
-|              | =0b01111= | =1= | =0b10= | Reserved |  =DO= | =SO1= | =SO2= |
+|              | =0b01111= | =1= | =0b10= | Reserved |  =DR= | =SR1= | =SR2= |
 
-#+CAPTION: =UMULW DO, SO1, SO2=
+#+CAPTION: =MULWU DR, SR1, SR2=
 | Bit Position |     31-27 |  26 |  25-24 |    23-15 | 14-10 |   9-5 |   4-0 |
 |--------------+-----------+-----+--------+----------+-------+-------+-------|
-|              | =0b01111= | =1= | =0b11= | Reserved |  =DO= | =SO1= | =SO2= |
+|              | =0b01111= | =1= | =0b11= | Reserved |  =DR= | =SR1= | =SR2= |
 
 *** Operation
 
 #+BEGIN_SRC
 if (instruction[25:24] == 1) {
-  op1 = SO1[7:0];
-  op2 = SO2[7:0];
+  op1 = SR1[7:0];
+  op2 = SR2[7:0];
 } else if (instruction[25:24] == 2) {
-  op1 = SO1[15:0];
-  op2 = SO2[15:0];
+  op1 = SR1[15:0];
+  op2 = SR2[15:0];
 } else if (instruction[25:24] == 3) {
-  op1 = SO1;
-  op2 = SO2;
+  op1 = SR1;
+  op2 = SR2;
 }
 
 if (instruction[26] == 0)
@@ -484,15 +418,12 @@ else
   result = Unsigned_Multiply(op1, op2);
 
 if (instruction[25:24] == 1)
-  DO[15:0] = result;
+  DR[15:0] = result;
 else if (instruction[25:24] == 2)
-  DO = result;
+  DR = result;
 else if (instruction[25:24] == 3) {
-  if (instruction[4] == 0) {
-    DO = result[31:0];
-    Next_Reg(DO) = result[63:32];
-  } else
-    DO = result;
+  DR = result[31:0];
+  Next_Reg(DR) = result[63:32];
 }
 
 Set_Flags(result);
@@ -509,27 +440,17 @@ Sets the destination operand to the two's complement of the source operand.
 
 *** Encodings
 
-#+CAPTION: =NEG DO, addr20=
-| Bit Position |     31-27 |       26 | 25-21 |  20 |     19-0 |
-|--------------+-----------+----------+-------+-----+----------|
-|              | =0b11000= | Reserved |  =DO= | =0= | =addr20= |
-
-#+CAPTION: =NEG DO, SO=
-| Bit Position |     31-27 |       26 | 25-21 |  20 |     19-5 |  4-0 |
-|--------------+-----------+----------+-------+-----+----------+------|
-|              | =0b11000= | Reserved |  =DO= | =1= | Reserved | =SO= |
+#+CAPTION: =NEG DR, SR=
+| Bit Position |     31-27 |    26-10 |  9-5 |  4-0 |
+|--------------+-----------+----------+------+------|
+|              | =0b11000= | Reserved | =DR= | =SR= |
 
 *** Operation
 
 #+BEGIN_SRC
-if (instruction[20] == 0)
-  value = MemW[addr20];
-else
-  value = SO;
+DR = -SR;
 
-DO = -value;
-
-Set_Flags(DO);
+Set_Flags(DR);
 #+END_SRC
 
 *** Flags Affected
@@ -539,29 +460,28 @@ Set_Flags(DO);
 
 Compares two operands.
 
-The comparison is perdformed by subtracting the second source operand
-from the first source operand and setting the flags according to the
-result. The result is discarded.
+The comparison is perdformed by subtracting the second source operand from the first source operand and setting the
+flags according to the result. The result is discarded.
 
 *** Encodings
 
-#+CAPTION: =CMP SO1, SO2=
+#+CAPTION: =CMP SR1, SR2=
 | Bit Position |     31-27 |    26-22 | 21-17 |  16 |   4-0 |
 |--------------+-----------+----------+-------+-----+-------|
-|              | =0b11100= | Reserved | =SO1= | =0= | =SO2= |
+|              | =0b11011= | Reserved | =SR1= | =0= | =SR2= |
 
-#+CAPTION: =CMP SO1, imm16=
+#+CAPTION: =CMP SR1, imm16=
 | Bit Position |     31-27 |    26-22 | 21-17 |  16 |    15-0 |
 |--------------+-----------+----------+-------+-----+---------|
-|              | =0b11100= | Reserved | =SO1= | =1= | =imm16= |
+|              | =0b11011= | Reserved | =SR1= | =1= | =imm16= |
 
 *** Operation
 
 #+BEGIN_SRC
 if (instruction[16] == 0)
-  result = SO1 - SO2;
+  result = SR1 - SR2;
 else
-  result = SO1 - SExtend(imm16, 32);
+  result = SR1 - SExtend(imm16, 32);
 
 Set_Flags(result);
 #+END_SRC
@@ -571,30 +491,29 @@ Set_Flags(result);
 
 ** AND
 
-Performs bitwise logical AND of two source operands and stores the
-result in the destination operand.
+Performs bitwise logical AND of two source operands and stores the result in the destination operand.
 
 *** Encodings
 
-#+CAPTION: =AND DO, SO1, SO2=
+#+CAPTION: =AND DR, SR1, SR2=
 | Bit Position |     31-27 | 26-22 | 21-17 |  16 |     15-5 |   4-0 |
 |--------------+-----------+-------+-------+-----+----------+-------|
-|              | =0b00101= |  =DO= | =SO1= | =0= | Reserved | =SO2= |
+|              | =0b00101= |  =DR= | =SR1= | =0= | Reserved | =SR2= |
 
-#+CAPTION: =AND DO, SO1, imm16=
+#+CAPTION: =AND DR, SR1, imm16=
 | Bit Position |     31-27 | 26-22 | 21-17 |  16 |    15-0 |
 |--------------+-----------+-------+-------+-----+---------|
-|              | =0b00101= |  =DO= | =SO1= | =1= | =imm16= |
+|              | =0b00101= |  =DR= | =SR1= | =1= | =imm16= |
 
 *** Operation
 
 #+BEGIN_SRC
 if (instruction[16] == 0)
-  DO = SO1 && SO2
+  DR = SR1 && SR2
 else
-  DO = SO1 && SExtend(imm16, 32)
+  DR = SR1 && SExtend(imm16, 32)
 
-Set_Flags(DO);
+Set_Flags(DR);
 #+END_SRC
 
 *** Flags Affected
@@ -602,30 +521,29 @@ Set_Flags(DO);
 
 ** OR
 
-Performs bitwise logical OR of two source operands and stores the
-result in the destination operand.
+Performs bitwise logical OR of two source operands and stores the result in the destination operand.
 
 *** Encodings
 
-#+CAPTION: =OR DO, SO1, SO2=
+#+CAPTION: =OR DR, SR1, SR2=
 | Bit Position |     31-27 | 26-22 | 21-17 |  16 |     15-5 |   4-0 |
 |--------------+-----------+-------+-------+-----+----------+-------|
-|              | =0b01101= |  =DO= | =SO1= | =0= | Reserved | =SO2= |
+|              | =0b01101= |  =DR= | =SR1= | =0= | Reserved | =SR2= |
 
-#+CAPTION: =OR DO, SO1, imm16=
+#+CAPTION: =OR DR, SR1, imm16=
 | Bit Position |     31-27 | 26-22 | 21-17 |  16 |    15-0 |
 |--------------+-----------+-------+-------+-----+---------|
-|              | =0b01101= |  =DO= | =SO1= | =1= | =imm16= |
+|              | =0b01101= |  =DR= | =SR1= | =1= | =imm16= |
 
 *** Operation
 
 #+BEGIN_SRC
 if (instruction[16] == 0)
-  DO = SO1 || SO2
+  DR = SR1 || SR2
 else
-  DO = SO1 || SExtend(imm16, 32)
+  DR = SR1 || SExtend(imm16, 32)
 
-Set_Flags(DO);
+Set_Flags(DR);
 #+END_SRC
 
 *** Flags Affected
@@ -635,32 +553,21 @@ Set_Flags(DO);
 
 Bitwise complement.
 
-Perform a bitwise complement of the source operand and store the
-result into the destination operand.
+Perform a bitwise complement of the source operand and store the result into the destination operand.
 
 *** Encodings
 
-#+CAPTION: =NOT DO, addr20=
-| Bit Position |     31-27 |       26 | 25-21 |  20 |     19-0 |
-|--------------+-----------+----------+-------+-----+----------|
-|              | =0b10110= | Reserved |  =DO= | =0= | =addr20= |
-
-#+CAPTION: =NOT DO, SO=
-| Bit Position |     31-27 |       26 | 25-21 |  20 |     19-5 |  4-0 |
-|--------------+-----------+----------+-------+-----+----------+------|
-|              | =0b10110= | Reserved |  =DO= | =1= | Reserved | =SO= |
+#+CAPTION: =NOT DR, SR=
+| Bit Position |     31-27 |    26-10 |  9-5 |  4-0 |
+|--------------+-----------+----------+------+------|
+|              | =0b10110= | Reserved | =DR= | =SR= |
 
 *** Operation
 
 #+BEGIN_SRC
-if (instruction[20] == 0)
-  value = MemW[addr20];
-else
-  value = SO;
+DR = ~SR;
 
-DO = ~value;
-
-Set_Flags(DO);
+Set_Flags(DR);
 #+END_SRC
 
 *** Flags Affected
@@ -672,25 +579,25 @@ Bitwise exclusive-OR.
 
 *** Encodings
 
-#+CAPTION: =XOR DO, SO1, SO2=
+#+CAPTION: =XOR DR, SR1, SR2=
 | Bit Position |     31-27 | 26-22 | 21-17 |  16 |     15-5 |   4-0 |
 |--------------+-----------+-------+-------+-----+----------+-------|
-|              | =0b10101= |  =DO= | =SO1= | =0= | Reserved | =SO2= |
+|              | =0b10101= |  =DR= | =SR1= | =0= | Reserved | =SR2= |
 
-#+CAPTION: =XOR DO, SO1, imm16=
+#+CAPTION: =XOR DR, SR1, imm16=
 | Bit Position |     31-27 | 26-22 | 21-17 |  16 |    15-0 |
 |--------------+-----------+-------+-------+-----+---------|
-|              | =0b10101= |  =DO= | =SO1= | =1= | =imm16= |
+|              | =0b10101= |  =DR= | =SR1= | =1= | =imm16= |
 
 *** Operation
 
 #+BEGIN_SRC
 if (instruction[16] == 0)
-  DO = SO1 ^ SO2
+  DR = SR1 ^ SR2
 else
-  DO = SO1 ^ SExtend(imm16, 32)
+  DR = SR1 ^ SExtend(imm16, 32)
 
-Set_Flags(DO);
+Set_Flags(DR);
 #+END_SRC
 
 *** Flags Affected
@@ -700,43 +607,64 @@ Set_Flags(DO);
 
 Bit shift.
 
-Shift the source operand by a specified number of bits to the left or
-right and store the result in the destination operand.
+Shift the source operand by a specified number of bits to the left or right and store the result in the destination
+operand.
 
-The left shift operation (=SHFL=) fills the vacated bit positions with
-zeroes. The right shift operation can be logical or arithmetic. The
-logical right shift operation (=SHFRL=) fills the vacated bit
-positions with zeroes while the arithmetic right shift operation
-(=SHFRA=) fills the vacated bit positions by the most significant bit.
+The left shift operation (=SHFL=) fills the vacated bit positions with zeroes. The right shift operation can be logical
+or arithmetic. The logical right shift operation (=SHFRZ=) fills the vacated bit positions with zeroes while the
+arithmetic right shift operation (=SHFRA=) fills the vacated bit positions by the most significant bit.
 
 *** Encodings
 
-#+CAPTION: =SHFL DO, SO, imm5=
-| Bit Position |     31-27 |  26-25 |    24-15 | 14-10 |  9-5 |    4-0 |
-|--------------+-----------+--------+----------+-------+------+--------|
-|              | =0b10000= | =0b00= | Reserved |  =DO= | =SO= | =imm5= |
+#+CAPTION: =SHFL DR, SR1, SR2=
+| Bit Position |     31-27 |  26-25 |    24-16 | 15-11 |  10-6 |   5 |   4-0 |
+|--------------+-----------+--------+----------+-------+-------+-----+-------|
+|              | =0b10000= | =0b00= | Reserved |  =DR= | =SR1= | =0= | =SR2= |
 
-#+CAPTION: =SHFRL DO, SO, imm5=
-| Bit Position |     31-27 |  26-25 |    24-15 | 14-10 |  9-5 |    4-0 |
-|--------------+-----------+--------+----------+-------+------+--------|
-|              | =0b10000= | =0b10= | Reserved |  =DO= | =SO= | =imm5= |
+#+CAPTION: =SHFL DR, SR, imm5=
+| Bit Position |     31-27 |  26-25 |    24-16 | 15-11 | 10-6 |   5 |    4-0 |
+|--------------+-----------+--------+----------+-------+------+-----+--------|
+|              | =0b10000= | =0b00= | Reserved |  =DR= | =SR= | =1= | =imm5= |
 
-#+CAPTION: =SHFRA DO, SO, imm5=
-| Bit Position |     31-27 |  26-25 |    24-15 | 14-10 |  9-5 |    4-0 |
-|--------------+-----------+--------+----------+-------+------+--------|
-|              | =0b10000= | =0b11= | Reserved |  =DO= | =SO= | =imm5= |
+#+CAPTION: =SHFRZ DR, SR1, SR2=
+| Bit Position |     31-27 |  26-25 |    24-16 | 15-11 |  10-6 |   5 |   4-0 |
+|--------------+-----------+--------+----------+-------+-------+-----+-------|
+|              | =0b10000= | =0b10= | Reserved |  =DR= | =SR1= | =0= | =SR2= |
+
+#+CAPTION: =SHFRZ DR, SR, imm5=
+| Bit Position |     31-27 |  26-25 |    24-16 | 15-11 | 10-6 |   5 |    4-0 |
+|--------------+-----------+--------+----------+-------+------+-----+--------|
+|              | =0b10000= | =0b10= | Reserved |  =DR= | =SR= | =1= | =imm5= |
+
+#+CAPTION: =SHFRA DR, SR1, SR2=
+| Bit Position |     31-27 |  26-25 |    24-16 | 15-11 |  10-6 |   5 |   4-0 |
+|--------------+-----------+--------+----------+-------+-------+-----+-------|
+|              | =0b10000= | =0b11= | Reserved |  =DR= | =SR1= | =0= | =SR2= |
+
+#+CAPTION: =SHFRA DR, SR, imm5=
+| Bit Position |     31-27 |  26-25 |    24-16 | 15-11 | 10-6 |   5 |    4-0 |
+|--------------+-----------+--------+----------+-------+------+-----+--------|
+|              | =0b10000= | =0b11= | Reserved |  =DR= | =SR= | =1= | =imm5= |
 
 *** Operation
 
 #+BEGIN_SRC
-if (instruction[26:25] == 0)
-  DO = LShift(SO, imm5);
-else if (instruction[26:25] == 2)
-  DO = RShift(SO, imm5);
-else if (instruction[26:25] == 3)
-  DO = RAShift(SO, imm5);
+if (instruction[5] == 0) {
+  op = SR1;
+  count = SR2;
+} else {
+  op = SR;
+  count = imm5;
+}
 
-Set_Flags(DO);
+if (instruction[26:25] == 0)
+  DR = LShift(op, count);
+else if (instruction[26:25] == 2)
+  DR = RShift(op, count);
+else if (instruction[26:25] == 3)
+  DR = RAShift(op, count);
+
+Set_Flags(DR);
 #+END_SRC
 
 *** Flags Affected
@@ -744,17 +672,16 @@ Set_Flags(DO);
 
 ** JC
 
-Jump conditionally. Tests zero or more flags and performs a jump if
-any of them are set.
+Jump conditionally. Tests zero or more flags and performs a jump if any of them are set.
 
-Note that =JCnzp= will always perform a jump regardless of the state of
-the flags and =JC= will never perform the jump. For this reason, it is
-not necessary for assemblers to support these instruction variants.
+Note that =JCnzp= will always perform a jump regardless of the state of the flags and =JC= will never perform the
+jump. For this reason, it is not necessary for assemblers to support these instruction variants.
 
 It is an error if the target address of the jump is not word aligned.
 
 *** Encodings
 
+- =JC    addr20=
 - =JCn   addr20=
 - =JCp   addr20=
 - =JCz   addr20=
@@ -764,10 +691,11 @@ It is an error if the target address of the jump is not word aligned.
 - =JCnzp addr20=
 
 #+CAPTION: =JC addr20=
-| Bit Position |     31-27 |  26 |  25 |  24 |    23-21 |  20 |     19-0 |
-|--------------+-----------+-----+-----+-----+----------+-----+----------|
-|              | =0b10111= | =n= | =p= | =z= | Reserved | =0= | =addr20= |
+| Bit Position |     31-27 |  26 |  25 |  24 |    23-22 |  21-20 |     19-0 |
+|--------------+-----------+-----+-----+-----+----------+--------+----------|
+|              | =0b10111= | =n= | =p= | =z= | Reserved | =0b00= | =addr20= |
 
+- =JC    [SR]=
 - =JCn   [SR]=
 - =JCp   [SR]=
 - =JCz   [SR]=
@@ -777,19 +705,35 @@ It is an error if the target address of the jump is not word aligned.
 - =JCnzp [SR]=
 
 #+CAPTION: =JC [SR]=
-| Bit Position |     31-27 |  26 |  25 |  24 |    23-21 |  20 |     19-4 |    3-0 |
-|--------------+-----------+-----+-----+-----+----------+-----+----------+--------|
-|              | =0b10111= | =n= | =p= | =z= | Reserved | =1= | Reserved | =[SR]= |
+| Bit Position |     31-27 |  26 |  25 |  24 |    23-22 |  21-20 |     19-5 |    4-0 |
+|--------------+-----------+-----+-----+-----+----------+--------+----------+--------|
+|              | =0b10111= | =n= | =p= | =z= | Reserved | =0b01= | Reserved | =[SR]= |
+
+- =JC    [SR1+SR2]=
+- =JCn   [SR1+SR2]=
+- =JCp   [SR1+SR2]=
+- =JCz   [SR1+SR2]=
+- =JCnp  [SR1+SR2]=
+- =JCnz  [SR1+SR2]=
+- =JCzp  [SR1+SR2]=
+- =JCnzp [SR1+SR2]=
+
+#+CAPTION: =JC [SR1+SR2]=
+| Bit Position |     31-27 |  26 |  25 |  24 |    23-22 |  21-20 |    19-10 |   9-5 |   4-0 |
+|--------------+-----------+-----+-----+-----+----------+--------+----------+-------+-------|
+|              | =0b10111= | =n= | =p= | =z= | Reserved | =0b10= | Reserved | =SR1= | =SR2= |
 
 *** Operation
 
 #+BEGIN_SRC
 if ((n && NF) || (p && PF) || (z && ZF)) {
-  if (instruction[20] == 0)
+  if (instruction[21:20] == 0)
     addr = addr20;
-  else
+  else if (instruction[21:20] == 1)
     addr = SR[19:0];
-  
+  else if (instruction[21:20] == 2)
+    addr = (SR1 + SR2)[19:0];
+
   if ((addr % 4) != 0)
     Handle alignment error;
   else
@@ -804,30 +748,36 @@ None.
 
 Jump unconditionally.
 
-Note that this instruction uses the same opcode as [[*JC][JC]] and the encoding
-is the same as =JCnzp=.
+Note that this instruction uses the same opcode as [[*JC][JC]] and the encoding is the same as =JCnzp=.
 
 It is an error if the target address of the jump is not word aligned.
 
 *** Encodings
 
 #+CAPTION: =JMP addr20=
-| Bit Position |     31-27 |   26-24 |    23-21 |  20 |     19-0 |
-|--------------+-----------+---------+----------+-----+----------|
-|              | =0b10111= | =0b111= | Reserved | =0= | =addr20= |
+| Bit Position |     31-27 |   26-24 |    23-22 |  21-20 |     19-0 |
+|--------------+-----------+---------+----------+--------+----------|
+|              | =0b10111= | =0b111= | Reserved | =0b00= | =addr20= |
 
 #+CAPTION: =JMP [SR]=
-| Bit Position |     31-27 |   26-24 |    23-21 |  20 |     19-4 |    3-0 |
-|--------------+-----------+---------+----------+-----+----------+--------|
-|              | =0b10111= | =0b111= | Reserved | =1= | Reserved | =[SR]= |
+| Bit Position |     31-27 |   26-24 |    23-22 |  21-20 |     19-5 |  4-0 |
+|--------------+-----------+---------+----------+--------+----------+------|
+|              | =0b10111= | =0b111= | Reserved | =0b01= | Reserved | =SR= |
+
+#+CAPTION: =JMP [SR1+SR2]=
+| Bit Position |     31-27 |   26-24 |    23-22 |  21-20 |    19-10 |   9-5 |   4-0 |
+|--------------+-----------+---------+----------+--------+----------+-------+-------|
+|              | =0b10111= | =0b111= | Reserved | =0b10= | Reserved | =SR1= | =SR2= |
 
 *** Operation
 
 #+BEGIN_SRC
-if (instruction[20] == 0)
+if (instruction[21:20] == 0)
   addr = addr20;
-else
+else if (instruction[21:20] == 1)
   addr = SR[19:0];
+else if (instruction[21:20] == 2)
+  addr = (SR1 + SR2)[19:0];
 
 if ((addr % 4) != 0)
   Handle alignment error;
@@ -842,32 +792,38 @@ None.
 
 Call subroutine.
 
-Saves return information on the stack and branches to the called
-subroutine.
+Saves return information on the stack and branches to the called subroutine.
 
 It is an error if the address of the subroutine is not word aligned.
 
 *** Encodings
 
 #+CAPTION: =CALL addr20=
-| Bit Position |     31-27 |  26 |    25-21 |  20 |     19-0 |
-|--------------+-----------+-----+----------+-----+----------|
-|              | =0b01000= | =0= | Reserved | =0= | =addr20= |
+| Bit Position |     31-27 |  26 |    25-22 |  21-20 |     19-0 |
+|--------------+-----------+-----+----------+--------+----------|
+|              | =0b01000= | =0= | Reserved | =0b00= | =addr20= |
 
 #+CAPTION: =CALL [SR]=
-| Bit Position |     31-27 |  26 |    25-21 |  20 |     19-4 |    3-0 |
-|--------------+-----------+-----+----------+-----+----------+--------|
-|              | =0b01000= | =0= | Reserved | =1= | Reserved | =[SR]= |
+| Bit Position |     31-27 |  26 |    25-22 |  21-20 |     19-5 |  4-0 |
+|--------------+-----------+-----+----------+--------+----------+------|
+|              | =0b01000= | =0= | Reserved | =0b01= | Reserved | =SR= |
+
+#+CAPTION: =CALL [SR1+SR2]=
+| Bit Position |     31-27 |  26 |    25-22 |  21-20 |    19-10 |   9-5 |   4-0 |
+|--------------+-----------+-----+----------+--------+----------+-------+-------|
+|              | =0b01000= | =0= | Reserved | =0b10= | Reserved | =SR1= | =SR2= |
 
 *** Operation
 
 #+BEGIN_SRC
 R15 = R15 - 4;
 MemW[R15] = ZExtend(PC, 32);
-if (instruction[20] == 0)
+if (instruction[21:20] == 0)
   addr = addr20;
-else
+else if (instruction[21:20] == 1)
   addr = SR[19:0];
+else if (instruction[21:20] == 2)
+  addr = (SR1 + SR2)[19:0];
 
 if ((addr % 4) != 0)
   Handle alignment error;
@@ -882,11 +838,9 @@ None.
 
 Call operating system service.
 
-Saves return information on the stack and branches to a system call
-handler routine.
+Saves return information on the stack and branches to a system call handler routine.
 
-It is an error if the address of the system call handler routine is
-not word aligned.
+It is an error if the address of the system call handler routine is not word aligned.
 
 *** Encodings
 
@@ -924,11 +878,9 @@ else {
 
 ** RET
 
-Return from a subroutine, interrupt handler routine, or a system call
-handler routine.
+Return from a subroutine, interrupt handler routine, or a system call handler routine.
 
-Restores the return information from the stack and branches to the
-caller or savepoint.
+Restores the return information from the stack and branches to the caller or savepoint.
 
 It is an error if the target address of the return is not word aligned.
 
@@ -975,55 +927,71 @@ else {
 
 Load a byte, short, or word from memory to a register.
 
-The source operand specifies a memory address. The contents of this
-address is optionally sign extended and stored into the destination
-register.
+The source operand specifies a memory address. The contents of this address is optionally sign extended and stored into
+the destination register.
 
 *** Encodings
 
 #+CAPTION: =LDB DR, addr20=
-| Bit Position |     31-27 |  26-25 | 24-21 |  20 |     19-0 |
-|--------------+-----------+--------+-------+-----+----------|
-|              | =0b01001= | =0b01= |  =DR= | =0= | =addr20= |
+| Bit Position |     31-27 | 26-22 |  21-20 |     19-0 |
+|--------------+-----------+-------+--------+----------|
+|              | =0b01001= |  =DR= | =0b00= | =addr20= |
 
 #+CAPTION: =LDB DR, [SR]=
-| Bit Position |     31-27 |  26-25 | 24-21 |  20 |     19-4 |  3-0 |
-|--------------+-----------+--------+-------+-----+----------+------|
-|              | =0b01001= | =0b01= |  =DR= | =1= | Reserved | =SR= |
+| Bit Position |     31-27 | 26-22 |  21-20 |     19-5 |  4-0 |
+|--------------+-----------+-------+--------+----------+------|
+|              | =0b01001= |  =DR= | =0b01= | Reserved | =SR= |
+
+#+CAPTION: =LDB DR, [SR1+SR2]=
+| Bit Position |     31-27 | 26-22 |  21-20 |    19-10 |   9-5 |   4-0 |
+|--------------+-----------+-------+--------+----------+-------+-------|
+|              | =0b01001= |  =DR= | =0b10= | Reserved | =SR1= | =SR2= |
 
 #+CAPTION: =LDS DR, addr20=
-| Bit Position |     31-27 |  26-25 | 24-21 |  20 |     19-0 |
-|--------------+-----------+--------+-------+-----+----------|
-|              | =0b01001= | =0b10= |  =DR= | =0= | =addr20= |
+| Bit Position |     31-27 | 26-22 |  21-20 |     19-0 |
+|--------------+-----------+-------+--------+----------|
+|              | =0b01010= |  =DR= | =0b00= | =addr20= |
 
 #+CAPTION: =LDS DR, [SR]=
-| Bit Position |     31-27 |  26-25 | 24-21 |  20 |     19-4 |  3-0 |
-|--------------+-----------+--------+-------+-----+----------+------|
-|              | =0b01001= | =0b10= |  =DR= | =1= | Reserved | =SR= |
+| Bit Position |     31-27 | 26-22 |  21-20 |     19-5 |  4-0 |
+|--------------+-----------+-------+--------+----------+------|
+|              | =0b01010= |  =DR= | =0b01= | Reserved | =SR= |
+
+#+CAPTION: =LDS DR, [SR1+SR2]=
+| Bit Position |     31-27 | 26-22 |  21-20 |    19-10 |   9-5 |   4-0 |
+|--------------+-----------+-------+--------+----------+-------+-------|
+|              | =0b01010= |  =DR= | =0b10= | Reserved | =SR1= | =SR2= |
 
 #+CAPTION: =LDW DR, addr20=
-| Bit Position |     31-27 |  26-25 | 24-21 |  20 |     19-0 |
-|--------------+-----------+--------+-------+-----+----------|
-|              | =0b01001= | =0b11= |  =DR= | =0= | =addr20= |
+| Bit Position |     31-27 | 26-22 |  21-20 |     19-0 |
+|--------------+-----------+-------+--------+----------|
+|              | =0b01011= |  =DR= | =0b00= | =addr20= |
 
 #+CAPTION: =LDW DR, [SR]=
-| Bit Position |     31-27 |  26-25 | 24-21 |  20 |     19-4 |  3-0 |
-|--------------+-----------+--------+-------+-----+----------+------|
-|              | =0b01001= | =0b11= |  =DR= | =1= | Reserved | =SR= |
+| Bit Position |     31-27 | 26-22 |  21-20 |     19-5 |  4-0 |
+|--------------+-----------+-------+--------+----------+------|
+|              | =0b01011= |  =DR= | =0b01= | Reserved | =SR= |
+
+#+CAPTION: =LDW DR, [SR1+SR2]=
+| Bit Position |     31-27 | 26-22 |  21-20 |    19-10 |   9-5 |   4-0 |
+|--------------+-----------+-------+--------+----------+-------+-------|
+|              | =0b01011= |  =DR= | =0b10= | Reserved | =SR1= | =SR2= |
 
 *** Operation
 
 #+BEGIN_SRC
-if (instruction[20] == 0)
+if (instruction[21:20] == 0)
   addr = addr20;
-else
+else if (instruction[21:20] == 1)
   addr = SR[19:0];
+else if (instruction[21:20] == 2)
+  addr = (SR1 + SR2)[19:0];
 
-if (instruction[26:25] == 1)
+if (instruction[28:27] == 0)
   DR = SExtend(MemB[addr], 32);
-else if (instruction[26:25] == 2)
+else if (instruction[28:27] == 1)
   DR = SExtend(MemS[addr], 32);
-else if (instruction[26:25] == 3)
+else if (instruction[28:27] == 2)
   DR = MemW[addr];
 
 Set_Flags(DR);
@@ -1036,57 +1004,72 @@ Set_Flags(DR);
 
 Store a byte, short, or word from a register to memory.
 
-The destination operand specifies a memory address. The least
-significant 8, 16, or 32 bits of the source register are selected
-depending on whether the variant of the instruction is =STB=, =STS=,
-or =STW= respectively. This selected bits are stored into the
-destination address.
+The destination operand specifies a memory address. The least significant 8, 16, or 32 bits of the source register are
+selected depending on whether the variant of the instruction is =STB=, =STS=, or =STW= respectively. This selected bits
+are stored at the destination address.
 
 *** Encodings
 
 #+CAPTION: =STB addr20, SR=
-| Bit Position |     31-27 |  26-25 |  24 |     23-4 |  3-0 |
-|--------------+-----------+--------+-----+----------+------|
-|              | =0b00001= | =0b01= | =0= | =addr20= | =SR= |
+| Bit Position |     31-27 |  26-25 |     24-5 |  4-0 |
+|--------------+-----------+--------+----------+------|
+|              | =0b11100= | =0b00= | =addr20= | =SR= |
 
 #+CAPTION: =STB [DR], SR=
-| Bit Position |     31-27 |  26-25 |  24 |     23-8 |  7-4 |  3-0 |
-|--------------+-----------+--------+-----+----------+------+------|
-|              | =0b00001= | =0b01= | =1= | Reserved | =DR= | =SR= |
+| Bit Position |     31-27 |  26-25 |    24-10 |  9-5 |  4-0 |
+|--------------+-----------+--------+----------+------+------|
+|              | =0b11100= | =0b01= | Reserved | =DR= | =SR= |
+
+#+CAPTION: =STB [DR1+DR2], SR=
+| Bit Position |     31-27 |  26-25 |    24-15 | 14-10 |   9-5 |  4-0 |
+|--------------+-----------+--------+----------+-------+-------+------|
+|              | =0b11100= | =0b10= | Reserved | =DR1= | =DR2= | =SR= |
 
 #+CAPTION: =STS addr20, SR=
-| Bit Position |     31-27 |  26-25 |  24 |     23-4 |  3-0 |
-|--------------+-----------+--------+-----+----------+------|
-|              | =0b00001= | =0b10= | =0= | =addr20= | =SR= |
+| Bit Position |     31-27 |  26-25 |     24-5 |  4-0 |
+|--------------+-----------+--------+----------+------|
+|              | =0b11101= | =0b00= | =addr20= | =SR= |
 
 #+CAPTION: =STS [DR], SR=
-| Bit Position |     31-27 |  26-25 |  24 |     23-8 |  7-4 |  3-0 |
-|--------------+-----------+--------+-----+----------+------+------|
-|              | =0b00001= | =0b10= | =1= | Reserved | =DR= | =SR= |
+| Bit Position |     31-27 |  26-25 |    24-10 |  9-5 |  4-0 |
+|--------------+-----------+--------+----------+------+------|
+|              | =0b11101= | =0b01= | Reserved | =DR= | =SR= |
+
+#+CAPTION: =STS [DR1+DR2], SR=
+| Bit Position |     31-27 |  26-25 |    24-15 | 14-10 |   9-5 |  4-0 |
+|--------------+-----------+--------+----------+-------+-------+------|
+|              | =0b11101= | =0b10= | Reserved | =DR1= | =DR2= | =SR= |
 
 #+CAPTION: =STW addr20, SR=
-| Bit Position |     31-27 |  26-25 |  24 |     23-4 |  3-0 |
-|--------------+-----------+--------+-----+----------+------|
-|              | =0b00001= | =0b11= | =0= | =addr20= | =SR= |
+| Bit Position |     31-27 |  26-25 |     24-5 |  4-0 |
+|--------------+-----------+--------+----------+------|
+|              | =0b11110= | =0b00= | =addr20= | =SR= |
 
 #+CAPTION: =STW [DR], SR=
-| Bit Position |     31-27 |  26-25 |  24 |     23-8 |  7-4 |  3-0 |
-|--------------+-----------+--------+-----+----------+------+------|
-|              | =0b00001= | =0b11= | =1= | Reserved | =DR= | =SR= |
+| Bit Position |     31-27 |  26-25 |    24-10 |  9-5 |  4-0 |
+|--------------+-----------+--------+----------+------+------|
+|              | =0b11110= | =0b01= | Reserved | =DR= | =SR= |
+
+#+CAPTION: =STW [DR1+DR2], SR=
+| Bit Position |     31-27 |  26-25 |    24-15 | 14-10 |   9-5 |  4-0 |
+|--------------+-----------+--------+----------+-------+-------+------|
+|              | =0b11110= | =0b10= | Reserved | =DR1= | =DR2= | =SR= |
 
 *** Operation
 
 #+BEGIN_SRC
-if (instruction[24] == 0)
+if (instruction[26:25] == 0)
   addr = addr20;
-else
+else if (instruction[26:25] == 1)
   addr = DR[19:0];
-
-if (instruction[26:25] == 1)
-  MemB[addr] = SR[7:0];
 else if (instruction[26:25] == 2)
+  addr = (DR1 + DR2)[19:0];
+
+if (instruction[28:27] == 1)
+  MemB[addr] = SR[7:0];
+else if (instruction[28:27] == 2)
   MemS[addr] = SR[15:0];
-else if (instruction[26:25] == 3)
+else if (instruction[28:27] == 3)
   MemW[addr] = SR;
 #+END_SRC
 
@@ -1097,26 +1080,25 @@ None.
 
 Copy a source register or immediate value to the destination register.
 
-The copy instruction has two variants in case of an immediate
-operand. The value is either sign extended to 32 bits and copied
-(CPYI) or zero extended to 32 bits and copied (CPYU).
+The copy instruction has two variants in case of an immediate operand. The value is either sign extended to 32 bits and
+copied (CPYI) or zero extended to 32 bits and copied (CPYU).
 
 *** Encodings
+
+#+CAPTION: =CPY DR, SR=
+| Bit Position |     31-27 |    26-22 | 21-17 |  17-16 |     15-5 |  4-0 |
+|--------------+-----------+----------+-------+--------+----------+------|
+|              | =0b00010= | Reserved |  =DR= | =0b00= | Reserved | =SR= |
 
 #+CAPTION: =CPYI DR, imm16=
 | Bit Position |     31-27 |    26-22 | 21-17 |  17-16 |    15-0 |
 |--------------+-----------+----------+-------+--------+---------|
-|              | =0b00010= | Reserved |  =DR= | =0b00= | =imm16= |
+|              | =0b00010= | Reserved |  =DR= | =0b10= | =imm16= |
 
 #+CAPTION: =CPYU DR, imm16=
 | Bit Position |     31-27 |    26-22 | 21-17 |  17-16 |    15-0 |
 |--------------+-----------+----------+-------+--------+---------|
-|              | =0b00010= | Reserved |  =DR= | =0b01= | =imm16= |
-
-#+CAPTION: =CPY DR, SR=
-| Bit Position |     31-27 |    26-22 | 21-17 |  17-16 |     15-4 |  3-0 |
-|--------------+-----------+----------+-------+--------+----------+------|
-|              | =0b00010= | Reserved |  =DR= | =0b10= | Reserved | =SR= |
+|              | =0b00010= | Reserved |  =DR= | =0b11= | =imm16= |
 
 *** Operation
 
@@ -1136,17 +1118,13 @@ None.
 
 Push the source operand on top of the stack.
 
-The stack pointer (R15) is decremented by 4 and the source operand is
-stored at that memory location.
+The stack pointer (R15) is decremented by 4 and the source operand is stored at that memory location.
 
-There are two variants of the instruction when the source operand is a
-16 bit immediate value. The value is either sign extended to 32 bits
-and copied (PUSHI) or zero extended to 32 bits and copied (PUSHU).
+There are two variants of the instruction when the source operand is a 16 bit immediate value. The value is either sign
+extended to 32 bits and copied (=PUSHI=) or zero extended to 32 bits and copied (=PUSHU=).
 
-There are three variants of the instruction when the source operand is
-either in =addr20= or =SO= form. The value stored in the stack always
-have a 32 bit size. The value is sign extended to 32 bits if the
-operand is a byte or short.
+There are three variants of the instruction when the source operand is a register. The value stored in the stack always
+have a 32 bit size. The value is sign extended to 32 bits if the operand is a byte or short.
 
 *** Encodings
 
@@ -1160,35 +1138,20 @@ operand is a byte or short.
 |--------------+-----------+-----+--------+----------+-----+---------|
 |              | =0b11111= | =0= | =0b00= | Reserved | =1= | =imm16= |
 
-#+CAPTION: =PUSHB addr20=
-| Bit Position |     31-27 |  26 |  25-24 |    23-21 |  20 |     19-0 |
-|--------------+-----------+-----+--------+----------+-----+----------|
-|              | =0b11111= | =0= | =0b01= | Reserved | =0= | =addr20= |
+#+CAPTION: =PUSHB SR=
+| Bit Position |     31-27 |  26 |  25-24 |     23-5 |  4-0 |
+|--------------+-----------+-----+--------+----------+------|
+|              | =0b11111= | =0= | =0b01= | Reserved | =SR= |
 
-#+CAPTION: =PUSHB SO=
-| Bit Position |     31-27 |  26 |  25-24 |    23-21 |  20 |     19-5 |  4-0 |
-|--------------+-----------+-----+--------+----------+-----+----------+------|
-|              | =0b11111= | =0= | =0b01= | Reserved | =1= | Reserved | =SO= |
+#+CAPTION: =PUSHS SR=
+| Bit Position |     31-27 |  26 |  25-24 |     23-5 |  4-0 |
+|--------------+-----------+-----+--------+----------+------|
+|              | =0b11111= | =0= | =0b10= | Reserved | =SR= |
 
-#+CAPTION: =PUSHS addr20=
-| Bit Position |     31-27 |  26 |  25-24 |    23-21 |  20 |     19-0 |
-|--------------+-----------+-----+--------+----------+-----+----------|
-|              | =0b11111= | =0= | =0b10= | Reserved | =0= | =addr20= |
-
-#+CAPTION: =PUSHS SO=
-| Bit Position |     31-27 |  26 |  25-24 |    23-21 |  20 |     19-5 |  4-0 |
-|--------------+-----------+-----+--------+----------+-----+----------+------|
-|              | =0b11111= | =0= | =0b10= | Reserved | =1= | Reserved | =SO= |
-
-#+CAPTION: =PUSHW addr20=
-| Bit Position |     31-27 |  26 |  25-24 |    23-21 |  20 |     19-0 |
-|--------------+-----------+-----+--------+----------+-----+----------|
-|              | =0b11111= | =0= | =0b11= | Reserved | =0= | =addr20= |
-
-#+CAPTION: =PUSHW SO=
-| Bit Position |     31-27 |  26 |  25-24 |    23-21 |  20 |     19-5 |  4-0 |
-|--------------+-----------+-----+--------+----------+-----+----------+------|
-|              | =0b11111= | =0= | =0b11= | Reserved | =1= | Reserved | =SO= |
+#+CAPTION: =PUSHW SR=
+| Bit Position |     31-27 |  26 |  25-24 |     23-5 |  4-0 |
+|--------------+-----------+-----+--------+----------+------|
+|              | =0b11111= | =0= | =0b11= | Reserved | =SR= |
 
 *** Operation
 
@@ -1201,20 +1164,11 @@ if (instruction[25:24] == 0) {
   else
     MemW[R15] = ZExtend(imm16, 32);
 } else if (instruction[25:24] == 1) {
-  if (instruction[20] == 0)
-    MemW[R15] = SExtend(MemB[addr20], 32);
-  else
-    MemW[R15] = SExtend(SO[7:0], 32); 
+  MemW[R15] = SExtend(SR[7:0], 32); 
 } else if (instruction[25:24] == 2) {
-  if (instruction[20] == 0)
-    MemW[R15] = SExtend(MemS[addr20], 32);
-  else
-    MemW[R15] = SExtend(SO[15:0], 32); 
+  MemW[R15] = SExtend(SR[15:0], 32); 
 } else if (instruction[25:24] == 3) {
-  if (instruction[20] == 0)
-    MemW[R15] = MemW[addr20];
-  else
-    MemW[R15] = SO;
+  MemW[R15] = SR;
 }
 #+END_SRC
 
@@ -1225,67 +1179,40 @@ None.
 
 Pop the value on the top of the stack to the destination operand.
 
-The 32 bit value stored at the address specified by the stack pointer
-(R15) is extracted and stored in the destination operand. The stack
-pointer is incremented by 4 after that.
+The 32 bit value stored at the address specified by the stack pointer (R15) is extracted and stored in the destination
+operand. The stack pointer is incremented by 4 after that.
 
-There are three variants of the instruction - POPB, POPS, and
-POPW. The POPB variant stores the least significant 8 bits in the
-destination operand. The POPW variant stores the least significant 16
-bits in the destination operand. The POPW variant stores the entire
-word in the destination operand.
+There are three variants of the instruction - POPB, POPS, and POPW. The POPB variant stores the least significant 8 bits
+in the destination operand. The POPW variant stores the least significant 16 bits in the destination operand. The POPW
+variant stores the entire word in the destination operand.
 
 *** Encodings
 
-#+CAPTION: =POPB addr20=
-| Bit Position |     31-27 |  26 |  25-24 |    23-21 |  20 |     19-0 |
-|--------------+-----------+-----+--------+----------+-----+----------|
-|              | =0b11111= | =1= | =0b01= | Reserved | =0= | =addr20= |
+#+CAPTION: =POPB DR=
+| Bit Position |     31-27 |  26 |  25-24 |     23-5 |  4-0 |
+|--------------+-----------+-----+--------+----------+------|
+|              | =0b11111= | =1= | =0b01= | Reserved | =DR= |
 
-#+CAPTION: =POPB DO=
-| Bit Position |     31-27 |  26 |  25-24 |    23-21 |  20 |     19-5 |  4-0 |
-|--------------+-----------+-----+--------+----------+-----+----------+------|
-|              | =0b11111= | =1= | =0b01= | Reserved | =1= | Reserved | =DO= |
+#+CAPTION: =POPS DR=
+| Bit Position |     31-27 |  26 |  25-24 |     23-5 |  4-0 |
+|--------------+-----------+-----+--------+----------+------|
+|              | =0b11111= | =1= | =0b10= | Reserved | =DR= |
 
-#+CAPTION: =POPS addr20=
-| Bit Position |     31-27 |  26 |  25-24 |    23-21 |  20 |     19-0 |
-|--------------+-----------+-----+--------+----------+-----+----------|
-|              | =0b11111= | =1= | =0b10= | Reserved | =0= | =addr20= |
-
-#+CAPTION: =POPS DO=
-| Bit Position |     31-27 |  26 |  25-24 |    23-21 |  20 |     19-5 |  4-0 |
-|--------------+-----------+-----+--------+----------+-----+----------+------|
-|              | =0b11111= | =1= | =0b10= | Reserved | =1= | Reserved | =DO= |
-
-#+CAPTION: =POPW addr20=
-| Bit Position |     31-27 |  26 |  25-24 |    23-21 |  20 |     19-0 |
-|--------------+-----------+-----+--------+----------+-----+----------|
-|              | =0b11111= | =1= | =0b11= | Reserved | =0= | =addr20= |
-
-#+CAPTION: =POPW DO=
-| Bit Position |     31-27 |  26 |  25-24 |    23-21 |  20 |     19-5 |  4-0 |
-|--------------+-----------+-----+--------+----------+-----+----------+------|
-|              | =0b11111= | =1= | =0b11= | Reserved | =1= | Reserved | =DO= |
+#+CAPTION: =POPW DR=
+| Bit Position |     31-27 |  26 |  25-24 |     23-5 |  4-0 |
+|--------------+-----------+-----+--------+----------+------|
+|              | =0b11111= | =1= | =0b11= | Reserved | =DR= |
 
 *** Operation
 
 #+BEGIN_SRC
-if (instruction[25:24] == 1) {
-  if (instruction[20] == 0)
-    MemB[addr20] = MemB[R15];
-  else
-    DO[7:0] = MemB[R15];
-} else if (instruction[25:24] == 2) {
-  if (instruction[20] == 0)
-    MemS[addr20] = MemS[R15];
-  else
-    DO[15:0] = MemS[R15];
-} else if (instruction[25:24] == 3) {
-  if (instruction[20] == 0)
-    MemW[addr20] = MemW[R15];
-  else
-    DO = MemW[R15];
-}
+if (instruction[25:24] == 1)
+  DR[7:0] = MemB[R15];
+else if (instruction[25:24] == 2)
+  DR[15:0] = MemS[R15];
+else if (instruction[25:24] == 3)
+  DR = MemW[R15];
+
 
 R15 = R15 + 4;
 #+END_SRC
@@ -1297,23 +1224,22 @@ None.
 
 Get input from an I/O port.
 
-Extract a word from the I/O port whose number is specified as a source
-or immediate operand and store it into the destination operand.
+Extract a word from the I/O port whose number is specified as a source or immediate operand and store it into the
+destination operand.
 
-This is a privileged instruction and can only be executed in
-supervisor mode.
+This is a privileged instruction and can only be executed in supervisor mode.
 
 *** Encodings
 
-#+CAPTION: =IN DO, imm5=
-| Bit Position |     31-27 |  26 |    25-11 | 10-6 |   5 |    4-0 |
-|--------------+-----------+-----+----------+------+-----+--------|
-|              | =0b01110= | =0= | Reserved | =DO= | =0= | =imm5= |
-
-#+CAPTION: =IN DO, SO=
+#+CAPTION: =IN DR, SR=
 | Bit Position |     31-27 |  26 |    25-11 | 10-6 |   5 |  4-0 |
 |--------------+-----------+-----+----------+------+-----+------|
-|              | =0b01110= | =0= | Reserved | =DO= | =1= | =SO= |
+|              | =0b01110= | =0= | Reserved | =DR= | =0= | =SR= |
+
+#+CAPTION: =IN DR, imm5=
+| Bit Position |     31-27 |  26 |    25-11 | 10-6 |   5 |    4-0 |
+|--------------+-----------+-----+----------+------+-----+--------|
+|              | =0b01110= | =0= | Reserved | =DR= | =1= | =imm5= |
 
 *** Operation
 
@@ -1322,13 +1248,13 @@ if (MI == 0)
   Handle privilege violation error;
 
 if (instruction[5] == 0)
-  p = imm5;
+  p = SR[4:0];
 else
-  p = SO[4:0];
+  p = imm5;
 
-DO = Port[p];
+DR = Port[p];
 
-Set_Flags(DO);
+Set_Flags(DR);
 #+END_SRC
 
 *** Flags Affected
@@ -1336,25 +1262,24 @@ Set_Flags(DO);
 
 ** OUT
 
-Otput to an I/O port.
+Output to an I/O port.
 
-Copy a word from the source operand to an I/O port. The number of the
-port is mentioned as a destination or immediate operand.
+Copy a word from the source operand to an I/O port. The number of the port is mentioned as a destination or immediate
+operand.
 
-This is a privileged instruction and can only be executed in
-supervisor mode.
+This is a privileged instruction and can only be executed in supervisor mode.
 
 *** Encodings
 
-#+CAPTION: =OUT imm5, SO=
-| Bit Position |     31-27 |  26 |    25-11 |  10 |    9-5 |  4-0 |
-|--------------+-----------+-----+----------+-----+--------+------|
-|              | =0b01110= | =1= | Reserved | =0= | =imm5= | =SO= |
-
-#+CAPTION: =OUT DO, SO=
+#+CAPTION: =OUT DR, SR=
 | Bit Position |     31-27 |  26 |    25-11 |  10 |  9-5 |  4-0 |
 |--------------+-----------+-----+----------+-----+------+------|
-|              | =0b01110= | =1= | Reserved | =1= | =DO= | =SO= |
+|              | =0b01110= | =1= | Reserved | =0= | =DR= | =SR= |
+
+#+CAPTION: =OUT imm5, SR=
+| Bit Position |     31-27 |  26 |    25-11 |  10 |    9-5 |  4-0 |
+|--------------+-----------+-----+----------+-----+--------+------|
+|              | =0b01110= | =1= | Reserved | =1= | =imm5= | =SR= |
 
 *** Operation
 
@@ -1363,11 +1288,11 @@ if (MI == 0)
   Handle privilege violation error;
 
 if (instruction[10] == 0)
-  p = imm5;
+  p = DR[4:0];
 else
-  p = DO[4:0];
+  p = imm5;
 
-Port[p] = SO;
+Port[p] = SR;
 #+END_SRC
 
 *** Flags Affected
@@ -1377,8 +1302,7 @@ None.
 
 Set supervisor stack pointer register.
 
-This is a privileged instruction and can only be executed in
-supervisor mode.
+This is a privileged instruction and can only be executed in supervisor mode.
 
 The value loaded to SSP register must be aligned on a word boundary.
 
@@ -1389,10 +1313,10 @@ The value loaded to SSP register must be aligned on a word boundary.
 |--------------+-----------+----------+-----+----------|
 |              | =0b00110= | Reserved | =0= | =addr20= |
 
-#+CAPTION: =SSSP SO=
+#+CAPTION: =SSSP SR=
 | Bit Position |     31-27 |    26-21 |  20 |     19-5 |  4-0 |
 |--------------+-----------+----------+-----+----------+------|
-|              | =0b00110= | Reserved | =1= | Reserved | =SO= |
+|              | =0b00110= | Reserved | =1= | Reserved | =SR= |
 
 *** Operation
 
@@ -1401,9 +1325,9 @@ if (MI == 0)
   Handle privilege violation error;
 
 if (instruction[20] == 0)
-  addr = MemW[addr20][19:0];
+  addr = addr20;
 else
-  addr = SO[19:0];
+  addr = SR[19:0];
 
 if ((addr % 4) != 0)
   Handle alignment error;
@@ -1418,18 +1342,16 @@ None.
 
 Stop execution and halt the computer.
 
-It is implementation-defined if/how the computer can transition out of
-the halted state.
+It is implementation-defined if/how the computer can transition out of the halted state.
 
-This is a privileged instruction and can only be executed in
-supervisor mode.
+This is a privileged instruction and can only be executed in supervisor mode.
 
 *** Encodings
 
-#+CAPTION: =SSSP addr20=
-| Bit Position |     31-27 |    26-21 |  20 |     19-0 |
-|--------------+-----------+----------+-----+----------|
-|              | =0b10001= | Reserved | =0= | =addr20= |
+#+CAPTION: =HALT=
+| Bit Position |     31-27 |     26-0 |
+|--------------+-----------+----------|
+|              | =0b10001= | Reserved |
 
 *** Operation
 
