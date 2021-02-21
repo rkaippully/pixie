@@ -1,0 +1,7 @@
+* Pixie Machine
+
+Pixie is a project to build a virtual machine in Haskell.
+
+This project defines a VM specification, an assembler for this machine, and finally a Vm implementation.
+
+- [[https://rkaippully.github.io/pixie/spec.html][Pixie Virtual Machine Specification]]
