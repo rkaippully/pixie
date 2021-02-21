@@ -1232,14 +1232,14 @@ This is a privileged instruction and can only be executed in supervisor mode.
 *** Encodings
 
 #+CAPTION: =IN DR, SR=
-| Bit Position |     31-27 |  26 |    25-11 | 10-6 |   5 |  4-0 |
-|--------------+-----------+-----+----------+------+-----+------|
-|              | =0b01110= | =0= | Reserved | =DR= | =0= | =SR= |
+| Bit Position |     31-27 |  26 |    25-14 | 13-9 |   8 |      7-5 |  4-0 |
+|--------------+-----------+-----+----------+------+-----+----------+------|
+|              | =0b01110= | =0= | Reserved | =DR= | =0= | Reserved | =SR= |
 
-#+CAPTION: =IN DR, imm5=
-| Bit Position |     31-27 |  26 |    25-11 | 10-6 |   5 |    4-0 |
+#+CAPTION: =IN DR, imm8=
+| Bit Position |     31-27 |  26 |    25-14 | 13-9 |   8 |    7-0 |
 |--------------+-----------+-----+----------+------+-----+--------|
-|              | =0b01110= | =0= | Reserved | =DR= | =1= | =imm5= |
+|              | =0b01110= | =0= | Reserved | =DR= | =1= | =imm8= |
 
 *** Operation
 
@@ -1247,10 +1247,10 @@ This is a privileged instruction and can only be executed in supervisor mode.
 if (MI == 0)
   Handle privilege violation error;
 
-if (instruction[5] == 0)
-  p = SR[4:0];
+if (instruction[8] == 0)
+  p = SR[7:0];
 else
-  p = imm5;
+  p = imm8;
 
 DR = Port[p];
 
@@ -1272,14 +1272,14 @@ This is a privileged instruction and can only be executed in supervisor mode.
 *** Encodings
 
 #+CAPTION: =OUT DR, SR=
-| Bit Position |     31-27 |  26 |    25-11 |  10 |  9-5 |  4-0 |
-|--------------+-----------+-----+----------+-----+------+------|
-|              | =0b01110= | =1= | Reserved | =0= | =DR= | =SR= |
+| Bit Position |     31-27 |  26 |    25-14 |  13 |    12-10 |  9-5 |  4-0 |
+|--------------+-----------+-----+----------+-----+----------+------+------|
+|              | =0b01110= | =1= | Reserved | =0= | Reserved | =DR= | =SR= |
 
 #+CAPTION: =OUT imm5, SR=
-| Bit Position |     31-27 |  26 |    25-11 |  10 |    9-5 |  4-0 |
+| Bit Position |     31-27 |  26 |    25-14 |  13 |   12-5 |  4-0 |
 |--------------+-----------+-----+----------+-----+--------+------|
-|              | =0b01110= | =1= | Reserved | =1= | =imm5= | =SR= |
+|              | =0b01110= | =1= | Reserved | =1= | =imm8= | =SR= |
 
 *** Operation
 
@@ -1287,10 +1287,10 @@ This is a privileged instruction and can only be executed in supervisor mode.
 if (MI == 0)
   Handle privilege violation error;
 
-if (instruction[10] == 0)
-  p = DR[4:0];
+if (instruction[13] == 0)
+  p = DR[7:0];
 else
-  p = imm5;
+  p = imm8;
 
 Port[p] = SR;
 #+END_SRC
