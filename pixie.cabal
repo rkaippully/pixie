@@ -1,0 +1,66 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 0ae73b320dad4d186fb2fc1e955631be93c02bbd36b9c5812c9e4c7e748fc73e
+
+name:           pixie
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/rkaippully/pixie#readme>
+homepage:       https://github.com/rkaippully/pixie#readme
+bug-reports:    https://github.com/rkaippully/pixie/issues
+author:         Raghu Kaippully
+maintainer:     rkaippully@gmail.com
+copyright:      Raghu Kaippully
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.org
+
+source-repository head
+  type: git
+  location: https://github.com/rkaippully/pixie
+
+library
+  other-modules:
+      Paths_pixie
+  hs-source-dirs:
+      lib
+  default-extensions: NoImplicitPrelude OverloadedStrings
+  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
+  build-depends:
+      base >=4.7 && <5
+    , relude
+  default-language: Haskell2010
+
+executable pasm
+  main-is: Main.hs
+  other-modules:
+      Paths_pixie
+  hs-source-dirs:
+      pasm/app
+  default-extensions: NoImplicitPrelude OverloadedStrings
+  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , pixie
+    , relude
+  default-language: Haskell2010
+
+test-suite pasm-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_pixie
+  hs-source-dirs:
+      pasm/test
+  default-extensions: NoImplicitPrelude OverloadedStrings
+  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , pixie
+    , relude
+  default-language: Haskell2010
