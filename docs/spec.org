@@ -1370,19 +1370,17 @@ None.
 A Pixie implementation must support the following I/O devices.
 
 - Clock
-- Character Input
-- Character Output
+- Byte Input
+- Byte Output
 
 ** Clock
 
-The clock device can be used to get the current date and time
-according to the Gregorian calendar. The device does not support
-updating the date and time. Any additional details related to date and
-time - such as the timezone or leap second support - are
-implementation-defined.
+The clock device can be used to get the current date and time according to the Gregorian calendar. The device does not
+support updating the date and time. Any additional details related to date and time - such as the timezone or leap
+second support - are implementation-defined.
 
-The date and time can be read from I/O ports numbered 4 and 5. The
-words read from these ports have the following format:
+The date and time can be read from I/O ports numbered 4 and 5. The words read from these ports have the following
+format:
 
 #+CAPTION: Date Word (Port 4)
 | Bit Position |    31-25 | 24-20 | 19-16 |    15-0 |
@@ -1394,33 +1392,36 @@ words read from these ports have the following format:
 | Description  | Reserved |  hour | minute | second |
 | Range        |          |  0-23 |   0-59 |   0-59 |
 
-** Character Input
+** Byte Input
 
-This device provides ASCII character inputs. The device raises
-interrupt vector 8 when a character is available as input. The
-interrupt handler routine can read the character from I/O port
-number 8. The word read from this port has the following format.
+This device provides byte (8-bit) inputs. The device raises interrupt vector 8 when some bytes are available as
+input. 
 
-#+CAPTION: ASCII Input Word Format (Port 8)
-| Bit Position |  31 |      30-7 |            6-0 |
-|--------------+-----+-----------+----------------|
-|              | AVL | Undefined | Character Code |
+The interrupt handler routine can read the number of bytes available from I/O port number 8. The word read from this
+port has the following format.
 
-The character code is valid only if the /AVL/ bit is set.
+#+CAPTION: Available Input Byte Count (Port 8)
+| Bit Position |     31-16 |                 15-0 |
+|--------------+-----------+----------------------|
+|              | Undefined | Available Byte Count |
 
-After reading the code from the port and before issuing a [[*RET][RETI]]
-instruction, the interrupt handler routine must write a word with
-value zero to port 8. This indicates that the handler is ready to
-receive additional interrupts. The device must not raise more
-interrupts unless the zero word is written to the port.
+The handler routine can then read the bytes one by one from I/O port number 9. The word read from this port had the
+following format.
 
-** Character Output
+#+CAPTION: Input Byte (Port 9)
+| Bit Position |      31-8 |        7-0 |
+|--------------+-----------+------------|
+|              | Undefined | Input Byte |
 
-This device can output ASCII characters. Character should be written
-to I/O port number 12 for output. The word written to this port must
-have the following format:
+The count indicated by port 8 decrements by one each time a byte is read from port 9. If a byte is read from port 9
+after the count reaches zero, the returned value from port 9 is implementation defined.
 
-#+CAPTION: ASCII Output Word Format (Port 12)
-| Bit Position |              31-7 |            6-0 |
-|--------------+-------------------+----------------|
-|              | Ignored by device | Character Code |
+** Byte Output
+
+This device can output bytes. The byte should be written to I/O port number 12 for output. The word written to this port
+must have the following format:
+
+#+CAPTION: Output Byte (Port 12)
+| Bit Position |              31-8 |         7-0 |
+|--------------+-------------------+-------------|
+|              | Ignored by device | Output Byte |
