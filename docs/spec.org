@@ -258,9 +258,9 @@ their 5 bit register numbers.
 
 *** Immediate Operands
 
-These operands are located in the instruction itself. They are denoted as =imm5=, =imm8=, and =imm16= in the
-instructions and have lengths of 5, 8, and 16 bits respectively. They are encoded by 5 bit, 8 bit, or 16 bit numbers
-respectively.
+These operands are located in the instruction itself. They are denoted as =imm5=, =imm6=, =imm8=, and =imm16= in the
+instructions and have lengths of 5, 6, 8, and 16 bits respectively. They are encoded by 5 bit, 6 bit, 8 bit, or 16 bit
+numbers respectively.
 
 *** Absolute Address Operands
 
@@ -844,15 +844,15 @@ It is an error if the address of the system call handler routine is not word ali
 
 *** Encodings
 
-#+CAPTION: =SCL imm5=
-| Bit Position |     31-27 |  26 |     25-5 |    4-0 |
+#+CAPTION: =SCL imm6=
+| Bit Position |     31-27 |  26 |     25-6 |    5-0 |
 |--------------+-----------+-----+----------+--------|
-|              | =0b01000= | =1= | Reserved | =imm5= |
+|              | =0b01000= | =1= | Reserved | =imm6= |
 
 *** Operation
 
 #+BEGIN_SRC
-if (SCT[imm5][31] == 0)
+if (SCT[imm6][31] == 0)
   Handle SCT disabled error;
 else {
   temp = R15;
@@ -865,7 +865,7 @@ else {
   MemW[R15] = ZExtend(PC, 32);
   MI = 1;
 
-  addr = SCT[imm5][19:0];
+  addr = SCT[imm6][19:0];
   if ((addr % 4) != 0)
     Handle alignment error;
   else
@@ -1276,7 +1276,7 @@ This is a privileged instruction and can only be executed in supervisor mode.
 |--------------+-----------+-----+----------+-----+----------+------+------|
 |              | =0b01110= | =1= | Reserved | =0= | Reserved | =DR= | =SR= |
 
-#+CAPTION: =OUT imm5, SR=
+#+CAPTION: =OUT imm8, SR=
 | Bit Position |     31-27 |  26 |    25-14 |  13 |   12-5 |  4-0 |
 |--------------+-----------+-----+----------+-----+--------+------|
 |              | =0b01110= | =1= | Reserved | =1= | =imm8= | =SR= |

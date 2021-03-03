@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-02-28 Sun 17:59 -->
+<!-- 2021-03-03 Wed 08:56 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pixie Specification - Version 1.0</title>
@@ -246,65 +246,65 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgbd2ac33">1. Introduction</a></li>
-<li><a href="#orgf88c907">2. Instruction Set Architecture</a>
+<li><a href="#org5550fd4">1. Introduction</a></li>
+<li><a href="#org04641c1">2. Instruction Set Architecture</a>
 <ul>
-<li><a href="#org5ee6a02">2.1. Notation</a></li>
-<li><a href="#org9198a01">2.2. Memory Address Space</a></li>
-<li><a href="#orgca53e47">2.3. Data Types</a></li>
-<li><a href="#org0c34619">2.4. Endianness and Addressing</a></li>
-<li><a href="#org1be436d">2.5. Modes of Operation</a></li>
-<li><a href="#org009df07">2.6. Mode Switching</a></li>
-<li><a href="#org6ae8a2c">2.7. Registers</a></li>
-<li><a href="#orgc26df17">2.8. Memory Layout</a></li>
-<li><a href="#org03cc32a">2.9. CPU Operation</a></li>
-<li><a href="#org1cccd73">2.10. Input and Output</a></li>
-<li><a href="#org81c5858">2.11. System Calls</a></li>
-<li><a href="#orga069b8c">2.12. Initialization</a></li>
-<li><a href="#orgcd394bd">2.13. Instruction Format</a></li>
+<li><a href="#org3a08efc">2.1. Notation</a></li>
+<li><a href="#org070d2c6">2.2. Memory Address Space</a></li>
+<li><a href="#org085cdc3">2.3. Data Types</a></li>
+<li><a href="#orgb021df2">2.4. Endianness and Addressing</a></li>
+<li><a href="#org00db7b1">2.5. Modes of Operation</a></li>
+<li><a href="#org24687d8">2.6. Mode Switching</a></li>
+<li><a href="#org6eff32f">2.7. Registers</a></li>
+<li><a href="#org12533e2">2.8. Memory Layout</a></li>
+<li><a href="#org11abe28">2.9. CPU Operation</a></li>
+<li><a href="#orge16f527">2.10. Input and Output</a></li>
+<li><a href="#orgf221182">2.11. System Calls</a></li>
+<li><a href="#orgbb25870">2.12. Initialization</a></li>
+<li><a href="#org8ee1deb">2.13. Instruction Format</a></li>
 </ul>
 </li>
-<li><a href="#orgf53c4ad">3. Instructions</a>
+<li><a href="#org9b142f1">3. Instructions</a>
 <ul>
-<li><a href="#org38e8d43">3.1. ADD</a></li>
-<li><a href="#org8784372">3.2. SUB</a></li>
-<li><a href="#org1414867">3.3. MUL</a></li>
-<li><a href="#org68868bb">3.4. NEG</a></li>
-<li><a href="#org0191be2">3.5. CMP</a></li>
-<li><a href="#org23974b9">3.6. AND</a></li>
-<li><a href="#org30ff639">3.7. OR</a></li>
-<li><a href="#org7c9674a">3.8. NOT</a></li>
-<li><a href="#orge241d86">3.9. XOR</a></li>
-<li><a href="#org2ea08f3">3.10. SHF</a></li>
-<li><a href="#org4e21dc6">3.11. JC</a></li>
-<li><a href="#orgb1d94f1">3.12. JMP</a></li>
-<li><a href="#org21902f7">3.13. CALL</a></li>
-<li><a href="#orgdf07578">3.14. SCL</a></li>
-<li><a href="#org9f6d98c">3.15. RET</a></li>
-<li><a href="#orgde430cf">3.16. LD</a></li>
-<li><a href="#orge52ebe8">3.17. ST</a></li>
-<li><a href="#org4ab9ab1">3.18. CPY</a></li>
-<li><a href="#orgd7f0d78">3.19. PUSH</a></li>
-<li><a href="#org18633fe">3.20. POP</a></li>
-<li><a href="#orge65bb4e">3.21. IN</a></li>
-<li><a href="#org6a68757">3.22. OUT</a></li>
-<li><a href="#org1095565">3.23. SSSP</a></li>
-<li><a href="#org96bcd3c">3.24. HALT</a></li>
+<li><a href="#org41129ed">3.1. ADD</a></li>
+<li><a href="#org96f493f">3.2. SUB</a></li>
+<li><a href="#org51448f7">3.3. MUL</a></li>
+<li><a href="#org91a1649">3.4. NEG</a></li>
+<li><a href="#orga98f631">3.5. CMP</a></li>
+<li><a href="#org00f246c">3.6. AND</a></li>
+<li><a href="#orgefa74b2">3.7. OR</a></li>
+<li><a href="#orgb3446ca">3.8. NOT</a></li>
+<li><a href="#orgd8ed5c3">3.9. XOR</a></li>
+<li><a href="#org61bdcf7">3.10. SHF</a></li>
+<li><a href="#org96beb5b">3.11. JC</a></li>
+<li><a href="#org154e5cd">3.12. JMP</a></li>
+<li><a href="#orgac7197d">3.13. CALL</a></li>
+<li><a href="#org00ac39b">3.14. SCL</a></li>
+<li><a href="#org84bdced">3.15. RET</a></li>
+<li><a href="#org2648b56">3.16. LD</a></li>
+<li><a href="#org394fac5">3.17. ST</a></li>
+<li><a href="#org2629efb">3.18. CPY</a></li>
+<li><a href="#org377dd18">3.19. PUSH</a></li>
+<li><a href="#orge1aeab2">3.20. POP</a></li>
+<li><a href="#orgfac3ce5">3.21. IN</a></li>
+<li><a href="#org3697abb">3.22. OUT</a></li>
+<li><a href="#org682e0d3">3.23. SSSP</a></li>
+<li><a href="#org7fec6cc">3.24. HALT</a></li>
 </ul>
 </li>
-<li><a href="#org3c47112">4. Standard I/O Devices</a>
+<li><a href="#org5ae0cc5">4. Standard I/O Devices</a>
 <ul>
-<li><a href="#org893621a">4.1. Clock</a></li>
-<li><a href="#orgd4edc3e">4.2. Byte Input</a></li>
-<li><a href="#orgdbdce5e">4.3. Byte Output</a></li>
+<li><a href="#orgb7b1872">4.1. Clock</a></li>
+<li><a href="#org4441892">4.2. Byte Input</a></li>
+<li><a href="#org7058413">4.3. Byte Output</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgbd2ac33" class="outline-2">
-<h2 id="orgbd2ac33"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-org5550fd4" class="outline-2">
+<h2 id="org5550fd4"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Pixie is an abstract computer. This document describes the features and architecture of Pixie.
@@ -312,16 +312,16 @@ Pixie is an abstract computer. This document describes the features and architec
 </div>
 </div>
 
-<div id="outline-container-orgf88c907" class="outline-2">
-<h2 id="orgf88c907"><span class="section-number-2">2</span> Instruction Set Architecture</h2>
+<div id="outline-container-org04641c1" class="outline-2">
+<h2 id="org04641c1"><span class="section-number-2">2</span> Instruction Set Architecture</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The following sections define the instruction set architecture of Pixie.
 </p>
 </div>
 
-<div id="outline-container-org5ee6a02" class="outline-3">
-<h3 id="org5ee6a02"><span class="section-number-3">2.1</span> Notation</h3>
+<div id="outline-container-org3a08efc" class="outline-3">
+<h3 id="org3a08efc"><span class="section-number-3">2.1</span> Notation</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 The notation defined in this section will be used throughout this document.
@@ -416,18 +416,18 @@ The notation defined in this section will be used throughout this document.
 </div>
 </div>
 
-<div id="outline-container-org9198a01" class="outline-3">
-<h3 id="org9198a01"><span class="section-number-3">2.2</span> Memory Address Space</h3>
+<div id="outline-container-org070d2c6" class="outline-3">
+<h3 id="org070d2c6"><span class="section-number-3">2.2</span> Memory Address Space</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Pixie can address 2<sup>20</sup> memory locations each containing a byte. Addresses are numbered from <code>0x00000</code> to <code>0xfffff</code>. Some
-regions of memory are reserved for special uses as mentioned in <a href="#orgc26df17">Memory Layout</a>.
+regions of memory are reserved for special uses as mentioned in <a href="#org12533e2">Memory Layout</a>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgca53e47" class="outline-3">
-<h3 id="orgca53e47"><span class="section-number-3">2.3</span> Data Types</h3>
+<div id="outline-container-org085cdc3" class="outline-3">
+<h3 id="org085cdc3"><span class="section-number-3">2.3</span> Data Types</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 The basic data types of Pixie are bytes (8 bits), shorts (16 bits), words (32 bits), and doublewords (64 bits). A byte
@@ -443,8 +443,8 @@ Some instructions interpret these basic data types as signed and unsigned intege
 </div>
 </div>
 
-<div id="outline-container-org0c34619" class="outline-3">
-<h3 id="org0c34619"><span class="section-number-3">2.4</span> Endianness and Addressing</h3>
+<div id="outline-container-orgb021df2" class="outline-3">
+<h3 id="orgb021df2"><span class="section-number-3">2.4</span> Endianness and Addressing</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Bits of a memory location are arranged from right to left such that the least significant bit is in the rightmost
@@ -458,8 +458,8 @@ address of a short or word is the address of its least significant byte.
 </div>
 </div>
 
-<div id="outline-container-org1be436d" class="outline-3">
-<h3 id="org1be436d"><span class="section-number-3">2.5</span> Modes of Operation</h3>
+<div id="outline-container-org00db7b1" class="outline-3">
+<h3 id="org00db7b1"><span class="section-number-3">2.5</span> Modes of Operation</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 At any point of time, Pixie operates in one of the two modes - user mode or supervisor mode. The user mode is used to
@@ -468,22 +468,22 @@ instructions are only allowed in the supervisor mode.
 </p>
 
 <p>
-The current mode is indicated by the <a href="#org3c11aa4">Mode Indicator Bit</a> in the machine status register. This bit can only be changed
-using a <a href="#org009df07">mode switching operation</a>.
+The current mode is indicated by the <a href="#orgf8c8051">Mode Indicator Bit</a> in the machine status register. This bit can only be changed
+using a <a href="#org24687d8">mode switching operation</a>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org009df07" class="outline-3">
-<h3 id="org009df07"><span class="section-number-3">2.6</span> Mode Switching</h3>
+<div id="outline-container-org24687d8" class="outline-3">
+<h3 id="org24687d8"><span class="section-number-3">2.6</span> Mode Switching</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 The processor switches from user mode to supervisor mode on any of the following conditions:
 </p>
 
 <ul class="org-ul">
-<li>When an interrupt is serviced as described in <a href="#org9d370dd">Interrupt Handling</a> section.</li>
-<li>When the processor executes the <a href="#orgdf07578">SCL</a> instruction.</li>
+<li>When an interrupt is serviced as described in <a href="#org8d685dd">Interrupt Handling</a> section.</li>
+<li>When the processor executes the <a href="#org00ac39b">SCL</a> instruction.</li>
 </ul>
 
 <p>
@@ -491,19 +491,19 @@ The processor switches from supervisor mode to user mode on any of the following
 </p>
 
 <ul class="org-ul">
-<li>When the processor executes the <a href="#org9f6d98c">RETI</a> instruction and the <a href="#org3c11aa4">Mode Indicator</a> bit in the machine status register image in
+<li>When the processor executes the <a href="#org84bdced">RETI</a> instruction and the <a href="#orgf8c8051">Mode Indicator</a> bit in the machine status register image in
 the stack is clear.</li>
-<li>When the processor executes the <a href="#org9f6d98c">RETS</a> instruction.</li>
+<li>When the processor executes the <a href="#org84bdced">RETS</a> instruction.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6ae8a2c" class="outline-3">
-<h3 id="org6ae8a2c"><span class="section-number-3">2.7</span> Registers</h3>
+<div id="outline-container-org6eff32f" class="outline-3">
+<h3 id="org6eff32f"><span class="section-number-3">2.7</span> Registers</h3>
 <div class="outline-text-3" id="text-2-7">
 </div>
-<div id="outline-container-org73b0de7" class="outline-4">
-<h4 id="org73b0de7"><span class="section-number-4">2.7.1</span> General Purpose Registers</h4>
+<div id="outline-container-org3a37839" class="outline-4">
+<h4 id="org3a37839"><span class="section-number-4">2.7.1</span> General Purpose Registers</h4>
 <div class="outline-text-4" id="text-2-7-1">
 <p>
 There are 32 general purpose registers numbered from 0 to 31 which are 32-bits wide. The assembly instructions refer to
@@ -512,8 +512,8 @@ these registers as <code>R0</code> to <code>R31</code> respectively.
 </div>
 </div>
 
-<div id="outline-container-org390c2b3" class="outline-4">
-<h4 id="org390c2b3"><span class="section-number-4">2.7.2</span> Stack Pointer</h4>
+<div id="outline-container-orgd64c312" class="outline-4">
+<h4 id="orgd64c312"><span class="section-number-4">2.7.2</span> Stack Pointer</h4>
 <div class="outline-text-4" id="text-2-7-2">
 <p>
 The general purpose register <code>R15</code> is used as a stack pointer by some instructions.
@@ -521,8 +521,8 @@ The general purpose register <code>R15</code> is used as a stack pointer by some
 </div>
 </div>
 
-<div id="outline-container-org6eb8f85" class="outline-4">
-<h4 id="org6eb8f85"><span class="section-number-4">2.7.3</span> Program Counter Register</h4>
+<div id="outline-container-org0e539a9" class="outline-4">
+<h4 id="org0e539a9"><span class="section-number-4">2.7.3</span> Program Counter Register</h4>
 <div class="outline-text-4" id="text-2-7-3">
 <p>
 There is a 20-bit program counter register - named <code>PC</code> - that contains the address of the next instruction to be
@@ -531,8 +531,8 @@ processed. The address stored in this register must be word aligned.
 </div>
 </div>
 
-<div id="outline-container-org3c11aa4" class="outline-4">
-<h4 id="org3c11aa4"><span class="section-number-4">2.7.4</span> Machine Status Register</h4>
+<div id="outline-container-orgf8c8051" class="outline-4">
+<h4 id="orgf8c8051"><span class="section-number-4">2.7.4</span> Machine Status Register</h4>
 <div class="outline-text-4" id="text-2-7-4">
 <p>
 There is an 32-bit machine status register - named <code>MS</code> - that contains various flags to indicate the status of the
@@ -592,8 +592,8 @@ The machine status register cannot be loaded or stored directly by instructions 
 </div>
 </div>
 
-<div id="outline-container-orgecc119b" class="outline-4">
-<h4 id="orgecc119b"><span class="section-number-4">2.7.5</span> Supervisor Stack Pointer Register</h4>
+<div id="outline-container-orgd07acc9" class="outline-4">
+<h4 id="orgd07acc9"><span class="section-number-4">2.7.5</span> Supervisor Stack Pointer Register</h4>
 <div class="outline-text-4" id="text-2-7-5">
 <p>
 There is a 20-bit supervisor stack pointer register - named <code>SSP</code> - that contains the address of a stack to be used in
@@ -603,8 +603,8 @@ supervisor mode.
 </div>
 </div>
 
-<div id="outline-container-orgc26df17" class="outline-3">
-<h3 id="orgc26df17"><span class="section-number-3">2.8</span> Memory Layout</h3>
+<div id="outline-container-org12533e2" class="outline-3">
+<h3 id="org12533e2"><span class="section-number-3">2.8</span> Memory Layout</h3>
 <div class="outline-text-3" id="text-2-8">
 <p>
 Memory address space of Pixie is classified as shown below.
@@ -631,13 +631,13 @@ Memory address space of Pixie is classified as shown below.
 <tr>
 <td class="org-left"><code>0x00000</code></td>
 <td class="org-left"><code>0x000ff</code></td>
-<td class="org-left"><a href="#orge59d14b">Interrupt Vector Table (IVT)</a></td>
+<td class="org-left"><a href="#org5354039">Interrupt Vector Table (IVT)</a></td>
 </tr>
 
 <tr>
 <td class="org-left"><code>0x00100</code></td>
 <td class="org-left"><code>0x001ff</code></td>
-<td class="org-left"><a href="#org07172a0">System Call Table (SCT)</a></td>
+<td class="org-left"><a href="#org8fdbd3d">System Call Table (SCT)</a></td>
 </tr>
 
 <tr>
@@ -661,8 +661,8 @@ space while in user mode and such accesses will be handled in an implementation-
 </div>
 </div>
 
-<div id="outline-container-org03cc32a" class="outline-3">
-<h3 id="org03cc32a"><span class="section-number-3">2.9</span> CPU Operation</h3>
+<div id="outline-container-org11abe28" class="outline-3">
+<h3 id="org11abe28"><span class="section-number-3">2.9</span> CPU Operation</h3>
 <div class="outline-text-3" id="text-2-9">
 <p>
 Much like any conventional CPU, Pixie executes programs by executing instructions in an instruction cycle. Each cycle
@@ -670,7 +670,7 @@ consists of the following steps in order:
 </p>
 
 <ol class="org-ol">
-<li>Handle any pending interrupts as mentioned in <a href="#org9d370dd">Interrupt Handling</a> section.</li>
+<li>Handle any pending interrupts as mentioned in <a href="#org8d685dd">Interrupt Handling</a> section.</li>
 <li>Fetch the instruction addressed by the program counter register.</li>
 <li>Increment program counter register by 4.</li>
 <li>Decode the instruction. Any indirect memory contents required by the instruction are fetched during this step.</li>
@@ -679,12 +679,12 @@ consists of the following steps in order:
 </div>
 </div>
 
-<div id="outline-container-org1cccd73" class="outline-3">
-<h3 id="org1cccd73"><span class="section-number-3">2.10</span> Input and Output</h3>
+<div id="outline-container-orge16f527" class="outline-3">
+<h3 id="orge16f527"><span class="section-number-3">2.10</span> Input and Output</h3>
 <div class="outline-text-3" id="text-2-10">
 </div>
-<div id="outline-container-orgd492b7a" class="outline-4">
-<h4 id="orgd492b7a"><span class="section-number-4">2.10.1</span> I/O Address Space</h4>
+<div id="outline-container-orge40284f" class="outline-4">
+<h4 id="orge40284f"><span class="section-number-4">2.10.1</span> I/O Address Space</h4>
 <div class="outline-text-4" id="text-2-10-1">
 <p>
 The I/O address space consists of 256 independently addressable 32-bit ports. These ports are numbered from <code>0</code> to
@@ -694,8 +694,8 @@ instructions executed in supervisor mode.
 </div>
 </div>
 
-<div id="outline-container-org9d370dd" class="outline-4">
-<h4 id="org9d370dd"><span class="section-number-4">2.10.2</span> Interrupt Handling</h4>
+<div id="outline-container-org8d685dd" class="outline-4">
+<h4 id="org8d685dd"><span class="section-number-4">2.10.2</span> Interrupt Handling</h4>
 <div class="outline-text-4" id="text-2-10-2">
 <p>
 An interrupt is an asynchronous event triggered by an I/O device. An interrupt is identified with a number, called an
@@ -708,25 +708,25 @@ the processor performs the following operations to service the interrupt:
 </p>
 
 <ol class="org-ol">
-<li>Check <a href="#orge59d14b">IVT</a> entry corresponding to the interrupt vector. If the entry indicates that the interrupt is disabled, no
+<li>Check <a href="#org5354039">IVT</a> entry corresponding to the interrupt vector. If the entry indicates that the interrupt is disabled, no
 further processing is done. Otherwise, the following steps are performed.</li>
 <li>If the processor is in user mode, load <code>ZExtend(SSP, 32)</code> to <code>R15</code> and push the old value of <code>R15</code> to this new stack.</li>
 <li>Push <code>MS</code> and <code>PC</code> to the stack in that order.</li>
-<li>The <a href="#org3c11aa4">Mode Indicator</a> bit in the machine status register is set to indicate that the processor is now executing in
+<li>The <a href="#orgf8c8051">Mode Indicator</a> bit in the machine status register is set to indicate that the processor is now executing in
 supervisor mode.</li>
 <li>Load the address of the interrupt handler routine from the IVT entry to <code>PC</code>.</li>
 <li>Processor begins execution of the interrupt handler routine.</li>
 </ol>
 
 <p>
-The interrupt handler routine can execute the <a href="#org9f6d98c">RETI</a> instruction to transfer the control back to the point where the
+The interrupt handler routine can execute the <a href="#org84bdced">RETI</a> instruction to transfer the control back to the point where the
 interrupt occurred.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge59d14b" class="outline-4">
-<h4 id="orge59d14b"><span class="section-number-4">2.10.3</span> Interrupt Vector Table</h4>
+<div id="outline-container-org5354039" class="outline-4">
+<h4 id="org5354039"><span class="section-number-4">2.10.3</span> Interrupt Vector Table</h4>
 <div class="outline-text-4" id="text-2-10-3">
 <p>
 The interrupt vector table (IVT) is a data structure located at memory address <code>0x00000</code>. It is an array of 64 elements
@@ -772,11 +772,11 @@ The operating system is responsible for populating entries in this table during 
 </div>
 </div>
 
-<div id="outline-container-org81c5858" class="outline-3">
-<h3 id="org81c5858"><span class="section-number-3">2.11</span> System Calls</h3>
+<div id="outline-container-orgf221182" class="outline-3">
+<h3 id="orgf221182"><span class="section-number-3">2.11</span> System Calls</h3>
 <div class="outline-text-3" id="text-2-11">
 <p>
-User mode programs can invoke services provided by the operating system using the <a href="#orgdf07578">SCL</a> instruction. This instruction
+User mode programs can invoke services provided by the operating system using the <a href="#org00ac39b">SCL</a> instruction. This instruction
 provides a protected way of transferring control from user mode to supervisor mode.
 </p>
 
@@ -790,11 +790,11 @@ Upon encountering the SCL instruction, the processor performs the following step
 </p>
 
 <ol class="org-ol">
-<li>Check the <a href="#org07172a0">SCT</a> entry corresponding to the system call vector. Disabled entries will result in an error which will be
+<li>Check the <a href="#org8fdbd3d">SCT</a> entry corresponding to the system call vector. Disabled entries will result in an error which will be
 handled in an implementation-defined manner.</li>
 <li>Load <code>ZExtend(SSP, 32)</code> to <code>R15</code> and push the old value of <code>R15</code> in this new stack.</li>
 <li>Push <code>MS</code> and <code>PC</code> to the stack in that order.</li>
-<li>The <a href="#org3c11aa4">Mode Indicator</a> bit in the machine status register is set to indicate that the processor is now executing in
+<li>The <a href="#orgf8c8051">Mode Indicator</a> bit in the machine status register is set to indicate that the processor is now executing in
 supervisor mode.</li>
 <li>Load the address of the system call handler routine from the SCT entry to <code>PC</code>.</li>
 <li>Processor begins execution of the system call handler routine.</li>
@@ -806,13 +806,13 @@ stack.
 </p>
 
 <p>
-The system call handler routine can return to user mode by executing the <a href="#org9f6d98c">RETS</a> instruction. Results can be passed to user
+The system call handler routine can return to user mode by executing the <a href="#org84bdced">RETS</a> instruction. Results can be passed to user
 mode caller in the general purpose registers or user mode stack.
 </p>
 </div>
 
-<div id="outline-container-org07172a0" class="outline-4">
-<h4 id="org07172a0"><span class="section-number-4">2.11.1</span> System Call Table</h4>
+<div id="outline-container-org8fdbd3d" class="outline-4">
+<h4 id="org8fdbd3d"><span class="section-number-4">2.11.1</span> System Call Table</h4>
 <div class="outline-text-4" id="text-2-11-1">
 <p>
 The system call table (SCT) is a data structure located at memory address <code>0x00100</code>. It is an array of 64 elements
@@ -858,8 +858,8 @@ The operating system is responsible for populating entries in this table during 
 </div>
 </div>
 
-<div id="outline-container-orga069b8c" class="outline-3">
-<h3 id="orga069b8c"><span class="section-number-3">2.12</span> Initialization</h3>
+<div id="outline-container-orgbb25870" class="outline-3">
+<h3 id="orgbb25870"><span class="section-number-3">2.12</span> Initialization</h3>
 <div class="outline-text-3" id="text-2-12">
 <p>
 During start up, Pixie is initialized to the following state:
@@ -924,8 +924,8 @@ implementation-defined manner.
 </div>
 </div>
 
-<div id="outline-container-orgcd394bd" class="outline-3">
-<h3 id="orgcd394bd"><span class="section-number-3">2.13</span> Instruction Format</h3>
+<div id="outline-container-org8ee1deb" class="outline-3">
+<h3 id="org8ee1deb"><span class="section-number-3">2.13</span> Instruction Format</h3>
 <div class="outline-text-3" id="text-2-13">
 <p>
 An instruction is comprises of an opcode, an optional destination operand, zero to two source operands arranged in that
@@ -937,8 +937,8 @@ The operands are classified into different categories mentioned below.
 </p>
 </div>
 
-<div id="outline-container-orgb489b53" class="outline-4">
-<h4 id="orgb489b53"><span class="section-number-4">2.13.1</span> Register Operands</h4>
+<div id="outline-container-org3688ec1" class="outline-4">
+<h4 id="org3688ec1"><span class="section-number-4">2.13.1</span> Register Operands</h4>
 <div class="outline-text-4" id="text-2-13-1">
 <p>
 These operands are located in a general purpose register. They are
@@ -948,19 +948,19 @@ their 5 bit register numbers.
 </div>
 </div>
 
-<div id="outline-container-org9cab26d" class="outline-4">
-<h4 id="org9cab26d"><span class="section-number-4">2.13.2</span> Immediate Operands</h4>
+<div id="outline-container-org99670cf" class="outline-4">
+<h4 id="org99670cf"><span class="section-number-4">2.13.2</span> Immediate Operands</h4>
 <div class="outline-text-4" id="text-2-13-2">
 <p>
-These operands are located in the instruction itself. They are denoted as <code>imm5</code>, <code>imm8</code>, and <code>imm16</code> in the
-instructions and have lengths of 5, 8, and 16 bits respectively. They are encoded by 5 bit, 8 bit, or 16 bit numbers
-respectively.
+These operands are located in the instruction itself. They are denoted as <code>imm5</code>, <code>imm6</code>, <code>imm8</code>, and <code>imm16</code> in the
+instructions and have lengths of 5, 6, 8, and 16 bits respectively. They are encoded by 5 bit, 6 bit, 8 bit, or 16 bit
+numbers respectively.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6cc5372" class="outline-4">
-<h4 id="org6cc5372"><span class="section-number-4">2.13.3</span> Absolute Address Operands</h4>
+<div id="outline-container-orgde0cef8" class="outline-4">
+<h4 id="orgde0cef8"><span class="section-number-4">2.13.3</span> Absolute Address Operands</h4>
 <div class="outline-text-4" id="text-2-13-3">
 <p>
 These operands are memory addressed located in the instruction itself. They are denoted as <code>addr20</code> in the instructions
@@ -969,8 +969,8 @@ and have a length of 20 bits. They are encoded as a 20 bit number.
 </div>
 </div>
 
-<div id="outline-container-org7824204" class="outline-4">
-<h4 id="org7824204"><span class="section-number-4">2.13.4</span> Register Indirect</h4>
+<div id="outline-container-orgda524aa" class="outline-4">
+<h4 id="orgda524aa"><span class="section-number-4">2.13.4</span> Register Indirect</h4>
 <div class="outline-text-4" id="text-2-13-4">
 <p>
 These operands are located in a memory location whose address is located in a general purpose register. They are denoted
@@ -979,8 +979,8 @@ as <code>[SR]</code> and <code>[DR]</code> in the instructions. They are encoded
 </div>
 </div>
 
-<div id="outline-container-orgc2bfd82" class="outline-4">
-<h4 id="orgc2bfd82"><span class="section-number-4">2.13.5</span> Register Indirect with Index Register</h4>
+<div id="outline-container-org15cf489" class="outline-4">
+<h4 id="org15cf489"><span class="section-number-4">2.13.5</span> Register Indirect with Index Register</h4>
 <div class="outline-text-4" id="text-2-13-5">
 <p>
 These operands are located in a memory location whose address is formed by adding the contents of two general purpose
@@ -992,8 +992,8 @@ numbers arranged consecutively.
 </div>
 </div>
 
-<div id="outline-container-orgf53c4ad" class="outline-2">
-<h2 id="orgf53c4ad"><span class="section-number-2">3</span> Instructions</h2>
+<div id="outline-container-org9b142f1" class="outline-2">
+<h2 id="org9b142f1"><span class="section-number-2">3</span> Instructions</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 This section contains a comprehencive list of all instructions and their encodings.
@@ -1005,16 +1005,16 @@ reasons.
 </p>
 </div>
 
-<div id="outline-container-org38e8d43" class="outline-3">
-<h3 id="org38e8d43"><span class="section-number-3">3.1</span> ADD</h3>
+<div id="outline-container-org41129ed" class="outline-3">
+<h3 id="org41129ed"><span class="section-number-3">3.1</span> ADD</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Adds two source operands and stores the result in the destination operand.
 </p>
 </div>
 
-<div id="outline-container-org62795d3" class="outline-4">
-<h4 id="org62795d3"><span class="section-number-4">3.1.1</span> Encodings</h4>
+<div id="outline-container-orge297966" class="outline-4">
+<h4 id="orge297966"><span class="section-number-4">3.1.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 7:</span> <code>ADD DR, SR1, SR2</code></caption>
@@ -1098,8 +1098,8 @@ Adds two source operands and stores the result in the destination operand.
 </div>
 </div>
 
-<div id="outline-container-org4c51ef7" class="outline-4">
-<h4 id="org4c51ef7"><span class="section-number-4">3.1.2</span> Operation</h4>
+<div id="outline-container-org199e275" class="outline-4">
+<h4 id="org199e275"><span class="section-number-4">3.1.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <pre class="example">
 if (instruction[16] == 0)
@@ -1112,8 +1112,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-orgc5b2a5c" class="outline-4">
-<h4 id="orgc5b2a5c"><span class="section-number-4">3.1.3</span> Flags Affected</h4>
+<div id="outline-container-org7320e58" class="outline-4">
+<h4 id="org7320e58"><span class="section-number-4">3.1.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -1122,16 +1122,16 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-org8784372" class="outline-3">
-<h3 id="org8784372"><span class="section-number-3">3.2</span> SUB</h3>
+<div id="outline-container-org96f493f" class="outline-3">
+<h3 id="org96f493f"><span class="section-number-3">3.2</span> SUB</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Subtracts the second source operand from the first source operand and stores the result in the destination operand.
 </p>
 </div>
 
-<div id="outline-container-org848a411" class="outline-4">
-<h4 id="org848a411"><span class="section-number-4">3.2.1</span> Encodings</h4>
+<div id="outline-container-org35763d8" class="outline-4">
+<h4 id="org35763d8"><span class="section-number-4">3.2.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 9:</span> <code>SUB DR, SR1, SR2</code></caption>
@@ -1215,8 +1215,8 @@ Subtracts the second source operand from the first source operand and stores the
 </div>
 </div>
 
-<div id="outline-container-orgd51ebe8" class="outline-4">
-<h4 id="orgd51ebe8"><span class="section-number-4">3.2.2</span> Operation</h4>
+<div id="outline-container-orge090eb9" class="outline-4">
+<h4 id="orge090eb9"><span class="section-number-4">3.2.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <pre class="example">
 if (instruction[16] == 0)
@@ -1229,8 +1229,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-org8dc738c" class="outline-4">
-<h4 id="org8dc738c"><span class="section-number-4">3.2.3</span> Flags Affected</h4>
+<div id="outline-container-org336995b" class="outline-4">
+<h4 id="org336995b"><span class="section-number-4">3.2.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -1239,8 +1239,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-org1414867" class="outline-3">
-<h3 id="org1414867"><span class="section-number-3">3.3</span> MUL</h3>
+<div id="outline-container-org51448f7" class="outline-3">
+<h3 id="org51448f7"><span class="section-number-3">3.3</span> MUL</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 Multiples two source operands and stores the result in the destination operand. The size of the destination operand is
@@ -1274,8 +1274,8 @@ register <code>(DR + 1) modulo 8</code>.
 </p>
 </div>
 
-<div id="outline-container-org4a2ff9d" class="outline-4">
-<h4 id="org4a2ff9d"><span class="section-number-4">3.3.1</span> Encodings</h4>
+<div id="outline-container-org4506c05" class="outline-4">
+<h4 id="org4506c05"><span class="section-number-4">3.3.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 11:</span> <code>MULBI DR, SR1, SR2</code></caption>
@@ -1555,8 +1555,8 @@ register <code>(DR + 1) modulo 8</code>.
 </div>
 </div>
 
-<div id="outline-container-orgf1c37ce" class="outline-4">
-<h4 id="orgf1c37ce"><span class="section-number-4">3.3.2</span> Operation</h4>
+<div id="outline-container-orga99fa49" class="outline-4">
+<h4 id="orga99fa49"><span class="section-number-4">3.3.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <pre class="example">
 if (instruction[25:24] == 1) {
@@ -1589,8 +1589,8 @@ Set_Flags(result);
 </div>
 </div>
 
-<div id="outline-container-org3e944ad" class="outline-4">
-<h4 id="org3e944ad"><span class="section-number-4">3.3.3</span> Flags Affected</h4>
+<div id="outline-container-orga6c0217" class="outline-4">
+<h4 id="orga6c0217"><span class="section-number-4">3.3.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -1599,8 +1599,8 @@ Set_Flags(result);
 </div>
 </div>
 
-<div id="outline-container-org68868bb" class="outline-3">
-<h3 id="org68868bb"><span class="section-number-3">3.4</span> NEG</h3>
+<div id="outline-container-org91a1649" class="outline-3">
+<h3 id="org91a1649"><span class="section-number-3">3.4</span> NEG</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 Two's complement negation.
@@ -1611,8 +1611,8 @@ Sets the destination operand to the two's complement of the source operand.
 </p>
 </div>
 
-<div id="outline-container-org5b130cc" class="outline-4">
-<h4 id="org5b130cc"><span class="section-number-4">3.4.1</span> Encodings</h4>
+<div id="outline-container-org2dba8e2" class="outline-4">
+<h4 id="org2dba8e2"><span class="section-number-4">3.4.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 17:</span> <code>NEG DR, SR</code></caption>
@@ -1650,8 +1650,8 @@ Sets the destination operand to the two's complement of the source operand.
 </div>
 </div>
 
-<div id="outline-container-orgfc481d7" class="outline-4">
-<h4 id="orgfc481d7"><span class="section-number-4">3.4.2</span> Operation</h4>
+<div id="outline-container-orgc561e4e" class="outline-4">
+<h4 id="orgc561e4e"><span class="section-number-4">3.4.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-4-2">
 <pre class="example">
 DR = -SR;
@@ -1661,8 +1661,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-orgb4debe4" class="outline-4">
-<h4 id="orgb4debe4"><span class="section-number-4">3.4.3</span> Flags Affected</h4>
+<div id="outline-container-org7e90aeb" class="outline-4">
+<h4 id="org7e90aeb"><span class="section-number-4">3.4.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-4-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -1671,8 +1671,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-org0191be2" class="outline-3">
-<h3 id="org0191be2"><span class="section-number-3">3.5</span> CMP</h3>
+<div id="outline-container-orga98f631" class="outline-3">
+<h3 id="orga98f631"><span class="section-number-3">3.5</span> CMP</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 Compares two operands.
@@ -1684,8 +1684,8 @@ flags according to the result. The result is discarded.
 </p>
 </div>
 
-<div id="outline-container-org8a0f6f7" class="outline-4">
-<h4 id="org8a0f6f7"><span class="section-number-4">3.5.1</span> Encodings</h4>
+<div id="outline-container-org58724aa" class="outline-4">
+<h4 id="org58724aa"><span class="section-number-4">3.5.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-5-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 18:</span> <code>CMP SR1, SR2</code></caption>
@@ -1765,8 +1765,8 @@ flags according to the result. The result is discarded.
 </div>
 </div>
 
-<div id="outline-container-org35e3e89" class="outline-4">
-<h4 id="org35e3e89"><span class="section-number-4">3.5.2</span> Operation</h4>
+<div id="outline-container-orgcf6182b" class="outline-4">
+<h4 id="orgcf6182b"><span class="section-number-4">3.5.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-5-2">
 <pre class="example">
 if (instruction[16] == 0)
@@ -1779,8 +1779,8 @@ Set_Flags(result);
 </div>
 </div>
 
-<div id="outline-container-orgf72d3ce" class="outline-4">
-<h4 id="orgf72d3ce"><span class="section-number-4">3.5.3</span> Flags Affected</h4>
+<div id="outline-container-orge87b079" class="outline-4">
+<h4 id="orge87b079"><span class="section-number-4">3.5.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-5-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -1789,16 +1789,16 @@ Set_Flags(result);
 </div>
 </div>
 
-<div id="outline-container-org23974b9" class="outline-3">
-<h3 id="org23974b9"><span class="section-number-3">3.6</span> AND</h3>
+<div id="outline-container-org00f246c" class="outline-3">
+<h3 id="org00f246c"><span class="section-number-3">3.6</span> AND</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 Performs bitwise logical AND of two source operands and stores the result in the destination operand.
 </p>
 </div>
 
-<div id="outline-container-org9b40d2d" class="outline-4">
-<h4 id="org9b40d2d"><span class="section-number-4">3.6.1</span> Encodings</h4>
+<div id="outline-container-org6946e36" class="outline-4">
+<h4 id="org6946e36"><span class="section-number-4">3.6.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-6-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 20:</span> <code>AND DR, SR1, SR2</code></caption>
@@ -1882,8 +1882,8 @@ Performs bitwise logical AND of two source operands and stores the result in the
 </div>
 </div>
 
-<div id="outline-container-orga9ee478" class="outline-4">
-<h4 id="orga9ee478"><span class="section-number-4">3.6.2</span> Operation</h4>
+<div id="outline-container-org73ff876" class="outline-4">
+<h4 id="org73ff876"><span class="section-number-4">3.6.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-6-2">
 <pre class="example">
 if (instruction[16] == 0)
@@ -1896,8 +1896,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-org2ac9b68" class="outline-4">
-<h4 id="org2ac9b68"><span class="section-number-4">3.6.3</span> Flags Affected</h4>
+<div id="outline-container-org8e8e1a6" class="outline-4">
+<h4 id="org8e8e1a6"><span class="section-number-4">3.6.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-6-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -1906,16 +1906,16 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-org30ff639" class="outline-3">
-<h3 id="org30ff639"><span class="section-number-3">3.7</span> OR</h3>
+<div id="outline-container-orgefa74b2" class="outline-3">
+<h3 id="orgefa74b2"><span class="section-number-3">3.7</span> OR</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 Performs bitwise logical OR of two source operands and stores the result in the destination operand.
 </p>
 </div>
 
-<div id="outline-container-org0fab0d9" class="outline-4">
-<h4 id="org0fab0d9"><span class="section-number-4">3.7.1</span> Encodings</h4>
+<div id="outline-container-org777bf37" class="outline-4">
+<h4 id="org777bf37"><span class="section-number-4">3.7.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-7-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 22:</span> <code>OR DR, SR1, SR2</code></caption>
@@ -1999,8 +1999,8 @@ Performs bitwise logical OR of two source operands and stores the result in the 
 </div>
 </div>
 
-<div id="outline-container-org273816b" class="outline-4">
-<h4 id="org273816b"><span class="section-number-4">3.7.2</span> Operation</h4>
+<div id="outline-container-orgb9e68ab" class="outline-4">
+<h4 id="orgb9e68ab"><span class="section-number-4">3.7.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-7-2">
 <pre class="example">
 if (instruction[16] == 0)
@@ -2013,8 +2013,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-org5a53390" class="outline-4">
-<h4 id="org5a53390"><span class="section-number-4">3.7.3</span> Flags Affected</h4>
+<div id="outline-container-org88ecb2f" class="outline-4">
+<h4 id="org88ecb2f"><span class="section-number-4">3.7.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-7-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -2023,8 +2023,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-org7c9674a" class="outline-3">
-<h3 id="org7c9674a"><span class="section-number-3">3.8</span> NOT</h3>
+<div id="outline-container-orgb3446ca" class="outline-3">
+<h3 id="orgb3446ca"><span class="section-number-3">3.8</span> NOT</h3>
 <div class="outline-text-3" id="text-3-8">
 <p>
 Bitwise complement.
@@ -2035,8 +2035,8 @@ Perform a bitwise complement of the source operand and store the result into the
 </p>
 </div>
 
-<div id="outline-container-org488c56c" class="outline-4">
-<h4 id="org488c56c"><span class="section-number-4">3.8.1</span> Encodings</h4>
+<div id="outline-container-org182e479" class="outline-4">
+<h4 id="org182e479"><span class="section-number-4">3.8.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-8-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 24:</span> <code>NOT DR, SR</code></caption>
@@ -2074,8 +2074,8 @@ Perform a bitwise complement of the source operand and store the result into the
 </div>
 </div>
 
-<div id="outline-container-org5fccc83" class="outline-4">
-<h4 id="org5fccc83"><span class="section-number-4">3.8.2</span> Operation</h4>
+<div id="outline-container-org5251c8a" class="outline-4">
+<h4 id="org5251c8a"><span class="section-number-4">3.8.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-8-2">
 <pre class="example">
 DR = ~SR;
@@ -2085,8 +2085,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-org309e397" class="outline-4">
-<h4 id="org309e397"><span class="section-number-4">3.8.3</span> Flags Affected</h4>
+<div id="outline-container-orgd4b862e" class="outline-4">
+<h4 id="orgd4b862e"><span class="section-number-4">3.8.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-8-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -2095,16 +2095,16 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-orge241d86" class="outline-3">
-<h3 id="orge241d86"><span class="section-number-3">3.9</span> XOR</h3>
+<div id="outline-container-orgd8ed5c3" class="outline-3">
+<h3 id="orgd8ed5c3"><span class="section-number-3">3.9</span> XOR</h3>
 <div class="outline-text-3" id="text-3-9">
 <p>
 Bitwise exclusive-OR.
 </p>
 </div>
 
-<div id="outline-container-org7070004" class="outline-4">
-<h4 id="org7070004"><span class="section-number-4">3.9.1</span> Encodings</h4>
+<div id="outline-container-org3c7badf" class="outline-4">
+<h4 id="org3c7badf"><span class="section-number-4">3.9.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-9-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 25:</span> <code>XOR DR, SR1, SR2</code></caption>
@@ -2188,8 +2188,8 @@ Bitwise exclusive-OR.
 </div>
 </div>
 
-<div id="outline-container-orgaa2ed97" class="outline-4">
-<h4 id="orgaa2ed97"><span class="section-number-4">3.9.2</span> Operation</h4>
+<div id="outline-container-orgd71e899" class="outline-4">
+<h4 id="orgd71e899"><span class="section-number-4">3.9.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-9-2">
 <pre class="example">
 if (instruction[16] == 0)
@@ -2202,8 +2202,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-orgb258892" class="outline-4">
-<h4 id="orgb258892"><span class="section-number-4">3.9.3</span> Flags Affected</h4>
+<div id="outline-container-org5bba962" class="outline-4">
+<h4 id="org5bba962"><span class="section-number-4">3.9.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-9-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -2212,8 +2212,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-org2ea08f3" class="outline-3">
-<h3 id="org2ea08f3"><span class="section-number-3">3.10</span> SHF</h3>
+<div id="outline-container-org61bdcf7" class="outline-3">
+<h3 id="org61bdcf7"><span class="section-number-3">3.10</span> SHF</h3>
 <div class="outline-text-3" id="text-3-10">
 <p>
 Bit shift.
@@ -2231,8 +2231,8 @@ arithmetic right shift operation (<code>SHFRA</code>) fills the vacated bit posi
 </p>
 </div>
 
-<div id="outline-container-orgd0531ba" class="outline-4">
-<h4 id="orgd0531ba"><span class="section-number-4">3.10.1</span> Encodings</h4>
+<div id="outline-container-orgd9853bc" class="outline-4">
+<h4 id="orgd9853bc"><span class="section-number-4">3.10.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-10-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 27:</span> <code>SHFL DR, SR1, SR2</code></caption>
@@ -2512,8 +2512,8 @@ arithmetic right shift operation (<code>SHFRA</code>) fills the vacated bit posi
 </div>
 </div>
 
-<div id="outline-container-org441356f" class="outline-4">
-<h4 id="org441356f"><span class="section-number-4">3.10.2</span> Operation</h4>
+<div id="outline-container-org7862c7d" class="outline-4">
+<h4 id="org7862c7d"><span class="section-number-4">3.10.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-10-2">
 <pre class="example">
 if (instruction[5] == 0) {
@@ -2536,8 +2536,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-org3c33e04" class="outline-4">
-<h4 id="org3c33e04"><span class="section-number-4">3.10.3</span> Flags Affected</h4>
+<div id="outline-container-orge80a50e" class="outline-4">
+<h4 id="orge80a50e"><span class="section-number-4">3.10.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-10-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -2546,8 +2546,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-org4e21dc6" class="outline-3">
-<h3 id="org4e21dc6"><span class="section-number-3">3.11</span> JC</h3>
+<div id="outline-container-org96beb5b" class="outline-3">
+<h3 id="org96beb5b"><span class="section-number-3">3.11</span> JC</h3>
 <div class="outline-text-3" id="text-3-11">
 <p>
 Jump conditionally. Tests zero or more flags and performs a jump if any of them are set.
@@ -2563,8 +2563,8 @@ It is an error if the target address of the jump is not word aligned.
 </p>
 </div>
 
-<div id="outline-container-orgfe91bd2" class="outline-4">
-<h4 id="orgfe91bd2"><span class="section-number-4">3.11.1</span> Encodings</h4>
+<div id="outline-container-org81283ec" class="outline-4">
+<h4 id="org81283ec"><span class="section-number-4">3.11.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-11-1">
 <ul class="org-ul">
 <li><code>JC    addr20</code></li>
@@ -2751,8 +2751,8 @@ It is an error if the target address of the jump is not word aligned.
 </div>
 </div>
 
-<div id="outline-container-org1ecbf7c" class="outline-4">
-<h4 id="org1ecbf7c"><span class="section-number-4">3.11.2</span> Operation</h4>
+<div id="outline-container-org79bd7c9" class="outline-4">
+<h4 id="org79bd7c9"><span class="section-number-4">3.11.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-11-2">
 <pre class="example">
 if ((n &amp;&amp; NF) || (p &amp;&amp; PF) || (z &amp;&amp; ZF)) {
@@ -2772,8 +2772,8 @@ if ((n &amp;&amp; NF) || (p &amp;&amp; PF) || (z &amp;&amp; ZF)) {
 </div>
 </div>
 
-<div id="outline-container-orgb464188" class="outline-4">
-<h4 id="orgb464188"><span class="section-number-4">3.11.3</span> Flags Affected</h4>
+<div id="outline-container-orga38f697" class="outline-4">
+<h4 id="orga38f697"><span class="section-number-4">3.11.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-11-3">
 <p>
 None.
@@ -2782,15 +2782,15 @@ None.
 </div>
 </div>
 
-<div id="outline-container-orgb1d94f1" class="outline-3">
-<h3 id="orgb1d94f1"><span class="section-number-3">3.12</span> JMP</h3>
+<div id="outline-container-org154e5cd" class="outline-3">
+<h3 id="org154e5cd"><span class="section-number-3">3.12</span> JMP</h3>
 <div class="outline-text-3" id="text-3-12">
 <p>
 Jump unconditionally.
 </p>
 
 <p>
-Note that this instruction uses the same opcode as <a href="#org4e21dc6">JC</a> and the encoding is the same as <code>JCnzp</code>.
+Note that this instruction uses the same opcode as <a href="#org96beb5b">JC</a> and the encoding is the same as <code>JCnzp</code>.
 </p>
 
 <p>
@@ -2798,8 +2798,8 @@ It is an error if the target address of the jump is not word aligned.
 </p>
 </div>
 
-<div id="outline-container-org3652021" class="outline-4">
-<h4 id="org3652021"><span class="section-number-4">3.12.1</span> Encodings</h4>
+<div id="outline-container-org8361c20" class="outline-4">
+<h4 id="org8361c20"><span class="section-number-4">3.12.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-12-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 36:</span> <code>JMP addr20</code></caption>
@@ -2929,8 +2929,8 @@ It is an error if the target address of the jump is not word aligned.
 </div>
 </div>
 
-<div id="outline-container-org8e41c15" class="outline-4">
-<h4 id="org8e41c15"><span class="section-number-4">3.12.2</span> Operation</h4>
+<div id="outline-container-orga05f55f" class="outline-4">
+<h4 id="orga05f55f"><span class="section-number-4">3.12.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-12-2">
 <pre class="example">
 if (instruction[21:20] == 0)
@@ -2948,8 +2948,8 @@ else
 </div>
 </div>
 
-<div id="outline-container-org453d9d1" class="outline-4">
-<h4 id="org453d9d1"><span class="section-number-4">3.12.3</span> Flags Affected</h4>
+<div id="outline-container-orga366e86" class="outline-4">
+<h4 id="orga366e86"><span class="section-number-4">3.12.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-12-3">
 <p>
 None.
@@ -2958,8 +2958,8 @@ None.
 </div>
 </div>
 
-<div id="outline-container-org21902f7" class="outline-3">
-<h3 id="org21902f7"><span class="section-number-3">3.13</span> CALL</h3>
+<div id="outline-container-orgac7197d" class="outline-3">
+<h3 id="orgac7197d"><span class="section-number-3">3.13</span> CALL</h3>
 <div class="outline-text-3" id="text-3-13">
 <p>
 Call subroutine.
@@ -2974,8 +2974,8 @@ It is an error if the address of the subroutine is not word aligned.
 </p>
 </div>
 
-<div id="outline-container-org4482c60" class="outline-4">
-<h4 id="org4482c60"><span class="section-number-4">3.13.1</span> Encodings</h4>
+<div id="outline-container-orgc1619e2" class="outline-4">
+<h4 id="orgc1619e2"><span class="section-number-4">3.13.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-13-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 39:</span> <code>CALL addr20</code></caption>
@@ -3105,8 +3105,8 @@ It is an error if the address of the subroutine is not word aligned.
 </div>
 </div>
 
-<div id="outline-container-orgc81062b" class="outline-4">
-<h4 id="orgc81062b"><span class="section-number-4">3.13.2</span> Operation</h4>
+<div id="outline-container-orgb3e0937" class="outline-4">
+<h4 id="orgb3e0937"><span class="section-number-4">3.13.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-13-2">
 <pre class="example">
 R15 = R15 - 4;
@@ -3126,8 +3126,8 @@ else
 </div>
 </div>
 
-<div id="outline-container-org8a95e39" class="outline-4">
-<h4 id="org8a95e39"><span class="section-number-4">3.13.3</span> Flags Affected</h4>
+<div id="outline-container-org304099b" class="outline-4">
+<h4 id="org304099b"><span class="section-number-4">3.13.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-13-3">
 <p>
 None.
@@ -3136,8 +3136,8 @@ None.
 </div>
 </div>
 
-<div id="outline-container-orgdf07578" class="outline-3">
-<h3 id="orgdf07578"><span class="section-number-3">3.14</span> SCL</h3>
+<div id="outline-container-org00ac39b" class="outline-3">
+<h3 id="org00ac39b"><span class="section-number-3">3.14</span> SCL</h3>
 <div class="outline-text-3" id="text-3-14">
 <p>
 Call operating system service.
@@ -3152,11 +3152,11 @@ It is an error if the address of the system call handler routine is not word ali
 </p>
 </div>
 
-<div id="outline-container-org3eaa95f" class="outline-4">
-<h4 id="org3eaa95f"><span class="section-number-4">3.14.1</span> Encodings</h4>
+<div id="outline-container-orgda11f81" class="outline-4">
+<h4 id="orgda11f81"><span class="section-number-4">3.14.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-14-1">
 <table>
-<caption class="t-above"><span class="table-number">Table 42:</span> <code>SCL imm5</code></caption>
+<caption class="t-above"><span class="table-number">Table 42:</span> <code>SCL imm6</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -3174,8 +3174,8 @@ It is an error if the address of the system call handler routine is not word ali
 <th scope="col" class="org-left">Bit Position</th>
 <th scope="col" class="org-right">31-27</th>
 <th scope="col" class="org-right">26</th>
-<th scope="col" class="org-right">25-5</th>
-<th scope="col" class="org-right">4-0</th>
+<th scope="col" class="org-right">25-6</th>
+<th scope="col" class="org-right">5-0</th>
 </tr>
 </thead>
 <tbody>
@@ -3184,18 +3184,18 @@ It is an error if the address of the system call handler routine is not word ali
 <td class="org-right"><code>0b01000</code></td>
 <td class="org-right"><code>1</code></td>
 <td class="org-right">Reserved</td>
-<td class="org-right"><code>imm5</code></td>
+<td class="org-right"><code>imm6</code></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-org14a8caf" class="outline-4">
-<h4 id="org14a8caf"><span class="section-number-4">3.14.2</span> Operation</h4>
+<div id="outline-container-org5adcf3c" class="outline-4">
+<h4 id="org5adcf3c"><span class="section-number-4">3.14.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-14-2">
 <pre class="example">
-if (SCT[imm5][31] == 0)
+if (SCT[imm6][31] == 0)
   Handle SCT disabled error;
 else {
   temp = R15;
@@ -3208,7 +3208,7 @@ else {
   MemW[R15] = ZExtend(PC, 32);
   MI = 1;
 
-  addr = SCT[imm5][19:0];
+  addr = SCT[imm6][19:0];
   if ((addr % 4) != 0)
     Handle alignment error;
   else
@@ -3218,8 +3218,8 @@ else {
 </div>
 </div>
 
-<div id="outline-container-org89e1cc7" class="outline-4">
-<h4 id="org89e1cc7"><span class="section-number-4">3.14.3</span> Flags Affected</h4>
+<div id="outline-container-orgcd5d40a" class="outline-4">
+<h4 id="orgcd5d40a"><span class="section-number-4">3.14.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-14-3">
 <p>
 <code>MI</code>
@@ -3228,8 +3228,8 @@ else {
 </div>
 </div>
 
-<div id="outline-container-org9f6d98c" class="outline-3">
-<h3 id="org9f6d98c"><span class="section-number-3">3.15</span> RET</h3>
+<div id="outline-container-org84bdced" class="outline-3">
+<h3 id="org84bdced"><span class="section-number-3">3.15</span> RET</h3>
 <div class="outline-text-3" id="text-3-15">
 <p>
 Return from a subroutine, interrupt handler routine, or a system call handler routine.
@@ -3244,8 +3244,8 @@ It is an error if the target address of the return is not word aligned.
 </p>
 </div>
 
-<div id="outline-container-org6e75ba8" class="outline-4">
-<h4 id="org6e75ba8"><span class="section-number-4">3.15.1</span> Encodings</h4>
+<div id="outline-container-org9d555b9" class="outline-4">
+<h4 id="org9d555b9"><span class="section-number-4">3.15.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-15-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 43:</span> <code>RET</code></caption>
@@ -3309,8 +3309,8 @@ It is an error if the target address of the return is not word aligned.
 </div>
 </div>
 
-<div id="outline-container-org7003fb8" class="outline-4">
-<h4 id="org7003fb8"><span class="section-number-4">3.15.2</span> Operation</h4>
+<div id="outline-container-org164f9f7" class="outline-4">
+<h4 id="org164f9f7"><span class="section-number-4">3.15.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-15-2">
 <pre class="example">
 if (instruction[26] == 1 &amp;&amp; MI == 0)
@@ -3336,8 +3336,8 @@ else {
 </div>
 </div>
 
-<div id="outline-container-org2e5d18d" class="outline-4">
-<h4 id="org2e5d18d"><span class="section-number-4">3.15.3</span> Flags Affected</h4>
+<div id="outline-container-org7bd2ee6" class="outline-4">
+<h4 id="org7bd2ee6"><span class="section-number-4">3.15.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-15-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>, <code>MI</code>
@@ -3346,8 +3346,8 @@ else {
 </div>
 </div>
 
-<div id="outline-container-orgde430cf" class="outline-3">
-<h3 id="orgde430cf"><span class="section-number-3">3.16</span> LD</h3>
+<div id="outline-container-org2648b56" class="outline-3">
+<h3 id="org2648b56"><span class="section-number-3">3.16</span> LD</h3>
 <div class="outline-text-3" id="text-3-16">
 <p>
 Load a byte, short, or word from memory to a register.
@@ -3359,8 +3359,8 @@ the destination register.
 </p>
 </div>
 
-<div id="outline-container-org9bed31a" class="outline-4">
-<h4 id="org9bed31a"><span class="section-number-4">3.16.1</span> Encodings</h4>
+<div id="outline-container-org95864d8" class="outline-4">
+<h4 id="org95864d8"><span class="section-number-4">3.16.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-16-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 45:</span> <code>LDB DR, addr20</code></caption>
@@ -3706,8 +3706,8 @@ the destination register.
 </div>
 </div>
 
-<div id="outline-container-org417d596" class="outline-4">
-<h4 id="org417d596"><span class="section-number-4">3.16.2</span> Operation</h4>
+<div id="outline-container-orgb1d9032" class="outline-4">
+<h4 id="orgb1d9032"><span class="section-number-4">3.16.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-16-2">
 <pre class="example">
 if (instruction[21:20] == 0)
@@ -3729,8 +3729,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-orgab3f6bd" class="outline-4">
-<h4 id="orgab3f6bd"><span class="section-number-4">3.16.3</span> Flags Affected</h4>
+<div id="outline-container-org05364f2" class="outline-4">
+<h4 id="org05364f2"><span class="section-number-4">3.16.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-16-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -3739,8 +3739,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-orge52ebe8" class="outline-3">
-<h3 id="orge52ebe8"><span class="section-number-3">3.17</span> ST</h3>
+<div id="outline-container-org394fac5" class="outline-3">
+<h3 id="org394fac5"><span class="section-number-3">3.17</span> ST</h3>
 <div class="outline-text-3" id="text-3-17">
 <p>
 Store a byte, short, or word from a register to memory.
@@ -3753,8 +3753,8 @@ are stored at the destination address.
 </p>
 </div>
 
-<div id="outline-container-org885da5b" class="outline-4">
-<h4 id="org885da5b"><span class="section-number-4">3.17.1</span> Encodings</h4>
+<div id="outline-container-orga185dfe" class="outline-4">
+<h4 id="orga185dfe"><span class="section-number-4">3.17.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-17-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 54:</span> <code>STB addr20, SR</code></caption>
@@ -4100,8 +4100,8 @@ are stored at the destination address.
 </div>
 </div>
 
-<div id="outline-container-org312c318" class="outline-4">
-<h4 id="org312c318"><span class="section-number-4">3.17.2</span> Operation</h4>
+<div id="outline-container-orgec63909" class="outline-4">
+<h4 id="orgec63909"><span class="section-number-4">3.17.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-17-2">
 <pre class="example">
 if (instruction[26:25] == 0)
@@ -4121,8 +4121,8 @@ else if (instruction[28:27] == 3)
 </div>
 </div>
 
-<div id="outline-container-org2ef8313" class="outline-4">
-<h4 id="org2ef8313"><span class="section-number-4">3.17.3</span> Flags Affected</h4>
+<div id="outline-container-org11c9429" class="outline-4">
+<h4 id="org11c9429"><span class="section-number-4">3.17.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-17-3">
 <p>
 None.
@@ -4131,8 +4131,8 @@ None.
 </div>
 </div>
 
-<div id="outline-container-org4ab9ab1" class="outline-3">
-<h3 id="org4ab9ab1"><span class="section-number-3">3.18</span> CPY</h3>
+<div id="outline-container-org2629efb" class="outline-3">
+<h3 id="org2629efb"><span class="section-number-3">3.18</span> CPY</h3>
 <div class="outline-text-3" id="text-3-18">
 <p>
 Copy a source register or immediate value to the destination register.
@@ -4144,8 +4144,8 @@ copied (CPYI) or zero extended to 32 bits and copied (CPYU).
 </p>
 </div>
 
-<div id="outline-container-orge1579c8" class="outline-4">
-<h4 id="orge1579c8"><span class="section-number-4">3.18.1</span> Encodings</h4>
+<div id="outline-container-org6247ba4" class="outline-4">
+<h4 id="org6247ba4"><span class="section-number-4">3.18.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-18-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 63:</span> <code>CPY DR, SR</code></caption>
@@ -4267,8 +4267,8 @@ copied (CPYI) or zero extended to 32 bits and copied (CPYU).
 </div>
 </div>
 
-<div id="outline-container-orgd927f9b" class="outline-4">
-<h4 id="orgd927f9b"><span class="section-number-4">3.18.2</span> Operation</h4>
+<div id="outline-container-org68d6eba" class="outline-4">
+<h4 id="org68d6eba"><span class="section-number-4">3.18.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-18-2">
 <pre class="example">
 if (instruction[17:16] == 0)
@@ -4281,8 +4281,8 @@ else if (instruction[17:16] == 2)
 </div>
 </div>
 
-<div id="outline-container-org260b365" class="outline-4">
-<h4 id="org260b365"><span class="section-number-4">3.18.3</span> Flags Affected</h4>
+<div id="outline-container-org580943d" class="outline-4">
+<h4 id="org580943d"><span class="section-number-4">3.18.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-18-3">
 <p>
 None.
@@ -4291,8 +4291,8 @@ None.
 </div>
 </div>
 
-<div id="outline-container-orgd7f0d78" class="outline-3">
-<h3 id="orgd7f0d78"><span class="section-number-3">3.19</span> PUSH</h3>
+<div id="outline-container-org377dd18" class="outline-3">
+<h3 id="org377dd18"><span class="section-number-3">3.19</span> PUSH</h3>
 <div class="outline-text-3" id="text-3-19">
 <p>
 Push the source operand on top of the stack.
@@ -4313,8 +4313,8 @@ have a 32 bit size. The value is sign extended to 32 bits if the operand is a by
 </p>
 </div>
 
-<div id="outline-container-orgc6b2a67" class="outline-4">
-<h4 id="orgc6b2a67"><span class="section-number-4">3.19.1</span> Encodings</h4>
+<div id="outline-container-org4d4efa5" class="outline-4">
+<h4 id="org4d4efa5"><span class="section-number-4">3.19.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-19-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 66:</span> <code>PUSHI imm16</code></caption>
@@ -4516,8 +4516,8 @@ have a 32 bit size. The value is sign extended to 32 bits if the operand is a by
 </div>
 </div>
 
-<div id="outline-container-org6add278" class="outline-4">
-<h4 id="org6add278"><span class="section-number-4">3.19.2</span> Operation</h4>
+<div id="outline-container-org43abfbf" class="outline-4">
+<h4 id="org43abfbf"><span class="section-number-4">3.19.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-19-2">
 <pre class="example">
 R15 = R15 - 4;
@@ -4538,8 +4538,8 @@ if (instruction[25:24] == 0) {
 </div>
 </div>
 
-<div id="outline-container-org66ecc0a" class="outline-4">
-<h4 id="org66ecc0a"><span class="section-number-4">3.19.3</span> Flags Affected</h4>
+<div id="outline-container-orgccc2212" class="outline-4">
+<h4 id="orgccc2212"><span class="section-number-4">3.19.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-19-3">
 <p>
 None.
@@ -4548,8 +4548,8 @@ None.
 </div>
 </div>
 
-<div id="outline-container-org18633fe" class="outline-3">
-<h3 id="org18633fe"><span class="section-number-3">3.20</span> POP</h3>
+<div id="outline-container-orge1aeab2" class="outline-3">
+<h3 id="orge1aeab2"><span class="section-number-3">3.20</span> POP</h3>
 <div class="outline-text-3" id="text-3-20">
 <p>
 Pop the value on the top of the stack to the destination operand.
@@ -4567,8 +4567,8 @@ variant stores the entire word in the destination operand.
 </p>
 </div>
 
-<div id="outline-container-org319d3a3" class="outline-4">
-<h4 id="org319d3a3"><span class="section-number-4">3.20.1</span> Encodings</h4>
+<div id="outline-container-orgc898988" class="outline-4">
+<h4 id="orgc898988"><span class="section-number-4">3.20.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-20-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 71:</span> <code>POPB DR</code></caption>
@@ -4686,8 +4686,8 @@ variant stores the entire word in the destination operand.
 </div>
 </div>
 
-<div id="outline-container-org6619606" class="outline-4">
-<h4 id="org6619606"><span class="section-number-4">3.20.2</span> Operation</h4>
+<div id="outline-container-org583c5a3" class="outline-4">
+<h4 id="org583c5a3"><span class="section-number-4">3.20.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-20-2">
 <pre class="example">
 if (instruction[25:24] == 1)
@@ -4703,8 +4703,8 @@ R15 = R15 + 4;
 </div>
 </div>
 
-<div id="outline-container-org6aa62e0" class="outline-4">
-<h4 id="org6aa62e0"><span class="section-number-4">3.20.3</span> Flags Affected</h4>
+<div id="outline-container-org329cb94" class="outline-4">
+<h4 id="org329cb94"><span class="section-number-4">3.20.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-20-3">
 <p>
 None.
@@ -4713,8 +4713,8 @@ None.
 </div>
 </div>
 
-<div id="outline-container-orge65bb4e" class="outline-3">
-<h3 id="orge65bb4e"><span class="section-number-3">3.21</span> IN</h3>
+<div id="outline-container-orgfac3ce5" class="outline-3">
+<h3 id="orgfac3ce5"><span class="section-number-3">3.21</span> IN</h3>
 <div class="outline-text-3" id="text-3-21">
 <p>
 Get input from an I/O port.
@@ -4730,8 +4730,8 @@ This is a privileged instruction and can only be executed in supervisor mode.
 </p>
 </div>
 
-<div id="outline-container-orgfb556ed" class="outline-4">
-<h4 id="orgfb556ed"><span class="section-number-4">3.21.1</span> Encodings</h4>
+<div id="outline-container-org88976c5" class="outline-4">
+<h4 id="org88976c5"><span class="section-number-4">3.21.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-21-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 74:</span> <code>IN DR, SR</code></caption>
@@ -4823,8 +4823,8 @@ This is a privileged instruction and can only be executed in supervisor mode.
 </div>
 </div>
 
-<div id="outline-container-org33ef26d" class="outline-4">
-<h4 id="org33ef26d"><span class="section-number-4">3.21.2</span> Operation</h4>
+<div id="outline-container-orgbf2984e" class="outline-4">
+<h4 id="orgbf2984e"><span class="section-number-4">3.21.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-21-2">
 <pre class="example">
 if (MI == 0)
@@ -4842,8 +4842,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-org4eba67d" class="outline-4">
-<h4 id="org4eba67d"><span class="section-number-4">3.21.3</span> Flags Affected</h4>
+<div id="outline-container-org2c83197" class="outline-4">
+<h4 id="org2c83197"><span class="section-number-4">3.21.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-21-3">
 <p>
 <code>ZF</code>, <code>PF</code>, <code>NF</code>
@@ -4852,8 +4852,8 @@ Set_Flags(DR);
 </div>
 </div>
 
-<div id="outline-container-org6a68757" class="outline-3">
-<h3 id="org6a68757"><span class="section-number-3">3.22</span> OUT</h3>
+<div id="outline-container-org3697abb" class="outline-3">
+<h3 id="org3697abb"><span class="section-number-3">3.22</span> OUT</h3>
 <div class="outline-text-3" id="text-3-22">
 <p>
 Output to an I/O port.
@@ -4869,8 +4869,8 @@ This is a privileged instruction and can only be executed in supervisor mode.
 </p>
 </div>
 
-<div id="outline-container-orgf519d5a" class="outline-4">
-<h4 id="orgf519d5a"><span class="section-number-4">3.22.1</span> Encodings</h4>
+<div id="outline-container-org1637609" class="outline-4">
+<h4 id="org1637609"><span class="section-number-4">3.22.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-22-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 76:</span> <code>OUT DR, SR</code></caption>
@@ -4919,7 +4919,7 @@ This is a privileged instruction and can only be executed in supervisor mode.
 </table>
 
 <table>
-<caption class="t-above"><span class="table-number">Table 77:</span> <code>OUT imm5, SR</code></caption>
+<caption class="t-above"><span class="table-number">Table 77:</span> <code>OUT imm8, SR</code></caption>
 
 <colgroup>
 <col  class="org-left">
@@ -4962,8 +4962,8 @@ This is a privileged instruction and can only be executed in supervisor mode.
 </div>
 </div>
 
-<div id="outline-container-orgb2888cd" class="outline-4">
-<h4 id="orgb2888cd"><span class="section-number-4">3.22.2</span> Operation</h4>
+<div id="outline-container-org1a30ab4" class="outline-4">
+<h4 id="org1a30ab4"><span class="section-number-4">3.22.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-22-2">
 <pre class="example">
 if (MI == 0)
@@ -4979,8 +4979,8 @@ Port[p] = SR;
 </div>
 </div>
 
-<div id="outline-container-org40bca55" class="outline-4">
-<h4 id="org40bca55"><span class="section-number-4">3.22.3</span> Flags Affected</h4>
+<div id="outline-container-orgc5f503e" class="outline-4">
+<h4 id="orgc5f503e"><span class="section-number-4">3.22.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-22-3">
 <p>
 None.
@@ -4989,8 +4989,8 @@ None.
 </div>
 </div>
 
-<div id="outline-container-org1095565" class="outline-3">
-<h3 id="org1095565"><span class="section-number-3">3.23</span> SSSP</h3>
+<div id="outline-container-org682e0d3" class="outline-3">
+<h3 id="org682e0d3"><span class="section-number-3">3.23</span> SSSP</h3>
 <div class="outline-text-3" id="text-3-23">
 <p>
 Set supervisor stack pointer register.
@@ -5005,8 +5005,8 @@ The value loaded to SSP register must be aligned on a word boundary.
 </p>
 </div>
 
-<div id="outline-container-org46d9edf" class="outline-4">
-<h4 id="org46d9edf"><span class="section-number-4">3.23.1</span> Encodings</h4>
+<div id="outline-container-org631096a" class="outline-4">
+<h4 id="org631096a"><span class="section-number-4">3.23.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-23-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 78:</span> <code>SSSP addr20</code></caption>
@@ -5082,8 +5082,8 @@ The value loaded to SSP register must be aligned on a word boundary.
 </div>
 </div>
 
-<div id="outline-container-org0d29d79" class="outline-4">
-<h4 id="org0d29d79"><span class="section-number-4">3.23.2</span> Operation</h4>
+<div id="outline-container-org4c5823b" class="outline-4">
+<h4 id="org4c5823b"><span class="section-number-4">3.23.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-23-2">
 <pre class="example">
 if (MI == 0)
@@ -5102,8 +5102,8 @@ else
 </div>
 </div>
 
-<div id="outline-container-org89be619" class="outline-4">
-<h4 id="org89be619"><span class="section-number-4">3.23.3</span> Flags Affected</h4>
+<div id="outline-container-org1a12acc" class="outline-4">
+<h4 id="org1a12acc"><span class="section-number-4">3.23.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-23-3">
 <p>
 None.
@@ -5112,8 +5112,8 @@ None.
 </div>
 </div>
 
-<div id="outline-container-org96bcd3c" class="outline-3">
-<h3 id="org96bcd3c"><span class="section-number-3">3.24</span> HALT</h3>
+<div id="outline-container-org7fec6cc" class="outline-3">
+<h3 id="org7fec6cc"><span class="section-number-3">3.24</span> HALT</h3>
 <div class="outline-text-3" id="text-3-24">
 <p>
 Stop execution and halt the computer.
@@ -5128,8 +5128,8 @@ This is a privileged instruction and can only be executed in supervisor mode.
 </p>
 </div>
 
-<div id="outline-container-orgb36d761" class="outline-4">
-<h4 id="orgb36d761"><span class="section-number-4">3.24.1</span> Encodings</h4>
+<div id="outline-container-orgaf799c6" class="outline-4">
+<h4 id="orgaf799c6"><span class="section-number-4">3.24.1</span> Encodings</h4>
 <div class="outline-text-4" id="text-3-24-1">
 <table>
 <caption class="t-above"><span class="table-number">Table 80:</span> <code>HALT</code></caption>
@@ -5159,8 +5159,8 @@ This is a privileged instruction and can only be executed in supervisor mode.
 </div>
 </div>
 
-<div id="outline-container-org11b6572" class="outline-4">
-<h4 id="org11b6572"><span class="section-number-4">3.24.2</span> Operation</h4>
+<div id="outline-container-org8e1ac16" class="outline-4">
+<h4 id="org8e1ac16"><span class="section-number-4">3.24.2</span> Operation</h4>
 <div class="outline-text-4" id="text-3-24-2">
 <pre class="example">
 if (MI == 0)
@@ -5171,8 +5171,8 @@ else
 </div>
 </div>
 
-<div id="outline-container-org1f43091" class="outline-4">
-<h4 id="org1f43091"><span class="section-number-4">3.24.3</span> Flags Affected</h4>
+<div id="outline-container-orgfa6a2c3" class="outline-4">
+<h4 id="orgfa6a2c3"><span class="section-number-4">3.24.3</span> Flags Affected</h4>
 <div class="outline-text-4" id="text-3-24-3">
 <p>
 None.
@@ -5182,8 +5182,8 @@ None.
 </div>
 </div>
 
-<div id="outline-container-org3c47112" class="outline-2">
-<h2 id="org3c47112"><span class="section-number-2">4</span> Standard I/O Devices</h2>
+<div id="outline-container-org5ae0cc5" class="outline-2">
+<h2 id="org5ae0cc5"><span class="section-number-2">4</span> Standard I/O Devices</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 A Pixie implementation must support the following I/O devices.
@@ -5196,8 +5196,8 @@ A Pixie implementation must support the following I/O devices.
 </ul>
 </div>
 
-<div id="outline-container-org893621a" class="outline-3">
-<h3 id="org893621a"><span class="section-number-3">4.1</span> Clock</h3>
+<div id="outline-container-orgb7b1872" class="outline-3">
+<h3 id="orgb7b1872"><span class="section-number-3">4.1</span> Clock</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 The clock device can be used to get the current date and time according to the Gregorian calendar. The device does not
@@ -5294,8 +5294,8 @@ format:
 </div>
 </div>
 
-<div id="outline-container-orgd4edc3e" class="outline-3">
-<h3 id="orgd4edc3e"><span class="section-number-3">4.2</span> Byte Input</h3>
+<div id="outline-container-org4441892" class="outline-3">
+<h3 id="org4441892"><span class="section-number-3">4.2</span> Byte Input</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 This device provides byte (8-bit) inputs. The device raises interrupt vector 8 when some bytes are available as
@@ -5371,8 +5371,8 @@ after the count reaches zero, the returned value from port 9 is implementation d
 </div>
 </div>
 
-<div id="outline-container-orgdbdce5e" class="outline-3">
-<h3 id="orgdbdce5e"><span class="section-number-3">4.3</span> Byte Output</h3>
+<div id="outline-container-org7058413" class="outline-3">
+<h3 id="org7058413"><span class="section-number-3">4.3</span> Byte Output</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 This device can output bytes. The byte should be written to I/O port number 12 for output. The word written to this port
