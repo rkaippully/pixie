@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0ae73b320dad4d186fb2fc1e955631be93c02bbd36b9c5812c9e4c7e748fc73e
+-- hash: d5fb86081132836f2fd25a71db9137519fed15f7abd36536056c16b4a9e4a1a4
 
 name:           pixie
 version:        0.1.0.0
@@ -25,14 +25,17 @@ source-repository head
   location: https://github.com/rkaippully/pixie
 
 library
+  exposed-modules:
+      Pixie.ASM.Parser
   other-modules:
       Paths_pixie
   hs-source-dirs:
       lib
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings DerivingStrategies
   ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
+    , megaparsec
     , relude
   default-language: Haskell2010
 
@@ -42,7 +45,7 @@ executable pasm
       Paths_pixie
   hs-source-dirs:
       pasm/app
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings DerivingStrategies
   ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
@@ -57,7 +60,7 @@ test-suite pasm-test
       Paths_pixie
   hs-source-dirs:
       pasm/test
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings DerivingStrategies
   ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5

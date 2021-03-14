@@ -18,6 +18,7 @@ dependencies:
 default-extensions:
   - NoImplicitPrelude
   - OverloadedStrings
+  - DerivingStrategies
 
 ghc-options:
   - -Wall
@@ -28,25 +29,27 @@ ghc-options:
 
 library:
   source-dirs: lib
+  dependencies:
+    - megaparsec
 
 executables:
   pasm:
     main:                Main.hs
     source-dirs:         pasm/app
     ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
     dependencies:
-    - pixie
+      - pixie
 
 tests:
   pasm-test:
     main:                Spec.hs
     source-dirs:         pasm/test
     ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
     dependencies:
-    - pixie
+      - pixie
